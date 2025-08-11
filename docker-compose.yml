@@ -1,0 +1,30 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Verhindert, dass der host node_modules-Ordner das Volume überschreibt
+    container_name: angular-frontend
+    command: npm start
+
+  express:
+    build: ./express
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./express:/app
+      - /app/node_modules
+    container_name: express-backend
+    depends_on:
+      - pocketbase
+    command: npm run dev # Wenn Sie nodemon verwenden, sonst node index.js
+
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    ports:
+      - "8090:8090"
+    volumes:
+      - ./pb_data:/pb/pb_data
+    container_name: pocketbase-db
