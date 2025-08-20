@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --pingu-navy:#1c2a3a;
+  --pingu-orange:#f2a336;
+  --pingu-cream:#fff7ea;
+  --pingu-blue:#214a73;
+}
+*{ box-sizing:border-box; }
+html, body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+  background: var(--pingu-cream);
+}
