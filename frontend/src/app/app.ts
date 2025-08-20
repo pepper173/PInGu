@@ -1,12 +1,17 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { StudentLoginHeader } from './components/login/student-login-header';
+import { StudentLoginPingu } from './components/login/student-login-pingu';
+import { StudentLogin } from './components/login/student-login';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [StudentLoginHeader, StudentLoginPingu, StudentLogin],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss'],
 })
 export class App {
-  protected readonly title = signal('frontend');
+  onSubmit(code: string) {
+    console.log('Login-Code:', code);
+  }
 }

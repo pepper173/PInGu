@@ -1,0 +1,38 @@
+.login {
+  width: min(560px, 100%);
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+
+input {
+  width: 100%;
+  font-size: 1.1rem;
+  padding: .9rem 1rem;
+  border-radius: 14px;
+  border: 2px solid var(--pingu-navy);
+  background: #fff;
+}
+
+button {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  border: none;
+  font-weight: 800;
+  font-size: 1.15rem;
+  background: var(--pingu-orange);
+  color: #15202b;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
+}
+
+.help {
+  margin: 0;
+  color: #6b7280;
+  font-size: .9rem;
+}
