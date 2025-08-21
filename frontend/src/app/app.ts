@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { StudentLoginHeader } from './components/login/student-login-header';
-import { StudentLoginPingu } from './components/login/student-login-pingu';
-import { StudentLogin } from './components/login/student-login';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [StudentLoginHeader, StudentLoginPingu, StudentLogin],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
 })

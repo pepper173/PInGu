@@ -1,0 +1,41 @@
+:root {
+  --pingu-orange: #f3a032;
+  --pingu-navy: #122234;
+}
+
+.grid {
+  padding: 1rem 1rem 2rem;
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  justify-content: center;
+}
+
+.path {
+  display: grid;
+  place-items: center;
+  min-height: clamp(160px, 24vw, 240px);
+  border-radius: 22px;
+
+  /* dunkler Rand + versetzter Schatten wie im Screenshot */
+  border: 6px solid var(--pingu-navy);
+  background: var(--pingu-orange);
+  color: var(--pingu-navy);
+  box-shadow: 0 10px 0 rgba(18, 34, 52, .25); /* nach unten „Block“-Schatten */
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .08s ease;
+
+  &:hover   { transform: translateY(-1px); box-shadow: 0 12px 0 rgba(18,34,52,.25); }
+  &:active  { transform: translateY(2px);  box-shadow: 0 6px  0 rgba(18,34,52,.25); }
+}
+
+.label {
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  line-height: 1;
+}
+
+/* Mobile: 1 Spalte */
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+}
