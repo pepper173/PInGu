@@ -1,0 +1,48 @@
+:root {
+  --pingu-cream: #fdf3e2;
+  --pingu-cream-strong: #f6e7cf;
+  --pingu-navy: #122234;
+}
+
+/* Gesamter Header-Hintergrund */
+.header {
+  padding: 1.25rem 1rem 0.75rem;
+  background: var(--pingu-cream);
+}
+
+/* Innenbereich mit max Breite, zentriert */
+.header__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Titel zentriert */
+}
+
+/* Titel */
+h1 {
+  margin: 0;
+  font-weight: 800;
+  color: var(--pingu-navy);
+  line-height: 1.1;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  text-align: center;
+}
+
+/* Logout oben rechts – heller Ton & etwas kleiner */
+.logout {
+  position: absolute;
+  right: 0;                 /* sauber am Rand des Containers */
+  top: 0;
+  padding: .4rem .75rem;
+  font-weight: 700;
+  font-size: .9rem;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  background: var(--pingu-cream-strong);
+  color: var(--pingu-navy);
+  box-shadow: 0 1px 0 rgba(0,0,0,.04);
+  cursor: pointer;
+}
