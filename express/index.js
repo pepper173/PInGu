@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -68,7 +70,7 @@ app.post('/api/klasse', authenticateLehrer, async (req, res) => {
 
   try { 
     // Create klassen record, linked to the lehrer
-    const klassenRecord = await pb.collection('class').create({
+    const klassenRecord = await pb.collection('klassen').create({
       name: name,
       allelehrer: [lehrerId],
       allesus: []
