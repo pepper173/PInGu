@@ -1,0 +1,7 @@
+<section class="grid">
+  @for (item of items; track item.id) {
+    <button class="path" type="button" (click)="pick(item)">
+      <span class="label">{{ item.label }}</span>
+    </button>
+  }
+</section>
