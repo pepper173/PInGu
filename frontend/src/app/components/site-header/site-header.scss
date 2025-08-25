@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: center;   /* Titel mittig */
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+/* Titel-Styles wie gehabt */
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ✅ Fix: Button immer oben rechts im Browserfenster */
+.logout {
+  position: fixed;     /* <<< das ist der Schlüssel */
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+
+  padding: .4rem .75rem;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--pingu-navy);
+  background: var(--pingu-cream-strong);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04);
+  cursor: pointer;
+}
+
+/* Optional: etwas Abstand nach oben, damit der Button den Titel nicht überlappt */
+@media (min-width: 0) {
+  .header { padding-top: 0.75rem; }
+}
