@@ -26,5 +26,5 @@ services:
     ports:
       - "8090:8090"
     volumes:
-      - ./pb_data:/pb/pb_data
+      - ./pocketbase/pb_data:/pb/pb_data
     container_name: pocketbase-db

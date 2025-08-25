@@ -4,7 +4,7 @@ import { StudentLoginHome } from './components/studentLogin/student-login-home/s
 export const routes: Routes = [
   { path: '', component: StudentLoginHome }, // Startseite
   {
-    path: 'CLP',
+    path: 'clp',
     loadComponent: () =>
       import('./components/ChooseLpath/clphome/clphome').then(m => m.CLPHome),
   },

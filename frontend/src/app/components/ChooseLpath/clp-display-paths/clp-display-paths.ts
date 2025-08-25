@@ -11,8 +11,8 @@ export type PathItem = { id: string; label: string };
 export class ClpDisplayPaths {
   /** Vier Items – Standard mit Platzhalter-Text */
   @Input() items: PathItem[] = [
-    { id: 'p1', label: 'Text' },
-    { id: 'p2', label: 'Text' },
+    { id: 'p1', label: '' },
+    { id: 'p2', label: 'Test2' },
     { id: 'p3', label: 'Text' },
     { id: 'p4', label: 'Text' },
   ];

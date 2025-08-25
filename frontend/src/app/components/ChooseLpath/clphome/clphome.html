@@ -1,4 +1,4 @@
 <div class="page">
-  <app-clp-header (logout)="onLogout()"></app-clp-header>
-  <app-clp-display-paths [items]="paths" (select)="onPick($event)"></app-clp-display-paths>
+  <app-site-header title="Wähle einen Lernpfad" (logout)="onLogout()"></app-site-header>
+  <app-clp-display-paths (select)="onPick($event)"></app-clp-display-paths>
 </div>
