@@ -7,7 +7,7 @@ import { SiteHeader } from '../../site-header/site-header';
 @Component({
   selector: 'app-clphome',
   standalone: true,
-  imports: [SiteHeader,CLPHeader, ClpDisplayPaths],
+  imports: [SiteHeader, ClpDisplayPaths],
   templateUrl: './clphome.html',
   styleUrls: ['./clphome.scss'],
 })

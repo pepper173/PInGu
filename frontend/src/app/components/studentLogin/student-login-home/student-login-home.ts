@@ -14,11 +14,21 @@ import { serviceforStudentLogin } from '../SLoginServices/service-for-student-lo
   styleUrls: ['./student-login-home.scss']
 })
 export class StudentLoginHome {
-  constructor(private router: Router) {}
+  constructor(private router: Router, 
+    private loginSvc: serviceforStudentLogin) {}
 
   onSubmit(code: string) {
-   let x = getStudentData(); 
+    this.loginSvc.getStudentData().subscribe({
+      next: (data) => {
+        console.log('Daten vom Service:', data);
+        console.log('Login-Code:', code);
+        this.router.navigate(['/clp']); // oder '/CLP'
+      },
+      error: err => {
+        console.error('Fehler beim Abrufen der Daten:', err);
     console.log('Login-Code:', code); //LÖSCHEN
+      }
+    }); 
 
     //  Navigation zur CLP-Seite
     this.router.navigate(['/clp']); 
