@@ -1,0 +1,35 @@
+<form class="tlogin" (ngSubmit)="submit($event)" novalidate>
+  <label for="username" class="lbl">Benutzername</label>
+  <input
+    id="username"
+    type="text"
+    [formControl]="username"
+    placeholder="Benutzername eingeben"
+    autocomplete="username"
+    class="fld"
+  />
+  @if (username.touched && username.invalid) {
+    <p class="help">Bitte mindestens 3 Zeichen eingeben.</p>
+  }
+
+  <label for="password" class="lbl">Passwort</label>
+  <input
+    id="password"
+    type="password"
+    [formControl]="password"
+    placeholder="Passwort eingeben"
+    autocomplete="current-password"
+    class="fld"
+  />
+  @if (password.touched && password.invalid) {
+    <p class="help">Passwort muss mindestens 6 Zeichen haben.</p>
+  }
+
+  <div class="row">
+    <button type="button" class="link" (click)="onForgot()">Passwort vergessen</button>
+
+    <button type="submit" class="cta" [disabled]="form.invalid || loading" [attr.aria-busy]="loading">
+      {{ loading ? 'Anmelden…' : 'Anmelden' }}
+    </button>
+  </div>
+</form>

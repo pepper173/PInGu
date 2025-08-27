@@ -11,7 +11,7 @@ export class SiteHeader {
   @Input() title?: string;
 
   /** Logout-Event für Elternkomponenten */
-  @Output() logout = new EventEmitter<void>();
+  @Output() logout? = new EventEmitter<void>();
 
   onLogout() {
     this.logout.emit();

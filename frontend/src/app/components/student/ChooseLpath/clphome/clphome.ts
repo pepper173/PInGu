@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CLPHeader } from '../clp-header/clp-header';
 import { ClpDisplayPaths, PathItem } from '../clp-display-paths/clp-display-paths';
-import { SiteHeader } from '../../site-header/site-header';
+import { SiteHeader } from '../../../site-header/site-header';
+
 
 @Component({
   selector: 'app-clphome',
