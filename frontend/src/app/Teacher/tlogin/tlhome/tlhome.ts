@@ -1,30 +1,33 @@
 //connects all files of the teacher login home page
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TlHeader } from '../tlheader/tlheader';
 import { Tloginfield, LoginPayload } from '../tloginfield/tloginfield';
-import { SiteHeader } from '../../../components/site-header/site-header';
-
 
 @Component({
   selector: 'app-tlhome',
   standalone: true,
-  imports: [Tloginfield, SiteHeader],
+  imports: [TlHeader, Tloginfield],
   templateUrl: './tlhome.html',
   styleUrls: ['./tlhome.scss']
 })
 export class TLHome {
   constructor(private router: Router) {}
 
-  onLogin(payload: LoginPayload) {
-    // TODO: hier später echten Auth-Service aufrufen
-    console.log('Login versendet:', payload);
+  onStudentClick() {
+    // Hier entscheidest du, was passieren soll:
+    // z.B. Info-Banner zeigen, Route wechseln oder Flag setzen
+    console.log('Grundschüler:in-Button geklickt');
+     this.router.navigate(['']);
+  }
 
-    // Beispiel: nach erfolgreichem Login weiter navigieren
-    // this.router.navigate(['/CLP']); 
+  onLogin(payload: LoginPayload) {
+    console.log('Login versendet:', payload);
+    // TODO: Auth-Service einhängen, dann z.B.:
+    // this.router.navigate(['/CLP']);
   }
 
   onForgot() {
-    // TODO: Dialog/Route zur Passwortrücksetzung
-    console.log('Passwort vergessen geklickt');
+    console.log('Passwort vergessen');
   }
 }

@@ -1,23 +1,32 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { TlHeader } from '../tlheader/tlheader';
+import { Tloginfield, LoginPayload } from '../tloginfield/tloginfield';
 
-import { Tlhome } from './tlhome';
+@Component({
+  selector: 'app-tlhome',
+  standalone: true,
+  imports: [TlHeader, Tloginfield],
+  templateUrl: './tlhome.html',
+  styleUrls: ['./tlhome.scss']
+})
+export class TLHome {
+  constructor(private router: Router) {}
 
-describe('Tlhome', () => {
-  let component: Tlhome;
-  let fixture: ComponentFixture<Tlhome>;
+  onStudentClick() {
+    // Hier entscheidest du, was passieren soll:
+    // z.B. Info-Banner zeigen, Route wechseln oder Flag setzen
+    console.log('Grundschüler:in-Button geklickt');
+    // this.router.navigate(['/grundschule']);
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Tlhome]
-    })
-    .compileComponents();
+  onLogin(payload: LoginPayload) {
+    console.log('Login versendet:', payload);
+    // TODO: Auth-Service einhängen, dann z.B.:
+    // this.router.navigate(['/CLP']);
+  }
 
-    fixture = TestBed.createComponent(Tlhome);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  onForgot() {
+    console.log('Passwort vergessen');
+  }
+}

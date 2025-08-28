@@ -1,9 +1,10 @@
 <div class="page">
-    <app-site-header title="Willkommen bei der Lehkräfteseite der PInGu Lernpfade" ></app-site-header>
-    <section class="card">
-    <!-- Pingu-Logo oder Bild könntest du optional darüber setzen -->
-    <!-- <img src="assets/pingu.png" alt="PInGu" class="pingu" /> -->
+  <app-tlheader
+    [title]="'Willkommen bei den PInGu Lernpfaden!'"
+    (studentClick)="onStudentClick()">
+  </app-tlheader>
 
+  <section class="card">
     <app-tloginfield
       (login)="onLogin($event)"
       (forgotPassword)="onForgot()">

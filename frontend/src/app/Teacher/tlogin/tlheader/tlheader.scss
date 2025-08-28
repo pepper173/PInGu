@@ -1,0 +1,38 @@
+:host { display:block; width:100%; }
+
+.tl-header{
+  display:flex;
+  justify-content:center;   /* Titel mittig */
+  align-items:center;
+  padding:1.25rem 1rem .75rem;
+  position: relative;
+}
+
+.title{
+  margin:0;
+  font-weight:800;
+  color: var(--pingu-navy, #122234);
+  line-height:1.1;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+}
+
+/* 👇 fixiert den Button oben rechts im Viewport */
+.student-btn{
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  z-index: 1000;
+
+  padding:.5rem 1rem;
+  font-size:.9rem;
+  font-weight:700;
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  background: var(--pingu-blue, #1e88e5);
+  cursor:pointer;
+  transition: transform .1s ease, opacity .15s ease;
+
+  &:hover { transform: translateY(-1px); opacity:.95; }
+  &:active { transform: translateY(1px); }
+}
