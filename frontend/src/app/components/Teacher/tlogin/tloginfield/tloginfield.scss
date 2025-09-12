@@ -38,28 +38,45 @@ input {
   }
 }
 
-button {
-  width: 100%;
-  padding: 1rem 1.25rem;
-  border-radius: 16px;
+.row {
+  display: flex;
+  justify-content: center; /* alles in der Mitte */
+  margin-top: 1rem;
+}
+
+/* CTA bleibt groß und auffällig */
+.cta {
+  width: 100%;                 /* nimmt ganze Breite der Card */
+  max-width: 300px;            /* aber nicht zu riesig */
+  padding: 1rem;
   border: none;
+  border-radius: 14px;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  color: #15202b;
   background: var(--pingu-orange);
-  color: var(--pingu-navy);
+  box-shadow: 0 6px 0 rgba(0,0,0,.08);
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: transform .06s ease, box-shadow .06s ease;
 
   &:disabled {
-    opacity: 0.6;
+    opacity: .75;
     cursor: not-allowed;
   }
-
-  &:hover:not(:disabled) {
-    background: var(--pingu-orange);
-
-  &:hover:not(:disabled) {
-    filter: brightness(0.9); // dunkelt um ~10% ab
-  }
 }
+
+/* Passwort vergessen als Link darunter */
+.forgot {
+  margin-top: 0.5rem;
+  background: transparent;
+  border: 0;
+  color: var(--pingu-blue, #1e88e5);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

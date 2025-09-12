@@ -8,5 +8,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/student/ChooseLpath/clphome/clphome').then(m => m.CLPHome),
   },
-  {path: 'tl', loadComponent: () => import('./Teacher/tlogin/tlhome/tlhome').then(m => m.TLHome)},
+  {path: 'tl', loadComponent: () => import('./components/Teacher/tlogin/tlhome/tlhome').then(m => m.TLHome)},
 ];

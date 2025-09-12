@@ -25,11 +25,20 @@
     <p class="help">Passwort muss mindestens 6 Zeichen haben.</p>
   }
 
-  <div class="row">
-    <button type="button" class="link" (click)="onForgot()">Passwort vergessen</button>
+ <div class="row">
+  <button
+    type="submit"
+    class="cta"
+    [disabled]="form.invalid || loading"
+    [attr.aria-busy]="loading">
+    {{ loading ? 'Anmelden…' : 'Anmelden' }}
+  </button>
+</div>
 
-    <button type="submit" class="cta" [disabled]="form.invalid || loading" [attr.aria-busy]="loading">
-      {{ loading ? 'Anmelden…' : 'Anmelden' }}
-    </button>
-  </div>
+<div class="row">
+  <button type="button" class="forgot" (click)="onForgot()">
+    Passwort vergessen
+  </button>
+</div>
+
 </form>
