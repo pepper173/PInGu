@@ -11,10 +11,10 @@ export type PathItem = { id: string; label: string };
 export class ClpDisplayPaths {
   /** Vier Items – Standard mit Platzhalter-Text */
   @Input() items: PathItem[] = [
-    { id: 'p1', label: '' },
-    { id: 'p2', label: 'Test2' },
-    { id: 'p3', label: 'Text' },
-    { id: 'p4', label: 'Text' },
+    { id: 'p1', label: 'Handy, Tablet, Zahnbürste - Wo stecken überall Computer drin?' },
+    { id: 'p2', label: 'Apps, Spiele, Algorithmen – Mehr als du siehst!' },
+    { id: 'p3', label: 'Liken, Chatten, Scrollen – Was passiert, wenn ich online bin?' },
+    { id: 'p4', label: 'Suchmaschinen und KI – Wenn das Netz antwortet!' },
   ];
 
   @Output() select = new EventEmitter<PathItem>();
