@@ -5,7 +5,7 @@ const port = 3000;
 
 app.use(express.json());
 
-// Root route
+
 app.get('/', (req, res) => {
   res.send('Hallo vom Express-Backend!');
 });
@@ -44,7 +44,7 @@ async function authenticateLehrer(req, res, next) {
   }
 }
 
-// Generate unique 5-digit loginCode
+// Generate unique 5-digit loginCode for students
 async function generateUniqueCode(pb) {
   let code;
   let exists = true;
@@ -59,7 +59,7 @@ async function generateUniqueCode(pb) {
   return code;
 }
 
-// Lehrer signup
+// Lehrer signup when first registering
 app.post('/api/lehrer/signup', async (req, res) => {
   const pb = res.locals.pb;
   const { email, password } = req.body;
@@ -75,7 +75,7 @@ app.post('/api/lehrer/signup', async (req, res) => {
       passwordConfirm: password,
       emailVisibility: true,
       verified: false,
-      klassen: [] // Initialize empty JSON array
+      klassen: [] 
     });
 
     // Brief delay to ensure record is ready for auth
