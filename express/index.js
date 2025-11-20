@@ -1,9 +1,16 @@
 const express = require('express');
+const { json } = require('express');
+const PocketBase = require('pocketbase/cjs');
 
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+app.use(json(), function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // Root route
 app.get('/', (req, res) => {
@@ -13,12 +20,29 @@ app.get('/', (req, res) => {
 // Middleware to initialize PocketBase
 app.use(async (req, res, next) => {
   try {
-    const { default: PocketBase } = await import('pocketbase');
     res.locals.pb = new PocketBase('http://127.0.0.1:8090');
     next();
   } catch (error) {
     res.status(500).json({ error: 'Fehler beim Initialisieren von PocketBase: ' + error.message });
   }
+});
+
+app.post('/api/test', async (req, res) => {
+  const pb = res.locals.pb;
+  const {name, childrenCount, grade, code} = req.body;
+  const newClass = pb.collection('classes').create({
+    name,
+    childrenCount,
+    grade,
+    code
+  });
+  res.status(201).json(newClass);
+});
+
+app.get('/api/allClasses', async (req, res) => {
+  const pb = res.locals.pb;
+  const classes = await pb.collection('classes').getFullList();
+  res.status(200).json(classes);
 });
 
 // Middleware to authenticate Lehrer
@@ -75,7 +99,7 @@ app.post('/api/lehrer/signup', async (req, res) => {
       passwordConfirm: password,
       emailVisibility: true,
       verified: false,
-      klassen: [] // Initialize empty JSON array
+      klassen: []
     });
 
     // Brief delay to ensure record is ready for auth

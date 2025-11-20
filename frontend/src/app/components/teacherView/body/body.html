@@ -1,0 +1,43 @@
+<div class="container">
+
+  <!-- Header row: Überschrift + Button -->
+  <div class="row-header">
+    <button class="add-btn" (click)="onAddClass()">
+      Klasse hinzufügen
+    </button>
+  </div>
+
+  <!-- Box -->
+  <div class="class-box">
+    <div class="box-header">
+      <span class="box-title">Ihre Klassen</span>
+      <button class="edit-btn">✏️</button>
+    </div>
+
+    @if (isLoading) {
+      <div class="box-content">
+        <p>Lade Klassen...</p>
+      </div>
+    } @else if (errorMessage) {
+      <div class="box-content">
+        <p class="error">{{ errorMessage }}</p>
+      </div>
+    } @else if (!classes.length) {
+      <div class="box-content">
+        <p>Keine Klassen vorhanden.</p>
+      </div>
+    } @else {
+      <div class="box-content">
+        @for (c of classes; track c.id) {
+          <div class="class-item">
+            <div class="info">
+              <span class="name">{{ c.name }}</span>
+              <!-- hier kannst du später Progressbar etc. ergänzen -->
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+</div>

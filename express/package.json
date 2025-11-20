@@ -13,6 +13,6 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^5.1.0",
-    "pocketbase": "^0.26.2"
+    "pocketbase": "^0.26.3"
   }
 }

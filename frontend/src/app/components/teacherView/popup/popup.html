@@ -1,0 +1,96 @@
+<!-- class-popup.component.html -->
+<div class="popup-overlay" (click)="onClose()">
+  <div class="popup-center" (click)="$event.stopPropagation()">
+    <div class="create-class-card">
+      <h2 class="card-title">
+        <span>Erstelle eine neue</span>
+        <span>Klasse</span>
+      </h2>
+
+      <form class="class-form">
+        <!-- Name der Klasse -->
+        <div class="form-row">
+          <label for="className" class="form-label">Name der Klasse</label>
+          <input
+            id="className"
+            type="text"
+            class="text-input"
+            [(ngModel)]="className"
+            name="className"
+            placeholder="Name"
+          />
+        </div>
+
+        <!-- Anzahl Kinder -->
+        <div class="form-row">
+          <label for="childrenCount" class="form-label">Anzahl Kinder</label>
+          <input
+            id="childrenCount"
+            type="number"
+            class="text-input"
+            [(ngModel)]="childrenCount"
+            placeholder="Anzahl"
+            name="childrenCount"
+          />
+        </div>
+
+        <!-- Code -->
+        <div class="form-row">
+          <label for="classCode" class="form-label">Code</label>
+          <div class="code-input-wrapper">
+            <input
+              id="classCode"
+              type="text"
+              class="text-input code-input"
+              [(ngModel)]="code"
+              name="code"
+            />
+            <button
+              type="button"
+              class="icon-btn"
+              aria-label="Code generieren oder kopieren"
+            >
+              ⤢
+            </button>
+          </div>
+        </div>
+
+        <!-- Stufe -->
+        <div class="form-row">
+          <label for="grade" class="form-label">Stufe</label>
+          <div class="select-wrapper select-wrapper--soft">
+            <select id="grade" class="select-input" [(ngModel)]="grade" name="grade">
+              <option value="" selected>(Optional)</option>
+              <option *ngFor="let g of [1,2,3,4,5,6,7,8,9,10]" [value]="g">
+                {{ g }}
+              </option>
+            </select>
+            <span class="select-icon">▾</span>
+          </div>
+        </div>
+      </form>
+
+      <div class="popup-footer">
+        <span class="error-text" *ngIf="errorMessage">{{ errorMessage }}</span>
+
+        <div class="button-row">
+          <button type="button" class="btn-secondary" (click)="onClose()">
+            Abbrechen
+          </button>
+
+          <button
+            type="button"
+            class="btn-primary"
+            (click)="onCreate()"
+            [disabled]="isSubmitting"
+          >
+            Erstellen
+            @if (isSubmitting) {
+              <span>…</span>
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

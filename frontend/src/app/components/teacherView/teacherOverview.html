@@ -1,0 +1,14 @@
+<app-header (logout)="onLogout()"></app-header>
+
+<app-classes (addClass)="onAddClass()"></app-classes>
+
+@if (isClassPopupVisible) {
+<app-class-popup
+    title="Klasse hinzufügen"
+    (close)="hideClassPopup()"
+></app-class-popup>
+
+<!-- @if (isClassPopupVisible) {
+  <app-class-popup (close)="isClassPopupVisible = false"></app-class-popup>
+} -->
+}

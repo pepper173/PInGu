@@ -1,0 +1,106 @@
+.container {
+  padding: 24px;
+}
+
+/* Überschrift + Button */
+.row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0e2547;
+}
+
+.add-btn {
+  background-color: #0e2547;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Box */
+.class-box {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  width: 100%;
+  border: 2px solid #ececec;
+}
+
+.box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #ececec;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.box-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.edit-btn {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.box-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Einzelne Klassenzeile */
+.class-item {
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #e0e0e0;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+/* Progress-Balken */
+.progress-bg {
+  width: 180px;
+  height: 14px;
+  background: #e6e6e6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #3267a8;
+  border-radius: 8px;
+}
+
+.ratio {
+  margin-left: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
