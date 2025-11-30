@@ -1,0 +1,14 @@
+FROM node:20-alpine
+WORKDIR /app
+
+# Nur die package-Dateien zuerst kopieren, für besseres Caching
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Restlichen Code kopieren
+COPY . .
+
+EXPOSE 3000
+
+# Start-Skript aus package.json verwenden
+CMD ["npm", "start"]
