@@ -1,6 +1,7 @@
 const express = require('express');
 const { json } = require('express');
 const PocketBase = require('pocketbase/cjs');
+const POCKETBASE_URL = process.env.POCKETBASE_URL || 'http://127.0.0.1:8090';
 
 const app = express();
 const port = 3000;
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
 // Middleware to initialize PocketBase
 app.use(async (req, res, next) => {
   try {
-    res.locals.pb = new PocketBase('http://127.0.0.1:8090');
+    res.locals.pb = new PocketBase(POCKETBASE_URL);
     next();
   } catch (error) {
     res.status(500).json({ error: 'Fehler beim Initialisieren von PocketBase: ' + error.message });
@@ -245,7 +246,7 @@ app.post('/api/student', async (req, res) => {
 //   }
 // });
 
-// // Start Express server
-// app.listen(port, () => {
-//   console.log(`Express-Server läuft auf http://localhost:${port}`);
-// });
+// Start Express server
+app.listen(port, () => {
+  console.log(`Express-Server läuft auf http://localhost:${port}`);
+});

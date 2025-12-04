@@ -1,0 +1,26 @@
+# Build-Stage: Angular bauen
+FROM node:20 AS build
+WORKDIR /app
+
+# Dependencies installieren
+COPY package*.json ./
+RUN npm ci
+
+# Restlichen Code kopieren
+COPY . .
+
+# Angular-Build ausführen (nutzt deine angular.json, default config = production)
+RUN npm run build
+
+# Serve-Stage: Nginx als Webserver
+FROM nginx:stable-alpine
+
+# Nginx-Default-Inhalt löschen
+RUN rm -rf /usr/share/nginx/html/*
+
+# Gebaute Dateien aus dist/frontend/browser nach /usr/share/nginx/html kopieren
+COPY --from=build /app/dist/frontend/browser/ /usr/share/nginx/html/
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+

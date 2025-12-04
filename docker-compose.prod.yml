@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: pingu-frontend
+    restart: always
+    ports:
+      - "127.0.0.1:8085:80"
+
+  express:
+    build:
+      context: ./express
+      dockerfile: Dockerfile.prod
+    container_name: pingu-express
+    restart: always
+    depends_on:
+      - pocketbase
+    environment:
+      - PORT=3000
+      - POCKETBASE_URL=http://pocketbase:8090
+    ports:
+      - "127.0.0.1:3005:3000"
+
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pingu-pocketbase
+    restart: always
+    volumes:
+      - ./pb_data:/pb/pb_data
+    ports:
+      - "127.0.0.1:8095:8090"
