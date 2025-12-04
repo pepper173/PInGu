@@ -49,7 +49,7 @@ app.post('/api/student', async (req, res) => {
     classCode
   });
   res.status(201).json(newStudent);
-}
+})
 
 // app.get('/api/allClasses', async (req, res) => {
 //   const pb = res.locals.pb;
