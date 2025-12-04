@@ -1,19 +1,14 @@
 const express = require('express');
-const { json } = require('express');
+const cors = require('cors');
 const PocketBase = require('pocketbase/cjs');
 const POCKETBASE_URL = process.env.POCKETBASE_URL || 'http://127.0.0.1:8090';
 
 const app = express();
 const port = 3000;
 
-app.use(json(), function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(cors()); //TODO
+app.use(express.json());
 
-// Root route
 app.get('/', (req, res) => {
   res.send('Hallo vom Express-Backend!');
 });
@@ -31,7 +26,7 @@ app.use(async (req, res, next) => {
 app.post('/api/class', async (req, res) => {
   const pb = res.locals.pb;
   const {name, childrenCount, grade, code} = req.body;
-  const newClass = pb.collection('classes').create({
+  const newClass = await pb.collection('classes').create({
     name,
     childrenCount,
     grade,
@@ -41,21 +36,40 @@ app.post('/api/class', async (req, res) => {
 });
 
 app.post('/api/student', async (req, res) => {
+  const heroNames = ['Löwe', 'Tiger', 'Bär', 'Adler', 'Fuchs', 'Wolf', 'Hirsch', 'Eule'];
+  const randomIndex = Math.floor(Math.random() * heroNames.length);
+  const userName = `${heroNames[randomIndex]}_${Math.floor(100 + Math.random() * 900)}`; 
+
   const pb = res.locals.pb;
-  const {firstName, lastName, classCode} = req.body;
-  const newStudent = pb.collection('students').create({
-    firstName,
-    lastName,
+  const {studentCode, classCode} = req.body;
+  const newStudent = await pb.collection('students').create({
+    userName,
+    studentCode,
     classCode
   });
   res.status(201).json(newStudent);
 })
+
+//TODO also check against class code.
+//TODO set studentCode as used
+app.get('/api/studentCode/:studentCode', async (req, res) => {
+  const pb = res.locals.pb;
+  const { studentCode } = req.params;
+try {
+    const code = await pb.collection("studentCodes")
+      .getFirstListItem(`code="${studentCode}" && used=false`);
+    return res.status(200).json({ valid: true, code });
+  } catch (err) {
+    return res.status(200).json({ valid: false });
+  }
+});
 
 app.get('/api/allClasses', async (req, res) => {
   const pb = res.locals.pb;
   const classes = await pb.collection('classes').getFullList();
   res.status(200).json(classes);
 });
+
 
 // // Middleware to authenticate Lehrer
 // async function authenticateLehrer(req, res, next) {

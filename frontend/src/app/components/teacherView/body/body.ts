@@ -19,6 +19,7 @@ export class ClassesComponent {
     this.loadClasses();
   }
 
+  //TODO: change to emit
   loadClasses(): void {
     this.isLoading = true;
     this.errorMessage = '';
