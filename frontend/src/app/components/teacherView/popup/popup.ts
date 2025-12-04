@@ -48,7 +48,7 @@ export class ClassPopupComponent {
     this.errorMessage = '';
 
     //TODO: In eigenen Service auslagern
-    this.http.post('http://localhost:3000/api/test', neueKlasse).subscribe({
+    this.http.post('http://localhost:3000/api/class', neueKlasse).subscribe({
       next: (res) => {
         this.isSubmitting = false;
         console.log('Antwort vom Server:', res);

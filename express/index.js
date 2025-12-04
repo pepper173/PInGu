@@ -28,7 +28,7 @@ app.use(async (req, res, next) => {
   }
 });
 
-app.post('/api/test', async (req, res) => {
+app.post('/api/class', async (req, res) => {
   const pb = res.locals.pb;
   const {name, childrenCount, grade, code} = req.body;
   const newClass = pb.collection('classes').create({
@@ -51,11 +51,11 @@ app.post('/api/student', async (req, res) => {
   res.status(201).json(newStudent);
 })
 
-// app.get('/api/allClasses', async (req, res) => {
-//   const pb = res.locals.pb;
-//   const classes = await pb.collection('classes').getFullList();
-//   res.status(200).json(classes);
-// });
+app.get('/api/allClasses', async (req, res) => {
+  const pb = res.locals.pb;
+  const classes = await pb.collection('classes').getFullList();
+  res.status(200).json(classes);
+});
 
 // // Middleware to authenticate Lehrer
 // async function authenticateLehrer(req, res, next) {
