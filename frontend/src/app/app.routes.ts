@@ -7,7 +7,7 @@ export const routes: Routes = [
   { path: '', component: StudentLoginHome },
   { path:'teacherLogin', component: teacherLogin},
   { path:'teacherOverview', component: TeacherOverviewComponent},
-  { path: 'studentSignUp', component: StudentSignupComponent},
+  { path: 'studentSignup', component: StudentSignupComponent},
   {
     path: 'CLP',
     loadComponent: () =>

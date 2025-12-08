@@ -6,7 +6,7 @@ const POCKETBASE_URL = process.env.POCKETBASE_URL || 'http://127.0.0.1:8090';
 const app = express();
 const port = 3000;
 
-app.use(cors()); //TODO
+app.use(cors()); //TODO: cors config for production
 app.use(express.json());
 
 app.get('/', (req, res) => {

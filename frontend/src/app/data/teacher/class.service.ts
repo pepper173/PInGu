@@ -6,11 +6,15 @@ import { Class } from './class.model';
 @Injectable({ providedIn: 'root' })
 export class ClassService {
   private http = inject(HttpClient);
-
-  private readonly baseUrl = 'http://localhost:3000/api/allClasses';
+  private readonly baseUrl = 'http://localhost:3000/api/';
 
   getClasses(): Observable<Class[]> {
-    var test = this.http.get<Class[]>(this.baseUrl);
-    return test;
+    var classes = this.http.get<Class[]>(this.baseUrl + 'allClasses');
+    return classes;
+  }
+
+  createClass(neueKlasse: Class): Observable<any> {
+   var newClass = this.http.post('class', neueKlasse);
+   return newClass;
   }
 }

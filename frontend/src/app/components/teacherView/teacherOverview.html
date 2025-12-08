@@ -1,14 +1,11 @@
-<app-header (logout)="onLogout()"></app-header>
+<app-classes-header (logout)="onLogout()"></app-classes-header>
 
-<app-classes (addClass)="onAddClass()"></app-classes>
+<app-classes-body [classes]="classes" [isLoading]="isLoading" [errorMessage]="errorMessage" (addClass)="onAddClass()"></app-classes-body>
 
 @if (isClassPopupVisible) {
 <app-class-popup
     title="Klasse hinzufügen"
     (close)="hideClassPopup()"
+    (create)="onCreate($event)"
 ></app-class-popup>
-
-<!-- @if (isClassPopupVisible) {
-  <app-class-popup (close)="isClassPopupVisible = false"></app-class-popup>
-} -->
 }

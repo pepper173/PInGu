@@ -1,52 +1,24 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { Class } from '../../../data/class/class.model';
-import { ClassService } from '../../../data/class/class.service';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Class } from '../../../data/teacher/class.model';
 
 @Component({
-  selector: 'app-classes',
+  selector: 'app-classes-body',
   templateUrl: './body.html',
   styleUrls: ['./body.scss']
 })
-export class ClassesComponent {
-  private classService = inject(ClassService);
 
-  classes: Class[] = [];
-  isLoading = false;
-  errorMessage = '';
-  c: Class;
+export class ClassesComponent {
+  @Input() classes: Class[];
+  @Input() isLoading = false;
+  @Input() errorMessage = '';
+  @Output() addClass = new EventEmitter<void>();
+  @Output() loadClasses = new EventEmitter<void>();
 
   ngOnInit(): void {
-    this.loadClasses();
-  }
-
-  //TODO: change to emit
-  loadClasses(): void {
-    this.isLoading = true;
-    this.errorMessage = '';
-
-    this.classService.getClasses().subscribe({
-      next: (classes) => {
-        this.classes = classes;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error(err);
-        this.errorMessage = 'Fehler beim Laden der Klassen.';
-        this.isLoading = false;
-      }
-    });
-  }
-
-  @Output() addClass = new EventEmitter<void>();
-  @Output() close = new EventEmitter<void>();
-
-  onClose() {
-    this.close.emit();
+    this.loadClasses.emit();
   }
 
   onAddClass() {
-    console.log('Klasse hinzufügen');
     this.addClass.emit();
   }
-
 }

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderComponent } from './header/header';
 import { ClassesComponent } from './body/body';
 import { ClassPopupComponent } from './popup/popup';
+import { Class } from '../../data/teacher/class.model';
+import { ClassService } from '../../data/teacher/class.service';
 
 @Component({
   selector: 'app-teacher-view',
@@ -13,8 +15,32 @@ import { ClassPopupComponent } from './popup/popup';
     ClassPopupComponent
   ],
 })
+
 export class TeacherOverviewComponent{
+  classes: Class[] = [];
+  c: Class;
+  isLoading = false;
+  errorMessage = '';
+
   isClassPopupVisible = false;
+  private classService = inject(ClassService);
+
+  ngOnInit(): void {
+    this.loadClasses();
+  }
+
+  onCreate(newClass: Class){
+    this.classService.createClass(newClass).subscribe({
+      next: (res) => {
+        console.log('Klasse erfolgreich erstellt:', res);
+        this.loadClasses();
+        this.hideClassPopup();
+      },
+      error: (err) => {
+        console.error('Fehler beim Erstellen der Klasse:', err);
+      }
+    });
+  }
 
   hideClassPopup() {
     this.isClassPopupVisible = false;
@@ -25,7 +51,24 @@ export class TeacherOverviewComponent{
   }
 
   onLogout() {
-    // Logout-Logik oder Event nach oben geben
     console.log('Teacher logged out');
   }
+
+  private loadClasses() {
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.classService.getClasses().subscribe({
+      next: (classes) => {
+        this.classes = classes;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.errorMessage = 'Fehler beim Laden der Klassen.';
+        this.isLoading = false;
+      }
+    });
+  }
+
 }
