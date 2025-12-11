@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { HeaderComponent } from './header/header';
 import { ClassesComponent } from './body/body';
 import { ClassPopupComponent } from './popup/popup';
-import { Class } from '../../data/teacher/class.model';
-import { ClassService } from '../../data/teacher/class.service';
+import { Class } from '../../data/class.model';
+import { ClassService } from '../../data/class.service';
+import {TeacherAuthService} from '../../auth/teacher/teacherAuth.service';
 
 @Component({
   selector: 'app-teacher-view',
@@ -18,15 +19,16 @@ import { ClassService } from '../../data/teacher/class.service';
 
 export class TeacherOverviewComponent{
   classes: Class[] = [];
-  c: Class;
   isLoading = false;
   errorMessage = '';
+  private auth: TeacherAuthService = inject(TeacherAuthService);
 
   isClassPopupVisible = false;
   private classService = inject(ClassService);
 
   ngOnInit(): void {
     this.loadClasses();
+    console.log('Aktueller User:', this.auth.user());
   }
 
   onCreate(newClass: Class){
@@ -51,7 +53,7 @@ export class TeacherOverviewComponent{
   }
 
   onLogout() {
-    console.log('Teacher logged out');
+    this.auth.logout();
   }
 
   private loadClasses() {

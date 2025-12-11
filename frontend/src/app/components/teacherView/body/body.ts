@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { Class } from '../../../data/teacher/class.model';
+import { Class } from '../../../data/class.model';
 
 @Component({
   selector: 'app-classes-body',
@@ -12,11 +12,6 @@ export class ClassesComponent {
   @Input() isLoading = false;
   @Input() errorMessage = '';
   @Output() addClass = new EventEmitter<void>();
-  @Output() loadClasses = new EventEmitter<void>();
-
-  ngOnInit(): void {
-    this.loadClasses.emit();
-  }
 
   onAddClass() {
     this.addClass.emit();

@@ -1,0 +1,58 @@
+import {Injectable, signal, computed, Signal} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
+import {RegisterPayload, RegisterResponse, User} from './teacherAuth.model';
+import {Router} from '@angular/router';
+import {Observable, of} from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class TeacherAuthService {
+  private readonly baseUrl: string = 'http://localhost:3000/api/';
+  private _user = signal<User | null>(null);
+
+  user: Signal<User> = computed(() => this._user());
+  isLoggedIn: Signal<boolean> = computed(() => !!this._user());
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  loadCurrentUser(): Observable<unknown> {
+    return this.http
+      .get<{ user: User }>(this.baseUrl + 'auth/me', { withCredentials: true })
+      .pipe(tap({
+          next: (res) => this._user.set(res.user),
+          error: () => this._user.set(null),
+        }),
+        catchError(() => {
+          this._user.set(null);
+          return of(null);
+        })
+      );
+  }
+
+
+  login(email: string, password: string) {
+    return this.http
+      .post<{ user: User }>(this.baseUrl + 'lehrer/login', { email, password }, { withCredentials: true })
+      .pipe(tap((res) => this._user.set(res.user)));
+  }
+
+  register(payload: RegisterPayload) {
+    return this.http
+      .post<RegisterResponse>(this.baseUrl + 'lehrer/signup', payload, { withCredentials: true })
+      .pipe(
+        tap((res) => {
+          this._user.set(res.user);
+        })
+      );
+  }
+
+  logout() {
+    this.http.post(this.baseUrl + 'lehrer/logout', {}, { withCredentials: true }).subscribe({
+      next: () => {
+        this._user.set(null);
+        this.router.navigate(['/']);
+        },
+      error: () => this._user.set(null), //TODO: error handling
+    });
+  }
+}

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {TeacherAuthService} from '../../../auth/teacher/teacherAuth.service';
 
 @Component({
   selector: 'app-classes-header',
@@ -6,8 +7,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./header.scss']
 })
 export class HeaderComponent {
-  @Input() title = 'WELCOME';
-
+  private auth = inject(TeacherAuthService);
+  @Input() title = `WELCOME ${this.auth.user()?.email}! `;
   @Output() logout = new EventEmitter<void>();
 
   onLogout(): void {

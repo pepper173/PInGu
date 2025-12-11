@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h1>Sign up</h1>
+
+  <!-- NAME -->
+  <label>
+    Name
+    <input type="text" formControlName="name" />
+  </label>
+  @if (form.get('name')?.invalid && form.get('name')?.touched) {
+    <div>
+      Bitte einen gültigen Namen eingeben.
+    </div>
+  }
+
+  <!-- EMAIL -->
+  <label>
+    Email
+    <input type="email" formControlName="email" />
+  </label>
+  @if (form.get('email')?.invalid && form.get('email')?.touched) {
+    <div>
+      Bitte eine gültige Email eingeben.
+    </div>
+  }
+
+  <!-- PASSWORD -->
+  <label>
+    Passwort
+    <input type="password" formControlName="password" />
+  </label>
+  @if (form.get('password')?.invalid && form.get('password')?.touched) {
+    <div>
+      Passwort muss mindestens 6 Zeichen lang sein.
+    </div>
+  }
+
+  <!-- CONFIRM PASSWORD -->
+  <label>
+    Passwort wiederholen
+    <input type="password" formControlName="confirmPassword" />
+  </label>
+  @if (passwordMismatch) {
+    <div>
+      Die Passwörter stimmen nicht überein.
+    </div>
+  }
+
+  <!-- SUBMIT BUTTON -->
+  <button type="submit" [disabled]="form.invalid || loading">
+    {{ loading ? 'Erstelle Account…' : 'Registrieren' }}
+  </button>
+
+  <!-- ERROR -->
+  @if (error) {
+    <p style="color: red">{{ error }}</p>
+  }
+
+  <!-- LINK TO LOGIN -->
+  <p>
+    Hast du bereits einen Account?
+    <a routerLink="/login">Jetzt einloggen</a>.
+  </p>
+</form>

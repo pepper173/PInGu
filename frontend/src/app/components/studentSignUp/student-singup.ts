@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StudentSignupHeaderComponent } from './header/student-signup-header';
 import { StudentSignupBodyComponent } from './body/student-signup-body';
-import { StudentService } from '../../data/student/student.service';
+import { StudentAuthService } from '../../auth/student/studentAuth.service';
 
 @Component({
   selector: 'app-student-signup',
@@ -19,7 +19,7 @@ import { StudentService } from '../../data/student/student.service';
 })
 export class StudentSignupComponent {
   form: FormGroup;
-  private studentService = inject(StudentService);
+  private studentService = inject(StudentAuthService);
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({

@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class StudentService {
-  private http = inject(HttpClient);
+export class StudentAuthService {
+  private http: HttpClient = inject(HttpClient);
 
   private readonly baseUrl = 'http://localhost:3000/api/';
 

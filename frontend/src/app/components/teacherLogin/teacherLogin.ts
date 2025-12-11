@@ -1,44 +1,46 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {TeacherAuthService} from '../../auth/teacher/teacherAuth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule], 
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './teacherLogin.html',
   styleUrls: ['./teacherLogin.scss']
 })
 export class teacherLogin {
   loginForm: FormGroup;
+  private router: Router = inject(Router);
+  private auth: TeacherAuthService = inject(TeacherAuthService);
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
 
   onSubmit(): void {
-    console.log('Formular abgeschickt');
-
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       console.log('Formular ist ungültig');
       return;
     }
 
-    const { username, password } = this.loginForm.value;
-    // TODO: Login-Logik einbauen
-    
-    if (username === 'test@testmail.de' && password === 'test') {
-      console.log('Erfolgreich eingeloggt!');
-      this.router.navigate(['/teacherOverview']);
-    }
-    
-    console.log('Login mit:', username, password);
+    const { email, password } = this.loginForm.value;
+    this.auth.login(email, password).subscribe({
+      next: () => {
+        if (this.auth.isLoggedIn()) {
+          this.router.navigate(['/teacherOverview']);
+        } else {
+          console.log('Kritischer Fehler! Login fehlgeschlagen, trotz erfolgreicher Anmeldung.');
+        }
+      },
+      error: (err) => {
+        console.error('Fehler bei Anmeldung:', err);
+      }
+    });
   }
-
-  get username() { return this.loginForm.get('username'); }
-  get password() { return this.loginForm.get('password'); }
 }

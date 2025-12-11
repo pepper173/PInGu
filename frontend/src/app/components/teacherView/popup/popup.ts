@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Class } from '../../../data/teacher/class.model';
+import { Class } from '../../../data/class.model';
 
 @Component({
   selector: 'app-class-popup',
@@ -12,26 +12,26 @@ import { Class } from '../../../data/teacher/class.model';
 })
 
 export class ClassPopupComponent {
-  isSubmitting = false;
-  errorMessage = '';
+  isSubmitting: boolean = false;
+  errorMessage: string = '';
 
-  className = '';
+  className: string = '';
   childrenCount: number;
   grade: number | null;
-  code = this.generateRandomCode();
+  code: string = this.generateRandomCode();
 
   @Input() title = 'Default title';
   @Output() close = new EventEmitter<void>();
   @Output() create = new EventEmitter<Class>();
 
   onCreate() {
-    var newClass: Class = {
+    const newClass: Class = {
       id: '',
       name: this.className,
       childrenCount: this.childrenCount,
       grade: this.grade,
       code: this.code,
-    } 
+    };
     this.create.emit(newClass);
   }
 
