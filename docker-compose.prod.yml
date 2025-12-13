@@ -29,6 +29,6 @@ services:
     container_name: pingu-pocketbase
     restart: always
     volumes:
-      - ./pb_data:/pb/pb_data
+      - ./pb_data:/pb_data
     ports:
       - "127.0.0.1:8095:8090"
