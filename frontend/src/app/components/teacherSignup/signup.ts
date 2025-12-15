@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { TeacherAuthService } from '../../auth/teacher/teacherAuth.service';
 
 function passwordMatchValidator(control: AbstractControl) {
@@ -16,7 +16,7 @@ function passwordMatchValidator(control: AbstractControl) {
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './signup.html',
 })
 export class TeacherSignupComponent {
