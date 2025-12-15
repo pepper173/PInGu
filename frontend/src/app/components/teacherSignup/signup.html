@@ -1,17 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h1>Sign up</h1>
 
-  <!-- NAME -->
-  <label>
-    Name
-    <input type="text" formControlName="name" />
-  </label>
-  @if (form.get('name')?.invalid && form.get('name')?.touched) {
-    <div>
-      Bitte einen gültigen Namen eingeben.
-    </div>
-  }
-
   <!-- EMAIL -->
   <label>
     Email

@@ -29,7 +29,6 @@ export class TeacherSignupComponent {
 
   form = this.fb.group(
     {
-      name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
@@ -48,11 +47,10 @@ export class TeacherSignupComponent {
     this.loading = true;
     this.error = null;
 
-    const { name, email, password } = this.form.value;
+    const { email, password } = this.form.value;
 
     this.auth
       .register({
-        name: name!,
         email: email!,
         password: password!,
       })
