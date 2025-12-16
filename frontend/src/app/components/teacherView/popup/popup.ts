@@ -17,8 +17,7 @@ export class ClassPopupComponent {
 
   className: string = '';
   childrenCount: number;
-  grade: number | null;
-  code: string = this.generateRandomCode();
+  grade: number = 1;
 
   @Input() title = 'Default title';
   @Output() close = new EventEmitter<void>();
@@ -27,24 +26,15 @@ export class ClassPopupComponent {
   onCreate() {
     const newClass: Class = {
       id: '',
+      lehrerId: '',
       name: this.className,
       childrenCount: this.childrenCount,
       grade: this.grade,
-      code: this.code,
     };
     this.create.emit(newClass);
   }
 
   onClose() {
     this.close.emit();
-  }
-
-  private generateRandomCode(): string {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let result = '';
-    for (let i = 0; i < 5; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
   }
 }
