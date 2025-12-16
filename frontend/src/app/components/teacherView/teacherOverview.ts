@@ -32,7 +32,9 @@ export class TeacherOverviewComponent{
   }
 
   onCreate(newClass: Class){
-    this.classService.createClass(newClass).subscribe({
+    const payload = { ...newClass, lehrerId: this.auth.user().id };
+    console.log('Neue Klasse:', payload);
+    this.classService.createClass(payload).subscribe({
       next: (res) => {
         console.log('Klasse erfolgreich erstellt:', res);
         this.loadClasses();
