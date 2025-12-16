@@ -1,106 +1,107 @@
+$mockup-blue: #0b2a4a;
+$mockup-blue-hover: #123a63;
+$mockup-blue-soft: #e6eef6;
+
+
 .container {
-  padding: 24px;
+  padding: 1.5rem;
 }
 
-/* Überschrift + Button */
+/* Header */
 .row-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #0e2547;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 .add-btn {
-  background-color: #0e2547;
-  color: white;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
   border: none;
-  padding: 12px 22px;
-  border-radius: 12px;
-  font-size: 18px;
+
+  background: $mockup-blue;
+  color: #fff;
+
+  font-weight: 500;
   cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: $mockup-blue-hover;
+  }
 }
+
 
 /* Box */
 .class-box {
   background: white;
-  border-radius: 16px;
-  padding: 16px;
-  width: 100%;
-  border: 2px solid #ececec;
-}
-
-.box-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid #ececec;
-  padding-bottom: 12px;
-  margin-bottom: 12px;
-}
-
-.box-title {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.edit-btn {
-  background: #fafafa;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.box-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* Einzelne Klassenzeile */
-.class-item {
-  display: flex;
-  align-items: center;
-  background: #fafafa;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 1px solid #e0e0e0;
-}
-
-.info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.name {
-  font-size: 16px;
-  margin-bottom: 4px;
-}
-
-/* Progress-Balken */
-.progress-bg {
-  width: 180px;
-  height: 14px;
-  background: #e6e6e6;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
-.progress-fill {
-  height: 100%;
-  background: #3267a8;
-  border-radius: 8px;
+/* Box header */
+.box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.ratio {
-  margin-left: 12px;
-  font-size: 16px;
+.box-title {
   font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.edit-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Box content */
+.box-content {
+  padding: 0.75rem 1rem;
+}
+
+/* Klassen-Zeile */
+.class-item {
+  padding: 0.75rem 0.5rem;
+  border-radius: 8px;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  &:hover {
+    background: #f9fafb;
+  }
+}
+
+/* Name + Code nebeneinander */
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Klassenname */
+.name {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Klassencode (Badge) */
+.class-code {
+  font-family: monospace;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+
+  background: $mockup-blue-soft;
+  color: $mockup-blue;
+
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
