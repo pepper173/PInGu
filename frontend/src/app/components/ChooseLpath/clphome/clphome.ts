@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { CLPHeader } from '../clp-header/clp-header';
 import { ClpDisplayPaths, PathItem } from '../clp-display-paths/clp-display-paths';
+import {StudentAuthService} from '../../../auth/student/studentAuth.service';
 
 @Component({
   selector: 'app-clphome',
@@ -11,6 +12,7 @@ import { ClpDisplayPaths, PathItem } from '../clp-display-paths/clp-display-path
   styleUrls: ['./clphome.scss'],
 })
 export class CLPHome {
+  private auth = inject(StudentAuthService);
   constructor(private router: Router) {}
 
   // Beispiel: dynamische Labels möglich – sonst übernehmen die Platzhalter
@@ -22,8 +24,7 @@ export class CLPHome {
   ];
 
   onLogout() {
-    // TODO: Session/Cookies löschen, dann zurück zur Login-Route
-    this.router.navigate(['/']); // oder z. B. '/login'
+    this.auth.logout();
   }
 
   onPick(item: PathItem) {

@@ -40,28 +40,27 @@ export class StudentSignupComponent {
       classCode: string;
       studentCode: string;
     };
-
-    //TODO: also check against number of students in class
-    const validStudentCode = this.studentService.checkStudentCode(studentCode);
-    validStudentCode.subscribe(isValid => {
-      if (isValid) {
-        this.registerStudent(classCode, studentCode);
-      } else {
-        console.log('Ungültiger Schüler-Code');
-        //TODO: show different error message
-        this.form.get('studentCode')?.setErrors({ invalidCode: true });
-      }
-    });
   }
 
-  private registerStudent(classCode: string, studentCode: string): void {
-    this.studentService.registerStudent(classCode, studentCode).subscribe({
-      next: (response) => {
-        console.log('Registrierung erfolgreich:', response);
-      },
-      error: (error) => {
-        console.error('Fehler bei der Registrierung:', error);
-      }
-    });
-  }
+  //   const validStudentCode = this.studentService.checkStudentCode(studentCode);
+  //   validStudentCode.subscribe(isValid => {
+  //     if (isValid) {
+  //       this.registerStudent(classCode, studentCode);
+  //     } else {
+  //       console.log('Ungültiger Schüler-Code');
+  //       this.form.get('studentCode')?.setErrors({ invalidCode: true });
+  //     }
+  //   });
+  // }
+
+  // private registerStudent(classCode: string, studentCode: string): void {
+  //   this.studentService.registerStudent(classCode, studentCode).subscribe({
+  //     next: (response) => {
+  //       console.log('Registrierung erfolgreich:', response);
+  //     },
+  //     error: (error) => {
+  //       console.error('Fehler bei der Registrierung:', error);
+  //     }
+  //   });
+  // }
 }

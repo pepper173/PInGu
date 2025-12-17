@@ -7,18 +7,32 @@ import {
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import { TeacherAuthService } from './auth/teacher/teacherAuth.service';
+import {StudentAuthService} from './auth/student/studentAuth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([
+        (req, next) => {
+          if (req.url.includes('/api/')) {
+            return next(req.clone({ withCredentials: true }));
+          }
+          return next(req);
+        },
+      ])
+    ),
     provideAppInitializer(() => {
-      const auth = inject(TeacherAuthService);
-      return auth.loadCurrentUser();
+      const teacher = inject(TeacherAuthService);
+      return teacher.loadCurrentUser();
+    }),
+    provideAppInitializer(() => {
+      const student = inject(StudentAuthService);
+      return student.checkAuth()
     }),
   ]
 };

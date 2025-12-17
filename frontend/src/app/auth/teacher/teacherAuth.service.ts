@@ -17,7 +17,7 @@ export class TeacherAuthService {
 
   loadCurrentUser(): Observable<unknown> {
     return this.http
-      .get<{ user: User }>(this.baseUrl + 'auth/me', { withCredentials: true })
+      .get<{ user: User }>(this.baseUrl + 'auth/me')
       .pipe(tap({
           next: (res) => this._user.set(res.user),
           error: () => this._user.set(null),
@@ -32,13 +32,13 @@ export class TeacherAuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<{ user: User }>(this.baseUrl + 'lehrer/login', { email, password }, { withCredentials: true })
+      .post<{ user: User }>(this.baseUrl + 'lehrer/login', { email, password })
       .pipe(tap((res) => this._user.set(res.user)));
   }
 
   register(payload: RegisterPayload) {
     return this.http
-      .post<RegisterResponse>(this.baseUrl + 'lehrer/signup', payload, { withCredentials: true })
+      .post<RegisterResponse>(this.baseUrl + 'lehrer/signup', payload)
       .pipe(
         tap((res) => {
           this._user.set(res.user);
@@ -47,7 +47,7 @@ export class TeacherAuthService {
   }
 
   logout() {
-    this.http.post(this.baseUrl + 'lehrer/logout', {}, { withCredentials: true }).subscribe({
+    this.http.post(this.baseUrl + 'lehrer/logout', {}).subscribe({
       next: () => {
         this._user.set(null);
         this.router.navigate(['/']);

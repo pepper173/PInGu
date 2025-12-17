@@ -1,4 +1,7 @@
 import app from './appInit.js';
+import crypto from 'crypto';
+
+const sessions = new Map();
 
 app.get('/', (req, res) => {
     res.send('Hallo vom Express-Backend!');
@@ -6,29 +9,91 @@ app.get('/', (req, res) => {
 
 app.get('/api/auth/me', async (req, res) => {
     try {
-        const token = req.cookies?.auth;
-        if (!token) {
+        const pb = res.locals.pb;
+
+        pb.authStore.loadFromCookie(req.headers.cookie || '');
+
+        if (!pb.authStore.isValid) {
             return res.status(401).json({ error: 'Nicht eingeloggt' });
         }
-
-        const pb = res.locals.pb;
-        pb.authStore.save(token, null);
 
         await pb.collection('lehrer').authRefresh();
 
         const record = pb.authStore.model;
-
-        const user = {
-            id: record.id,
-            email: record.email,
-            verified: record.verified
-        };
-
-        res.json({ user });
+        res.json({
+            user: { id: record.id, email: record.email, verified: record.verified }
+        });
     } catch (err) {
         console.error(err);
         return res.status(401).json({ error: 'Ungültiges oder abgelaufenes Token' });
     }
+});
+
+
+app.post('/api/auth/code', async (req, res) => {
+    const { code } = req.body;
+    const pb = res.locals.pb;
+
+    if (!code || !/^[A-Z0-9]{6}$/.test(code)) {
+        console.log(code);
+        return res.status(400).json({ error: 'Invalid code format' });
+    }
+
+    let user;
+
+    try {
+        user = await pb.collection('students').getFirstListItem(
+            `studentCode="${code}"`
+        );
+    } catch {
+        console.log(`code ${code} not found`);
+        return res.status(401).json({ error: 'Invalid code' });
+    }
+
+    const sessionId = crypto.randomUUID();
+    sessions.set(sessionId, {
+        userId: user.id,
+        createdAt: Date.now(),
+    });
+
+    res.cookie('session', sessionId, {
+        httpOnly: true,
+        secure: false, //TODO: prod
+        sameSite: 'lax',
+        maxAge: 1000 * 60 * 60 * 24, // 24h
+    });
+
+    res.json({ success: true });
+});
+
+app.get('/api/auth/student', requireAuth, async (req, res) => {
+    const pb = res.locals.pb;
+    console.log('cookies:', req.cookies);
+    console.log('student:', req.student);
+    const user = await pb.collection('students').getOne(req.student.userId);
+    res.json(user);
+});
+
+function requireAuth(req, res, next) {
+    const sessionId = req.cookies.session;
+
+    if (!sessionId || !sessions.has(sessionId)) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    req.student = sessions.get(sessionId);
+    next();
+}
+
+app.post('/api/auth/student/logout', (req, res) => {
+    res.clearCookie('session', {
+        httpOnly: true,
+        sameSite: 'lax',
+        secure: false, // DEV
+        path: '/',
+    });
+
+    return res.status(200).json({ success: true });
 });
 
 app.get('/api/allClasses', async (req, res) => {
@@ -51,7 +116,7 @@ app.post('/api/class', async (req, res) => {
 
         const students = await generateStudents(
             childrenCount,
-            newClass.code,
+            newClass.id,
             pb
         );
 
@@ -68,10 +133,10 @@ app.post('/api/class', async (req, res) => {
     }
 });
 
-async function generateStudents(numberOfCodes, classCode, pb){
+async function generateStudents(numberOfCodes, classId, pb){
     const newStudents = [];
     for (let i = 0; i < numberOfCodes; i++) {
-        const student = await pb.collection("students").create({classCode});
+        const student = await pb.collection("students").create({classId});
         newStudents.push(student);
     }
     return newStudents;
@@ -86,7 +151,7 @@ app.post('/api/lehrer/signup', async (req, res) => {
     }
 
     try {
-        const newLehrer = await pb.collection('lehrer').create({
+            await pb.collection('lehrer').create({
             email,
             password,
             passwordConfirm: password,
