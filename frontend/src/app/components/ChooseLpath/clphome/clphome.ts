@@ -15,10 +15,9 @@ export class CLPHome {
   private auth = inject(StudentAuthService);
   constructor(private router: Router) {}
 
-  // Beispiel: dynamische Labels möglich – sonst übernehmen die Platzhalter
   paths: PathItem[] = [
-    { id: 'p1', label: 'Handy, tablet, Zahnbürste. Wo stecken überall Computer drin?' },
-    { id: 'p2', label: 'Text' },
+    { id: 'p1', label: 'Computer überall - auch in dir' },
+    { id: 'p2', label: 'BBC - Binärer Bob Code' },
     { id: 'p3', label: 'Text' },
     { id: 'p4', label: 'Text' },
   ];

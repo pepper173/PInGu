@@ -29,7 +29,6 @@ export class TeacherAuthService {
       );
   }
 
-
   login(email: string, password: string) {
     return this.http
       .post<{ user: User }>(this.baseUrl + 'lehrer/login', { email, password })

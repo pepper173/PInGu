@@ -1,5 +1,4 @@
-import {Component, inject} from '@angular/core';
-import {StudentAuthService} from '../../../auth/student/studentAuth.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-student-login-pingu',
