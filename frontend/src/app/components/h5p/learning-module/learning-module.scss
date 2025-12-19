@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 2rem;
+}
+
+:host ::ng-deep .h5p-host {
+  width: min(75vw, 1400px);
+  min-width: 66vw;
+}
+
+/* H5P Wrapper + iframe wirklich auf 100% zwingen */
+:host ::ng-deep .h5p-iframe-wrapper,
+:host ::ng-deep .h5p-container,
+:host ::ng-deep .h5p-content,
+:host ::ng-deep iframe.h5p-iframe {
+  width: 100% !important;
+  max-width: none !important;
+  display: block;
+}
