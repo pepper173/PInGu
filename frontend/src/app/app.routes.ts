@@ -5,6 +5,7 @@ import { teacherLogin } from './components/teacherLogin/teacherLogin';
 import { TeacherOverviewComponent } from './components/teacherView/teacherOverview';
 import {TeacherSignupComponent} from './components/teacherSignup/signup';
 import {studentAuthGuard} from './auth/student/studentAuth.guard';
+import {LearningModule} from './components/h5p/learning-module/learning-module';
 
 export const routes: Routes = [
   { path: 'studentLogin', component: StudentLoginHome },
@@ -18,4 +19,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/ChooseLpath/clphome/clphome').then(m => m.CLPHome),
   },
+  { path: 'learningModule', component: LearningModule },
 ];
