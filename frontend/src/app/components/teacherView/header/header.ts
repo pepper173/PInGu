@@ -4,6 +4,7 @@ import {TeacherAuthService} from '../../../auth/teacher/teacherAuth.service';
 @Component({
   selector: 'app-classes-header',
   templateUrl: './header.html',
+  standalone: true,
   styleUrls: ['./header.scss']
 })
 export class HeaderComponent {

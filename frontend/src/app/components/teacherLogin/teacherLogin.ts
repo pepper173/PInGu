@@ -33,7 +33,7 @@ export class teacherLogin {
     this.auth.login(email, password).subscribe({
       next: () => {
         if (this.auth.isLoggedIn()) {
-          this.router.navigate(['/teacherOverview']);
+          this.router.navigate(['/teacher-overview']);
         } else {
           console.log('Kritischer Fehler! Login fehlgeschlagen, trotz erfolgreicher Anmeldung.');
         }

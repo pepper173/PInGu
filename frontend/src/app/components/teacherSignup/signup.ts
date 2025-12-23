@@ -57,7 +57,7 @@ export class TeacherSignupComponent {
       .subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/teacherOverview']);
+          this.router.navigate(['/teacher-overview']);
         },
         error: (err) => {
           this.loading = false;

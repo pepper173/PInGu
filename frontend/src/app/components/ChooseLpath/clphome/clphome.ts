@@ -16,10 +16,10 @@ export class CLPHome {
   constructor(private router: Router) {}
 
   paths: PathItem[] = [
-    { id: 'p1', label: 'Computer überall - auch in dir' },
-    { id: 'p2', label: 'BBC - Binärer Bob Code' },
-    { id: 'p3', label: 'Text' },
-    { id: 'p4', label: 'Text' },
+    { id: 'p1', label: 'Computer überall - auch in dir', url: '' },
+    { id: 'p2', label: 'BBC - Binärer Bob Code', url: '/assets/h5p/binaerer-bob-code' },
+    { id: 'p3', label: 'Text', url: '' },
+    { id: 'p4', label: 'Text', url: '' },
   ];
 
   onLogout() {
@@ -27,8 +27,12 @@ export class CLPHome {
   }
 
   onPick(item: PathItem) {
-    // TODO: Weiterleitung in den jeweiligen Lernpfad
-    // this.router.navigate(['/pfad', item.id]);
     console.log('Lernpfad gewählt:', item);
+    if (item.url) {
+      this.router.navigate([
+        '/learning-module',
+        encodeURIComponent(item.url),
+      ]);
+    }
   }
 }

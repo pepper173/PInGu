@@ -47,7 +47,7 @@ export class StudentAuthService {
     this.http.post(this.baseUrl + 'auth/student/logout', {}).subscribe({
       next: () => {
         this.isAuthenticated.set(false);
-        this.router.navigate(['/studentLogin']);
+        this.router.navigate(['/student-login']);
       },
       error: () => {
         this.isAuthenticated.set(false); // TODO: error handling
