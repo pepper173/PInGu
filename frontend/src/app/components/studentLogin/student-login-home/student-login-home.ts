@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import { Router } from '@angular/router';
 
 import { StudentLoginHeader } from '../student-login-header/student-login-header';
 import { StudentLoginPingu } from '../student-login-pingu/student-login-pingu';
@@ -14,7 +13,6 @@ import {StudentAuthService} from '../../../auth/student/studentAuth.service';
   styleUrls: ['./student-login-home.scss']
 })
 export class StudentLoginHome {
-  constructor(private router: Router) {}
   private auth = inject(StudentAuthService);
 
   onSubmit(code: string) {

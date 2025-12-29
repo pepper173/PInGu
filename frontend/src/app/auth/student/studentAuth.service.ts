@@ -16,7 +16,7 @@ export class StudentAuthService {
   loginWithCode(code: string) {
   return this.http
     .post(
-      `${this.baseUrl}auth/code`,
+      `${this.baseUrl}auth/student/login`,
       { code },
     )
     .subscribe({
