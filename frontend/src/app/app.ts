@@ -7,10 +7,6 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrls: ['./app.scss'],
-  template: '<router-outlet></router-outlet>',
+
 })
-export class App {
-  onSubmit(code: string) {
-    console.log('Login-Code:', code);
-  }
-}
+export class App {}
