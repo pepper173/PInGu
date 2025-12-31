@@ -181,20 +181,26 @@ app.get('/api/allClasses', async (req, res) => {
     res.status(200).json(classes);
 });
 
+app.get('/api/students/:classId', async (req, res) => {
+    const pb = res.locals.pb;
+    const students = await pb.collection('students').getFullList(`classId="${req.params.classId}"`);
+    res.status(200).json(students);
+})
+
 app.post('/api/class', async (req, res) => {
     try {
         const pb = res.locals.pb;
-        const { name, lehrerId, childrenCount, grade } = req.body;
+        const { name, lehrerId, studentCount, grade } = req.body;
 
         const newClass = await pb.collection('classes').create({
             name,
             lehrerId,
-            childrenCount,
+            studentCount,
             grade
         });
 
         const students = await generateStudents(
-            childrenCount,
+            studentCount,
             newClass.id,
             pb
         );
