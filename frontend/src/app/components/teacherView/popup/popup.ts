@@ -28,7 +28,7 @@ export class ClassPopupComponent {
       id: '',
       lehrerId: '',
       name: this.className,
-      childrenCount: this.childrenCount,
+      studentCount: this.childrenCount,
       grade: this.grade,
     };
     this.create.emit(newClass);
