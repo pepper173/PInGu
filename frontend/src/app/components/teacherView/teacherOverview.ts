@@ -28,12 +28,10 @@ export class TeacherOverviewComponent{
 
   ngOnInit(): void {
     this.loadClasses();
-    console.log('Aktueller User:', this.auth.user());
   }
 
   onCreate(newClass: Class){
     const payload = { ...newClass, lehrerId: this.auth.user().id };
-    console.log('Neue Klasse:', payload);
     this.classService.createClass(payload).subscribe({
       next: (res) => {
         console.log('Klasse erfolgreich erstellt:', res);
@@ -65,6 +63,19 @@ export class TeacherOverviewComponent{
     this.classService.getClasses().subscribe({
       next: (classes) => {
         this.classes = classes;
+
+        for (const c of this.classes) {
+          c.isOpen = false;
+          this.classService.getStudentsByClass(c.id).subscribe({
+            next: (students) => {
+              c.students = students;
+            },
+            error: (err) => {
+              console.error('Fehler beim Laden der Schüler:', err);
+              this.errorMessage = 'Fehler beim Laden der Schüler.';
+            }
+          });
+        }
         this.isLoading = false;
       },
       error: (err) => {
@@ -74,5 +85,4 @@ export class TeacherOverviewComponent{
       }
     });
   }
-
 }

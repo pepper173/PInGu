@@ -1,107 +1,219 @@
+$brand-blue: #4f86c6;      // Header-Blue
+$brand-blue-dark: #1b3969; // Button-Text im Header
+$surface: #ffffff;
+$border: #d6e2f0;
+
 $mockup-blue: #0b2a4a;
-$mockup-blue-hover: #123a63;
 $mockup-blue-soft: #e6eef6;
 
-
 .container {
-  padding: 1.5rem;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 18px 18px 28px;
 }
 
-/* Header */
 .row-header {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  margin-bottom: 1rem;
+  margin-bottom: 12px;
 }
 
 .add-btn {
-  padding: 0.55rem 1.2rem;
-  border-radius: 8px;
   border: none;
-
-  background: $mockup-blue;
-  color: #fff;
-
-  font-weight: 500;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease;
+
+  background-color: $surface;
+  color: $brand-blue-dark;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 
   &:hover {
-    background: $mockup-blue-hover;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
-
-/* Box */
 .class-box {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
 }
 
-/* Box header */
 .box-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid #e5e7eb;
+  justify-content: space-between;
+  padding: 12px 16px;
+
+  background-color: $brand-blue;
+  color: $surface;
 }
 
 .box-title {
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
 .edit-btn {
-  background: transparent;
   border: none;
+  border-radius: 10px;
+  width: 40px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
-}
-
-/* Box content */
-.box-content {
-  padding: 0.75rem 1rem;
-}
-
-/* Klassen-Zeile */
-.class-item {
-  padding: 0.75rem 0.5rem;
-  border-radius: 8px;
-
-  &:not(:last-child) {
-    margin-bottom: 0.5rem;
-  }
+  background-color: $surface;
+  color: $brand-blue-dark;
 
   &:hover {
-    background: #f9fafb;
+    transform: translateY(-1px);
   }
 }
 
-/* Name + Code nebeneinander */
+.box-content {
+  padding: 14px 16px 16px;
+}
+
+.error {
+  color: #b42318;
+  font-weight: 700;
+  margin: 0;
+}
+
 .info {
+  color: $brand-blue-dark;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.class-item {
+  border: 1px solid $border;
+  border-radius: 14px;
+  padding: 12px 12px;
+  background: $surface;
+  margin-bottom: 10px;
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Klickbare Zeile: Klassenname + Chevron */
+.class-row {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  background: transparent;
+  border: none;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  text-align: left;
 }
 
-/* Klassenname */
 .name {
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 15px;
+  font-weight: 800;
+  color: $brand-blue-dark;
 }
 
-/* Klassencode (Badge) */
-.class-code {
-  font-family: monospace;
-  font-size: 0.85rem;
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
+.chevron {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  background: $mockup-blue-soft;
+  color: $brand-blue-dark;
+
+  font-weight: 900;
+  transition: transform 160ms ease;
+}
+
+/* Wird i.d.R. per [class.open] oder [ngClass] gesetzt */
+.open .chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown-Container */
+.students-dropdown {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed $border;
+}
+
+/* Liste der Schüler */
+.students-list {
+  display: grid;
+  gap: 10px;
+}
+
+/* Schüler Card */
+.student-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  border: 1px solid $border;
+  border-radius: 14px;
+  padding: 10px 12px;
 
   background: $mockup-blue-soft;
-  color: $mockup-blue;
+}
 
-  font-weight: 600;
+.student-icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  background: $surface;
+  color: $brand-blue-dark;
+
+  font-size: 16px;
+}
+
+.student-name {
+  flex: 1;
+  font-weight: 700;
+  color: $brand-blue-dark;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.student-code {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+
+  background: $surface;
+  color: $brand-blue-dark;
+
+  font-weight: 800;
   letter-spacing: 0.05em;
+}
+
+.students-empty {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  padding: 0.25rem 0.25rem 0.5rem;
+  color: $brand-blue-dark;
 }

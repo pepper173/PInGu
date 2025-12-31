@@ -30,9 +30,38 @@
       <div class="box-content">
         @for (c of classes; track c.id) {
           <div class="class-item">
-            <div class="info">
-              <span class="name">{{ c.name }}</span>
-            </div>
+
+            <button
+              type="button"
+              class="class-row"
+              (click)="c.isOpen = !c.isOpen"
+              [attr.aria-expanded]="c.isOpen"
+            >
+              <div class="info">
+                <span class="name">{{ c.name }}</span>
+              </div>
+
+              <span class="chevron" [class.open]="c.isOpen">▾</span>
+            </button>
+
+            @if (c.isOpen) {
+              <div class="students-dropdown">
+                @if (c.students === undefined) {
+                  <div class="students-empty">Lade Schüler…</div>
+                } @else if (!c.students.length) {
+                  <div class="students-empty">Keine Schüler vorhanden.</div>
+                } @else {
+                  <div class="students-list">
+                    @for (s of c.students; track s.studentCode) {
+                      <div class="student-card">
+                        <span class="student-icon" aria-hidden="true">👤</span>
+                        <span class="student-code">{{ s.studentCode }}</span>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            }
 
           </div>
         }

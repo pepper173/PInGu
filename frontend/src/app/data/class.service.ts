@@ -10,10 +10,14 @@ export class ClassService {
   private readonly baseUrl = 'http://localhost:3000/api/';
 
   getClasses(): Observable<Class[]> {
-    return this.http.get<Class[]>(this.baseUrl + 'allClasses', {withCredentials: true});
+    return this.http.get<Class[]>(this.baseUrl + 'allClasses');
   }
 
-  createClass(neueKlasse: Class): Observable<any> {
-    return this.http.post(this.baseUrl + 'class', neueKlasse, { withCredentials: true });
+  createClass(newClass: Class): Observable<any> {
+    return this.http.post(this.baseUrl + 'class', newClass);
+  }
+
+  getStudentsByClass(classId: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}students/${classId}`);
   }
 }
