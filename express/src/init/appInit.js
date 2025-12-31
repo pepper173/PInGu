@@ -6,10 +6,16 @@ import cookieParser from 'cookie-parser';
 const POCKETBASE_URL = process.env.POCKETBASE_URL || 'http://127.0.0.1:8090';
 
 const app = express();
-app.use(cors({
-    origin: "http://localhost:4200", //TODO: make changes for production.
-    credentials: true
-}));
+const corsOptions = {
+    origin: "http://localhost:4200",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 
