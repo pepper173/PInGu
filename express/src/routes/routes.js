@@ -183,7 +183,9 @@ app.get('/api/allClasses', async (req, res) => {
 
 app.get('/api/students/:classId', async (req, res) => {
     const pb = res.locals.pb;
-    const students = await pb.collection('students').getFullList(`classId="${req.params.classId}"`);
+    const students = await pb.collection('students').getFullList({
+        filter: `classId = "${req.params.classId}"`
+    });
     res.status(200).json(students);
 })
 
