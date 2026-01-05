@@ -60,7 +60,7 @@ export class TeacherOverviewComponent{
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.classService.getClasses().subscribe({
+    this.classService.getClasses(this.auth.user().id).subscribe({
       next: (classes) => {
         this.classes = classes;
 

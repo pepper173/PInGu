@@ -168,16 +168,18 @@ app.post('/api/auth/teacher/logout', (req, res) => {
         secure: false,     // DEV
         sameSite: 'lax',
         path: '/',
-        maxAge: 0,         // löscht Cookie
+        maxAge: 0,
     });
 
     res.setHeader('Set-Cookie', clearCookie);
     res.json({ message: 'Logout erfolgreich' });
 });
 
-app.get('/api/allClasses', async (req, res) => {
+app.get('/api/class/:teacherId', async (req, res) => {
     const pb = res.locals.pb;
-    const classes = await pb.collection('classes').getFullList();
+    const classes = await pb.collection('classes').getFullList({
+        filter: `lehrerId = "${req.params.teacherId}"`
+    });
     res.status(200).json(classes);
 });
 
