@@ -1,12 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef, inject,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { H5P } from 'h5p-standalone';
+import {AfterViewInit, Component, ElementRef, inject, OnDestroy, ViewChild,} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {H5P} from 'h5p-standalone';
 import {StudentAuthService} from '../../../auth/student/studentAuth.service';
 
 @Component({
@@ -30,7 +24,7 @@ export class LearningModule implements AfterViewInit, OnDestroy {
   private observer?: MutationObserver;
 
   onBack(): void {
-    this.router.navigate(['/CLP'], { relativeTo: this.route });
+    this.router.navigate(['/CLP']);
   }
 
   onLogout(): void {
@@ -47,9 +41,9 @@ export class LearningModule implements AfterViewInit, OnDestroy {
     const options = {
       h5pJsonPath: this.module,
       frameJs:
-        'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js',
+        'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js', //DEV
       frameCss:
-        'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css',
+        'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css', //DEV
     };
 
     new H5P(this.h5pContainer.nativeElement, options);
