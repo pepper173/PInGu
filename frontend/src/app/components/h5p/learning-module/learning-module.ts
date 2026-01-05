@@ -1,12 +1,13 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
+  ElementRef, inject,
   OnDestroy,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { H5P } from 'h5p-standalone';
+import {StudentAuthService} from '../../../auth/student/studentAuth.service';
 
 @Component({
   selector: 'app-learning-module',
@@ -18,49 +19,46 @@ export class LearningModule implements AfterViewInit, OnDestroy {
   @ViewChild('h5pContainer', { static: true })
   private h5pContainer!: ElementRef<HTMLDivElement>;
 
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly studentAuthService = inject(StudentAuthService);
+
   isLoading = true;
   loadingText = 'Lade Modul…';
 
   module!: string;
-  private h5pInstance: any;
-
   private observer?: MutationObserver;
 
-  constructor(private route: ActivatedRoute) {}
+  onBack(): void {
+    this.router.navigate(['/CLP'], { relativeTo: this.route });
+  }
+
+  onLogout(): void {
+    this.studentAuthService.logout();
+    this.router.navigate(['/login']);
+  }
 
   async ngAfterViewInit() {
-    try {
-      this.isLoading = true;
+    const moduleParam = this.route.snapshot.paramMap.get('module');
+    if (!moduleParam) throw new Error('Kein H5P Modul angegeben');
 
-      const moduleParam = this.route.snapshot.paramMap.get('module');
-      if (!moduleParam) throw new Error('Kein H5P Modul angegeben');
+    this.module = decodeURIComponent(moduleParam);
 
-      this.module = decodeURIComponent(moduleParam);
+    const options = {
+      h5pJsonPath: this.module,
+      frameJs:
+        'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js',
+      frameCss:
+        'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css',
+    };
 
-      const options = {
-        h5pJsonPath: this.module,
-        frameJs:
-          'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js',
-        frameCss:
-          'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css',
-      };
-
-      this.h5pInstance = new H5P(this.h5pContainer.nativeElement, options);
-
-      // Hide overlay when H5P iframe is actually ready
-      await this.waitForH5PIframeReady(this.h5pContainer.nativeElement);
-      this.isLoading = false;
-    } catch (e) {
-      console.error(e);
-      this.loadingText = 'Fehler beim Laden des Moduls';
-      this.isLoading = false;
-    }
+    new H5P(this.h5pContainer.nativeElement, options);
+    await this.waitForH5PIframeReady(this.h5pContainer.nativeElement);
+    this.isLoading = false;
   }
 
   ngOnDestroy() {
     this.observer?.disconnect();
-    // If h5p-standalone exposes a destroy API in your version, call it here.
-    // (Not always available depending on version/content type.)
   }
 
   private waitForH5PIframeReady(container: HTMLElement): Promise<void> {
