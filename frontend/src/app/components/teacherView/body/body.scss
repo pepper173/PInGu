@@ -108,7 +108,6 @@ $mockup-blue-soft: #e6eef6;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
 }
 
-/* Klickbare Zeile: Klassenname + Chevron */
 .class-row {
   width: 100%;
   display: flex;
@@ -143,25 +142,21 @@ $mockup-blue-soft: #e6eef6;
   transition: transform 160ms ease;
 }
 
-/* Wird i.d.R. per [class.open] oder [ngClass] gesetzt */
-.open .chevron {
+.chevron.open {
   transform: rotate(180deg);
 }
 
-/* Dropdown-Container */
 .students-dropdown {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px dashed $border;
 }
 
-/* Liste der Schüler */
 .students-list {
   display: grid;
   gap: 10px;
 }
 
-/* Schüler Card */
 .student-card {
   display: flex;
   align-items: center;

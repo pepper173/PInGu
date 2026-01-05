@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Class} from './class.model';
+import {SchoolClass} from './class.model';
 
 @Injectable({ providedIn: 'root' })
 export class ClassService {
@@ -9,11 +9,11 @@ export class ClassService {
 
   private readonly baseUrl = 'http://localhost:3000/api/';
 
-  getClasses(): Observable<Class[]> {
-    return this.http.get<Class[]>(this.baseUrl + 'allClasses');
+  getClasses(): Observable<SchoolClass[]> {
+    return this.http.get<SchoolClass[]>(this.baseUrl + 'allClasses');
   }
 
-  createClass(newClass: Class): Observable<any> {
+  createClass(newClass: SchoolClass): Observable<any> {
     return this.http.post(this.baseUrl + 'class', newClass);
   }
 

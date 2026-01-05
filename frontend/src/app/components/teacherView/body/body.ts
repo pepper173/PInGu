@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { Class } from '../../../data/class.model';
+import { SchoolClass } from '../../../data/class.model';
 
 @Component({
   selector: 'app-classes-body',
@@ -8,7 +8,7 @@ import { Class } from '../../../data/class.model';
 })
 
 export class ClassesComponent {
-  @Input() classes: Class[];
+  @Input() classes: SchoolClass[];
   @Input() isLoading = false;
   @Input() errorMessage = '';
   @Output() addClass = new EventEmitter<void>();
@@ -16,4 +16,9 @@ export class ClassesComponent {
   onAddClass() {
     this.addClass.emit();
   }
+
+  toggleClass(c: SchoolClass): void {
+    c.isOpen = !c.isOpen;
+  }
+
 }

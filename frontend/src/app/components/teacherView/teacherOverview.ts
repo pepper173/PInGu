@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HeaderComponent } from './header/header';
 import { ClassesComponent } from './body/body';
 import { ClassPopupComponent } from './popup/popup';
-import { Class } from '../../data/class.model';
+import { SchoolClass } from '../../data/class.model';
 import { ClassService } from '../../data/class.service';
 import {TeacherAuthService} from '../../auth/teacher/teacherAuth.service';
 
@@ -18,7 +18,7 @@ import {TeacherAuthService} from '../../auth/teacher/teacherAuth.service';
 })
 
 export class TeacherOverviewComponent{
-  classes: Class[] = [];
+  classes: SchoolClass[] = [];
   isLoading = false;
   errorMessage = '';
   private auth: TeacherAuthService = inject(TeacherAuthService);
@@ -30,7 +30,7 @@ export class TeacherOverviewComponent{
     this.loadClasses();
   }
 
-  onCreate(newClass: Class){
+  onCreate(newClass: SchoolClass){
     const payload = { ...newClass, lehrerId: this.auth.user().id };
     this.classService.createClass(payload).subscribe({
       next: (res) => {

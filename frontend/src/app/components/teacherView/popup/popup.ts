@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Class } from '../../../data/class.model';
+import { SchoolClass } from '../../../data/class.model';
 
 @Component({
   selector: 'app-class-popup',
@@ -21,10 +21,10 @@ export class ClassPopupComponent {
 
   @Input() title = 'Default title';
   @Output() close = new EventEmitter<void>();
-  @Output() create = new EventEmitter<Class>();
+  @Output() create = new EventEmitter<SchoolClass>();
 
   onCreate() {
-    const newClass: Class = {
+    const newClass: SchoolClass = {
       id: '',
       lehrerId: '',
       name: this.className,
