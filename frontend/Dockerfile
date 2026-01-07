@@ -15,5 +15,5 @@ COPY . .
 # Öffnen Sie den Port, den ng serve verwendet
 EXPOSE 4200
 
-# Führen Sie den Dev-Server aus
-CMD ["npm", "start"]
+# Führen Sie den Server aus
+CMD ["npx", "ng", "serve", "--configuration", "production"]
