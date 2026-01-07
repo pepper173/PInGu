@@ -14,7 +14,6 @@ export class StudentAuthService {
   readonly isAuthenticated = signal<boolean>(false);
 
   loginWithCode(code: string) {
-    console.log(process.env['PINGU_ENV'] === 'server')
     return this.http
     .post(
       `${this.baseUrl}auth/student/login`,

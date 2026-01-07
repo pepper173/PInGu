@@ -4,7 +4,6 @@ FROM node:22-alpine
 # Setzen Sie das Arbeitsverzeichnis
 WORKDIR /app
 
-ENV PINGU_ENV=server
 
 # Kopieren Sie die package.json und installieren Sie die Abhängigkeiten
 COPY package*.json ./
