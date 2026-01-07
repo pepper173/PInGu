@@ -16,10 +16,10 @@ export class CLPHome {
   constructor(private router: Router) {}
 
   paths: PathItem[] = [
-    { id: 'p1', label: 'Computer überall', url: '' },
+    { id: 'p1', label: 'Sensoren als Datensammler', url: '' },
     { id: 'p2', label: 'Sprache der Computer', url: '/assets/h5p/binaerer-bob-code' },
-    { id: 'p3', label: 'Platzhalter', url: '' },
-    { id: 'p4', label: 'Platzhalter', url: '' },
+    { id: 'p3', label: 'Digitale Zeitreise', url: '' },
+    { id: 'p4', label: 'Freizeitbeschäftigung - digital und analog', url: '' },
   ];
 
   onLogout() {
