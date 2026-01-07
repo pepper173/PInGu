@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import {of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {API_URL_PROD, API_URL_LOCAL} from '../../temp_globals';
 
 @Injectable({ providedIn: 'root' })
 export class StudentAuthService {
   private http: HttpClient = inject(HttpClient);
   private router: Router = inject(Router);
 
-  private readonly baseUrl = 'http://localhost:3000/api/';
+  private readonly baseUrl = API_URL_PROD;
 
   readonly isAuthenticated = signal<boolean>(false);
 

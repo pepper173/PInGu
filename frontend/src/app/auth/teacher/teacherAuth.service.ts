@@ -4,10 +4,11 @@ import {catchError, tap} from 'rxjs/operators';
 import {RegisterPayload, RegisterResponse, User} from './teacherAuth.model';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
+import {API_URL_LOCAL, API_URL_PROD} from '../../temp_globals';
 
 @Injectable({ providedIn: 'root' })
 export class TeacherAuthService {
-  private readonly baseUrl: string = 'http://localhost:3000/api/';
+  private readonly baseUrl: string = API_URL_PROD;
   private _user = signal<User | null>(null);
 
   private http: HttpClient = inject(HttpClient);
