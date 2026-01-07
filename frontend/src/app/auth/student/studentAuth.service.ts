@@ -10,7 +10,7 @@ export class StudentAuthService {
   private http: HttpClient = inject(HttpClient);
   private router: Router = inject(Router);
 
-  private readonly baseUrl = API_URL_PROD;
+  private readonly baseUrl = typeof process !== 'undefined' && process.env && process.env['PINGU_ENV'] === 'server' ? API_URL_PROD : API_URL_LOCAL;
 
   readonly isAuthenticated = signal<boolean>(false);
 

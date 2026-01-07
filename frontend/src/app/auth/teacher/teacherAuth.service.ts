@@ -8,7 +8,7 @@ import {API_URL_LOCAL, API_URL_PROD} from '../../temp_globals';
 
 @Injectable({ providedIn: 'root' })
 export class TeacherAuthService {
-  private readonly baseUrl: string = API_URL_PROD;
+  private readonly baseUrl: string = typeof process !== 'undefined' && process.env && process.env['PINGU_ENV'] === 'server' ? API_URL_PROD : API_URL_LOCAL;
   private _user = signal<User | null>(null);
 
   private http: HttpClient = inject(HttpClient);

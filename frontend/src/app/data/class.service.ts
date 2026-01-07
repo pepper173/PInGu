@@ -8,8 +8,7 @@ import { API_URL_LOCAL, API_URL_PROD} from '../temp_globals';
 export class ClassService {
   private http = inject(HttpClient);
 
-  private readonly baseUrl = API_URL_PROD;
-
+  private readonly baseUrl = typeof process !== 'undefined' && process.env && process.env['PINGU_ENV'] === 'server' ? API_URL_PROD : API_URL_LOCAL;
   getClasses(teacherId: string): Observable<SchoolClass[]> {
     return this.http.get<SchoolClass[]>(`${this.baseUrl}class/${teacherId}`);
   }
