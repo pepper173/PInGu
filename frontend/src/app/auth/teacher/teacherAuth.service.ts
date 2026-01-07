@@ -4,11 +4,11 @@ import {catchError, tap} from 'rxjs/operators';
 import {RegisterPayload, RegisterResponse, User} from './teacherAuth.model';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {API_URL_LOCAL, API_URL_PROD} from '../../temp_globals';
+import {environment} from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TeacherAuthService {
-  private readonly baseUrl: string = typeof process !== 'undefined' && process.env && process.env['PINGU_ENV'] === 'server' ? API_URL_PROD : API_URL_LOCAL;
+  private readonly baseUrl: string = environment.apiUrl;
   private _user = signal<User | null>(null);
 
   private http: HttpClient = inject(HttpClient);
