@@ -11,6 +11,4 @@ export interface RegisterPayload {
 
 export interface RegisterResponse {
   user: User;
-  // optional: token if you don't use HttpOnly cookie
-  // token: string;
 }

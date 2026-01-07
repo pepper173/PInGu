@@ -31,6 +31,8 @@
             [(ngModel)]="childrenCount"
             placeholder="Anzahl"
             name="childrenCount"
+            value="1"
+            min="1"
           />
         </div>
 
@@ -39,9 +41,11 @@
           <label for="grade" class="form-label">Stufe</label>
           <div class="select-wrapper select-wrapper--soft">
             <select id="grade" class="select-input" [(ngModel)]="grade" name="grade">
-              <option *ngFor="let g of [1,2,3,4,5,6,7,8,9,10]" [value]="g">
-                {{ g }}
-              </option>
+              @for (g of [3, 4, 5, 6, 7, 8, 9, 10]; track g) {
+                <option [value]="g">
+                  {{ g }}
+                </option>
+              }
             </select>
             <span class="select-icon">▾</span>
           </div>
