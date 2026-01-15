@@ -6,6 +6,9 @@ import { TeacherOverviewComponent } from './components/teacherView/teacherOvervi
 import {TeacherSignupComponent} from './components/teacherSignup/signup';
 import {studentAuthGuard} from './services/auth/student/studentAuth.guard';
 import {LearningModule} from './components/h5p/binaerer-bob-code/learning-module';
+import {DigitaleZeitreisenC1} from './components/h5p/digitale-zeitreisen/C1/c1';
+import {DigitaleZeitreisenC2} from './components/h5p/digitale-zeitreisen/C2/c2';
+import {DigitaleZeitreisenC3} from './components/h5p/digitale-zeitreisen/C3/c3';
 
 export const routes: Routes = [
   { path: 'student-login', component: StudentLoginHome },
@@ -20,4 +23,7 @@ export const routes: Routes = [
       import('./components/ChooseLpath/clphome/clphome').then(m => m.CLPHome),
   },
   { path: 'binaerer-bob-code/:module', component: LearningModule, canActivate: [studentAuthGuard] },
+  { path: 'digitale-zeitreisen/C1', component: DigitaleZeitreisenC1, canActivate: [studentAuthGuard] },
+  { path: 'digitale-zeitreisen/C2', component: DigitaleZeitreisenC2, canActivate: [studentAuthGuard] },
+  { path: 'digitale-zeitreisen/C3', component: DigitaleZeitreisenC3, canActivate: [studentAuthGuard] },
 ];

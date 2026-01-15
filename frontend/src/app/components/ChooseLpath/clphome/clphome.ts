@@ -18,7 +18,7 @@ export class CLPHome {
   paths: PathItem[] = [
     { id: 'p1', label: 'Sensoren als Datensammler', url: '' },
     { id: 'p2', label: 'Sprache der Computer', url: '/assets/h5p/binaerer-bob-code' },
-    { id: 'p3', label: 'Digitale Zeitreise', url: '' },
+    { id: 'p3', label: 'Digitale Zeitreise', url: 'digitale-zeitreisen/C1' },
     { id: 'p4', label: 'Freizeitbeschäftigung - digital und analog', url: '' },
   ];
 
@@ -29,10 +29,15 @@ export class CLPHome {
   onPick(item: PathItem) {
     console.log('Lernpfad gewählt:', item);
     if (item.url) {
-      this.router.navigate([
-        '/learning-module',
-        encodeURIComponent(item.url),
-      ]);
+      // Check if it's a direct route (digitale-zeitreisen) or H5P module path
+      if (item.url.startsWith('digitale-zeitreisen')) {
+        this.router.navigate(['/' + item.url]);
+      } else {
+        this.router.navigate([
+          '/learning-module',
+          encodeURIComponent(item.url),
+        ]);
+      }
     }
   }
 }
