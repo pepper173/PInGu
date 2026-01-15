@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
-import { TeacherAuthService } from '../../auth/teacher/teacherAuth.service';
+import { TeacherAuthService } from '../../services/auth/teacher/teacherAuth.service';
 
 function passwordMatchValidator(control: AbstractControl) {
   const password = control.get('password')?.value;

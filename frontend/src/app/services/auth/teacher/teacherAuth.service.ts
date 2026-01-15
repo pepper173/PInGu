@@ -1,25 +1,25 @@
 import {Injectable, signal, computed, Signal, inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
-import {RegisterPayload, RegisterResponse, User} from './teacherAuth.model';
+import {RegisterPayload, RegisterResponse, Teacher} from './teacherAuth.model';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TeacherAuthService {
   private readonly baseUrl: string = environment.apiUrl;
-  private _user = signal<User | null>(null);
+  private _user = signal<Teacher | null>(null);
 
   private http: HttpClient = inject(HttpClient);
   private router: Router = inject(Router);
 
-  user: Signal<User> = computed(() => this._user());
+  user: Signal<Teacher> = computed(() => this._user());
   isLoggedIn: Signal<boolean> = computed(() => !!this._user());
 
   loadCurrentUser(): Observable<unknown> {
     return this.http
-      .get<{ user: User }>(this.baseUrl + 'auth/teacher')
+      .get<{ user: Teacher }>(this.baseUrl + 'auth/teacher')
       .pipe(tap({
           next: (res) => this._user.set(res.user),
           error: () => this._user.set(null),
@@ -33,7 +33,7 @@ export class TeacherAuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<{ user: User }>(this.baseUrl + 'auth/teacher/login', { email, password })
+      .post<{ user: Teacher }>(this.baseUrl + 'auth/teacher/login', { email, password })
       .pipe(tap((res) => this._user.set(res.user)));
   }
 

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {TeacherAuthService} from '../../../auth/teacher/teacherAuth.service';
+import {TeacherAuthService} from '../../../services/auth/teacher/teacherAuth.service';
 
 @Component({
   selector: 'app-classes-header',

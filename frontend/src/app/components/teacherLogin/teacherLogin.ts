@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
-import {TeacherAuthService} from '../../auth/teacher/teacherAuth.service';
+import {TeacherAuthService} from '../../services/auth/teacher/teacherAuth.service';
 
 @Component({
   selector: 'app-login',

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { SchoolClass } from '../../../data/class.model';
+import { SchoolClass } from '../../../services/data/schoolClass/class.model';
 
 @Component({
   selector: 'app-classes-body',

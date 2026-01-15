@@ -3,7 +3,8 @@ import {Component, inject} from '@angular/core';
 import { StudentLoginHeader } from '../student-login-header/student-login-header';
 import { StudentLoginPingu } from '../student-login-pingu/student-login-pingu';
 import { StudentLogin } from '../student-login/student-login';
-import {StudentAuthService} from '../../../auth/student/studentAuth.service';
+import {StudentAuthService} from '../../../services/auth/student/studentAuth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-student-login-home',
@@ -14,10 +15,21 @@ import {StudentAuthService} from '../../../auth/student/studentAuth.service';
 })
 export class StudentLoginHome {
   private auth = inject(StudentAuthService);
+  private router = inject(Router);
 
   onSubmit(code: string) {
-    console.log('Ich teste:', code);
     const trimmedCode = code.trim();
-    this.auth.loginWithCode(trimmedCode);
+    this.auth.loginWithCode(trimmedCode).subscribe({
+      next: () => {
+        if (this.auth.isLoggedIn()) {
+          this.router.navigate(['/CLP']);
+        } else{
+          console.log('Kritischer Fehler! Login fehlgeschlagen, trotz erfolgreicher Anmeldung.');
+        }
+      },
+      error: (err) => {
+        console.error('Fehler bei Anmeldung:', err);
+      },
+    });
   }
 }

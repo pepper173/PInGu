@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { HeaderComponent } from './header/header';
 import { ClassesComponent } from './body/body';
 import { ClassPopupComponent } from './popup/popup';
-import { SchoolClass } from '../../data/class.model';
-import { ClassService } from '../../data/class.service';
-import {TeacherAuthService} from '../../auth/teacher/teacherAuth.service';
+import { SchoolClass } from '../../services/data/schoolClass/class.model';
+import { ClassService } from '../../services/data/schoolClass/class.service';
+import {TeacherAuthService} from '../../services/auth/teacher/teacherAuth.service';
 
 @Component({
   selector: 'app-teacher-view',

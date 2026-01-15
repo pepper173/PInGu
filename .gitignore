@@ -1,7 +1,7 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
-# h5p assets
-*/assets/h5p
+# H5P assets
+*/assets/h5p/binaerer-bob-code
 
 # Compiled output
 /dist

@@ -8,8 +8,8 @@ import {
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
-import { TeacherAuthService } from './auth/teacher/teacherAuth.service';
-import {StudentAuthService} from './auth/student/studentAuth.service';
+import { TeacherAuthService } from './services/auth/teacher/teacherAuth.service';
+import {StudentAuthService} from './services/auth/student/studentAuth.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

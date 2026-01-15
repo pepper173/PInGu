@@ -1,4 +1,4 @@
-export interface User {
+export interface Teacher {
   id: string;
   email: string;
   name: string;
@@ -10,5 +10,5 @@ export interface RegisterPayload {
 }
 
 export interface RegisterResponse {
-  user: User;
+  user: Teacher;
 }

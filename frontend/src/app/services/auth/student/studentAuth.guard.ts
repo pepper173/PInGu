@@ -6,7 +6,7 @@ export const studentAuthGuard: CanActivateFn = () => {
   const auth = inject(StudentAuthService);
   const router = inject(Router);
 
-  if (auth.isAuthenticated()) {
+  if (auth.isLoggedIn()) {
     return true;
   }
 

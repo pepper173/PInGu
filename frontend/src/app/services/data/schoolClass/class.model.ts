@@ -1,4 +1,4 @@
-import {Student} from '../auth/student/studentAuth.model';
+import {Student} from '../../auth/student/studentAuth.model';
 
 export interface SchoolClass {
   id: string;
