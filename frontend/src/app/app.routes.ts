@@ -22,7 +22,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/ChooseLpath/clphome/clphome').then(m => m.CLPHome),
   },
-  { path: 'binaerer-bob-code/:module', component: LearningModule, canActivate: [studentAuthGuard] },
+  { path: 'learning-module/:module', component: LearningModule, canActivate: [studentAuthGuard] },
   { path: 'digitale-zeitreisen/C1', component: DigitaleZeitreisenC1, canActivate: [studentAuthGuard] },
   { path: 'digitale-zeitreisen/C2', component: DigitaleZeitreisenC2, canActivate: [studentAuthGuard] },
   { path: 'digitale-zeitreisen/C3', component: DigitaleZeitreisenC3, canActivate: [studentAuthGuard] },
