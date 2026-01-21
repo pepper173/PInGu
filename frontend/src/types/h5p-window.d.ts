@@ -6,8 +6,10 @@ declare global {
       contents?: Record<
         string,
         {
-          // das ist das, was du in deinem Code ausliest:
-          contentUserData?: JSON;
+          contentUserData?: {
+            dataType: string;
+            state?: string;
+          };
         }
       >;
     };

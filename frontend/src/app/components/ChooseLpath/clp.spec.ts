@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CLPHome } from './clphome';
+import { Clp } from './clp';
 
-describe('CLPHome', () => {
-  let component: CLPHome;
-  let fixture: ComponentFixture<CLPHome>;
+describe('Clp', () => {
+  let component: Clp;
+  let fixture: ComponentFixture<Clp>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CLPHome]
+      imports: [Clp]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CLPHome);
+    fixture = TestBed.createComponent(Clp);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

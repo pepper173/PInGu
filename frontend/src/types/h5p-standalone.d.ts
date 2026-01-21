@@ -4,8 +4,8 @@ declare module "h5p-standalone" {
   export interface H5PContentUserDataItem {
     dataType: H5PDataType;
     subContentId?: string | "*";
-    previousState?: string | null; // JSON-String
-    data?: unknown; // je nach H5P-Core Variante
+    previousState?: string | null;
+    data?: string;
   }
 
   export interface H5PAjaxOptions {

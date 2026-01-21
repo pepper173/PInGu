@@ -5,7 +5,12 @@ const router = express.Router();
 // GET /api/h5p/module/:moduleId
 router.get('/module/:moduleId', async (req, res) => {
     const pb = res.locals.pb;
-    const moduleJSON = await pb.collection('student_module').getFirstListItem(`contentId = "${req.params.moduleId}"`);
+    let moduleJSON
+    try{
+        moduleJSON = await pb.collection('student_module').getFirstListItem(`contentId = "${req.params.moduleId}"`);
+    } catch (err) {
+        moduleJSON = {};
+    }
     res.status(200).json(moduleJSON);
 });
 
@@ -24,7 +29,6 @@ router.post('/module', async (req, res) => {
 
         if (existing) {
             const updated = await pb.collection('student_module').update(existing.id, { moduleState: state });
-            console.log('Updated student_module:', updated);
             return res.status(200).json(updated);
         } else {
             const studentModule = await pb.collection('student_module').create({ contentId: contentId, moduleState: state });

@@ -1,15 +1,15 @@
-<div class="page">
+<div class="module-wrapper">
   <div class="module-card">
 
     <div class="card-header">
       <div class="header-left">
         <button class="btn btn-ghost" type="button" (click)="onBack()">
-          ← Zurück zu Lernpfaden
+          Home
         </button>
       </div>
 
       <div class="header-center">
-        <div class="header-title">Digitale Zeitreise - Teil 1</div>
+        <div class="header-title">{{ moduleTitle }}</div>
       </div>
 
       <div class="header-right">
@@ -31,12 +31,14 @@
 
       <div #h5pContainer class="h5p-host"></div>
     </div>
+  </div>
 
-    <div class="card-footer">
-      <button class="btn btn-primary" type="button" (click)="onNext()">
-        Weiter →
-      </button>
-    </div>
+  <div class="navigation-buttons">
+    <button class="btn btn-ghost" type="button" (click)="onBackToPrevious()" [style.visibility]="showBackButton ? 'visible' : 'hidden'">
+      ← Zurück
+    </button>
+    <button class="btn btn-primary" type="button" (click)="onNext()">
+      {{ nextButtonLabel }}
+    </button>
   </div>
 </div>
-
