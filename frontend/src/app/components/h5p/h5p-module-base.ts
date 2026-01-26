@@ -21,8 +21,15 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
   protected readonly h5pStorageService = inject(H5pStorageService);
   protected readonly ngZone = inject(NgZone);
 
+  baseUrl = '/modules';
+
   isLoading = true;
   loadingText = 'Lade Modul…';
+
+  moduleTitle = 'Lernmodul';
+  backButtonLabel = 'Home';
+  showNavigationButtons = false;
+  showBackButton = false;
 
   private moduleProgress: string = '';
   private observer?: MutationObserver;
@@ -45,6 +52,14 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
+  onBackToPrevious(): void {
+    // Can be overridden by child components
+  }
+
+  onNext(): void {
+    // Can be overridden by child components
+  }
+
   async ngAfterViewInit() {
     const moduleParam = this.route.snapshot.paramMap.get('module');
     if (!moduleParam) throw new Error('Kein H5P Modul angegeben');
@@ -52,7 +67,6 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     this.module = decodeURIComponent(moduleParam);
     const modulePath = this.module;
     const contentIdSuffix = this.module.split('/').pop()!;
-
 
     const content_id = `${this.studentAuthService.user().id}-${contentIdSuffix}`;
 

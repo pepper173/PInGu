@@ -4,12 +4,12 @@
     <div class="card-header">
       <div class="header-left">
         <button class="btn btn-ghost" type="button" (click)="onBack()">
-          ← Zurück
+          {{ backButtonLabel }}
         </button>
       </div>
 
       <div class="header-center">
-        <div class="header-title">Lernmodul</div>
+        <div class="header-title">{{ moduleTitle || 'Lernmodul' }}</div>
       </div>
 
       <div class="header-right">
@@ -32,4 +32,15 @@
       <div #h5pContainer class="h5p-host"></div>
     </div>
   </div>
+
+  @if (showNavigationButtons) {
+    <div class="navigation-buttons">
+      <button class="btn btn-ghost" type="button" (click)="onBackToPrevious()" [style.visibility]="showBackButton ? 'visible' : 'hidden'">
+        ← Zurück
+      </button>
+      <button class="btn btn-primary" type="button" (click)="onNext()">
+        Weiter →
+      </button>
+    </div>
+  }
 </div>

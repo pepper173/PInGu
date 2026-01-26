@@ -1,15 +1,23 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DigitaleZeitreisenC1 } from './C1/c1';
-import { DigitaleZeitreisenC2 } from './C2/c2';
-import { DigitaleZeitreisenC3 } from './C3/c3';
+import { B1 } from './binaerer-bob-code/B1/b1';
+import { B2 } from './binaerer-bob-code/B2/b2';
+import { C1 } from './digitale-zeitreisen/C1/c1';
+import { C2 } from './digitale-zeitreisen/C2/c2';
+import { C3 } from './digitale-zeitreisen/C3/c3';
 
 @Component({
   selector: 'app-digitale-zeitreisen-module',
   standalone: true,
-  imports: [DigitaleZeitreisenC1, DigitaleZeitreisenC2, DigitaleZeitreisenC3],
+  imports: [B1, B2, C1, C2, C3],
   template: `
     @switch (module) {
+      @case ('B1') {
+        <app-binaerer-bob-code-b1 />
+      }
+      @case ('B2') {
+        <app-binaerer-bob-code-b2 />
+      }
       @case ('C1') {
         <app-digitale-zeitreisen-c1 />
       }
@@ -26,7 +34,7 @@ import { DigitaleZeitreisenC3 } from './C3/c3';
   `
 })
 
-export class DigitaleZeitreisenModule implements OnInit {
+export class LearningModulesRoute implements OnInit {
   private route = inject(ActivatedRoute);
   module: string = '';
 
