@@ -5,7 +5,7 @@ import { teacherLogin } from './components/teacherLogin/teacherLogin';
 import { TeacherOverviewComponent } from './components/teacherView/teacherOverview';
 import {TeacherSignupComponent} from './components/teacherSignup/signup';
 import {studentAuthGuard} from './services/auth/student/studentAuth.guard';
-import {LearningModulesRoute} from './components/h5p/learning-modules-route';
+import {H5pModulesRoute} from './components/h5p/h5p-modules-route';
 
 export const routes: Routes = [
   { path: 'student-login', component: StudentLoginHome },
@@ -19,5 +19,5 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/ChooseLpath/clp').then(m => m.Clp),
   },
-  { path: 'modules/:module', component: LearningModulesRoute, canActivate: [studentAuthGuard] },
+  { path: 'modules/:module', component: H5pModulesRoute, canActivate: [studentAuthGuard] },
 ];

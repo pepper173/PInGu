@@ -19,7 +19,7 @@ export class Clp {
     { id: 'p1', label: 'Sensoren als Datensammler', url: '' },
     { id: 'p2', label: 'Sprache der Computer', url: '/assets/h5p/binaerer-bob-code/B1' },
     { id: 'p3', label: 'Digitale Zeitreise', url: '/assets/h5p/digitale-zeitreisen/C1' },
-    { id: 'p4', label: 'Freizeitbeschäftigung - digital und analog', url: '' },
+    { id: 'p4', label: 'Freizeitbeschäftigung - digital und analog', url: '/assets/h5p/freizeit/E1' },
   ];
 
   onLogout() {

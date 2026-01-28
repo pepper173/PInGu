@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {H5pModuleBase} from '../../h5p-module-base';
+import {H5pModuleBase} from '../h5p-module-base';
 
 @Component({
   selector: 'app-binaerer-bob-code-b2',
   standalone: true,
-  templateUrl: '../../h5p-module.html',
-  styleUrl: '../../h5p-module.scss',
+  templateUrl: '../h5p-module.html',
+  styleUrl: '../h5p-module.scss',
 })
 export class B2 extends H5pModuleBase {
   override moduleTitle = 'Pinguine in Bobs – Einführung Binärsystem';

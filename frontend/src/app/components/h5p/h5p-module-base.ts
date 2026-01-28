@@ -21,7 +21,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
   protected readonly h5pStorageService = inject(H5pStorageService);
   protected readonly ngZone = inject(NgZone);
 
-  baseUrl = '/modules';
+  protected readonly baseUrl = '/modules';
 
   isLoading = true;
   loadingText = 'Lade Modul…';
@@ -85,9 +85,6 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
           previousState: this.moduleProgress,
         }
       ] : [],
-      resize: {
-        enabled: true
-      }
     };
 
     await new H5P(this.h5pContainer.nativeElement, options);
@@ -159,7 +156,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     try {
       if (iframe.contentDocument?.readyState === 'complete') return Promise.resolve();
     } catch {
-      // cross-origin edge cases
+      // cross-origin edge cases?
     }
     return new Promise<void>((resolve) => {
       const done = () => resolve();

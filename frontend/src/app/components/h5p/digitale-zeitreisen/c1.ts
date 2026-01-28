@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {H5pModuleBase} from '../../h5p-module-base';
+import {H5pModuleBase} from '../h5p-module-base';
 
 @Component({
   selector: 'app-digitale-zeitreisen-c1',
   standalone: true,
-  templateUrl: '../../h5p-module.html',
-  styleUrl: '../../h5p-module.scss',
+  templateUrl: '../h5p-module.html',
+  styleUrl: '../h5p-module.scss',
 })
 export class C1 extends H5pModuleBase {
   override moduleTitle = 'Digitale Zeitreise - Teil 1';
