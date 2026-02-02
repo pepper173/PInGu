@@ -28,55 +28,14 @@ import { E } from './freizeit/e';
       @case ('C3') {
         <app-digitale-zeitreisen-c3 />
       }
-      @case ('E1') {
-        <app-freizeit-e />
-      }
-      @case ('E2') {
-        <app-freizeit-e />
-      }
-      @case ('E3') {
-        <app-freizeit-e />
-      }
-      @case ('E4') {
-        <app-freizeit-e />
-      }
-      @case ('E5') {
-        <app-freizeit-e />
-      }
-      @case ('E6') {
-        <app-freizeit-e />
-      }
-      @case ('E7') {
-        <app-freizeit-e />
-      }
-      @case ('E8') {
-        <app-freizeit-e />
-      }
-      @case ('E9') {
-        <app-freizeit-e />
-      }
-      @case ('E10') {
-        <app-freizeit-e />
-      }
-      @case ('E11') {
-        <app-freizeit-e />
-      }
-      @case ('E12') {
-        <app-freizeit-e />
-      }
-      @case ('E13') {
-        <app-freizeit-e />
-      }
-      @case ('E14') {
-        <app-freizeit-e />
-      }
-      @case ('E15') {
-        <app-freizeit-e />
-      }
       @default {
+        @if (module.includes('E')) {
+          <app-freizeit-e />
+        } @else {
         <p style="color: red;">NO MATCH for: {{ module }}</p>
       }
     }
+  }
   `
 })
 
