@@ -7,23 +7,40 @@
 
 input {
   width: 100%;
-  font-size: 1.1rem;
-  padding: .9rem 1rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  padding: clamp(0.7rem, 2vw, 0.9rem) clamp(0.8rem, 2.5vw, 1rem);
   border-radius: 14px;
   border: 2px solid var(--pingu-navy);
   background: #fff;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--pingu-orange);
+    box-shadow: 0 0 0 3px rgba(242, 163, 54, 0.1);
+  }
 }
 
 button {
   width: 100%;
-  padding: 1rem 1.25rem;
+  padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1rem, 3vw, 1.25rem);
   border-radius: 16px;
   border: none;
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
   background: var(--pingu-orange);
   color: #15202b;
   cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(242, 163, 54, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
 
   &:disabled {
     opacity: .6;
@@ -34,5 +51,37 @@ button {
 .help {
   margin: 0;
   color: #6b7280;
-  font-size: .9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+/* Tablet und kleiner */
+@media (max-width: 768px) {
+  .login {
+    gap: 0.875rem;
+  }
+
+  input {
+    border-radius: 12px;
+  }
+
+  button {
+    border-radius: 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .login {
+    gap: 0.75rem;
+  }
+
+  input {
+    border-radius: 10px;
+  }
+
+  button {
+    border-radius: 12px;
+  }
 }
