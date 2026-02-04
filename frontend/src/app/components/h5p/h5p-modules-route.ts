@@ -42,6 +42,10 @@ import { E } from './freizeit/e';
 export class H5pModulesRoute implements OnInit {
   private route = inject(ActivatedRoute);
   module: string = '';
+  protected moduleChain: {[key: string]: any} = {
+    'B': 'C',
+    'C': 'E'
+  };
 
   ngOnInit() {
     this.route.params.subscribe(params => {

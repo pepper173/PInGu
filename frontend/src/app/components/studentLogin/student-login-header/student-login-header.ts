@@ -7,5 +7,5 @@ import { Component, signal } from '@angular/core';
   styleUrls: ['./student-login-header.scss'],
 })
 export class StudentLoginHeader {
-  title = signal('Willkommen bei den PInGu Lernpfaden!'); // Test der Signal Funtkion 
+  title = signal('Willkommen bei den PInGu Lernpfaden!');
 }

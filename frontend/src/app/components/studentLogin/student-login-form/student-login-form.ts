@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-student-login',
+  selector: 'app-student-login-form',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './student-login.html',
-  styleUrls: ['./student-login.scss']
+  templateUrl: './student-login-form.html',
+  styleUrls: ['./student-login-form.scss']
 })
-export class StudentLogin {
+export class StudentLoginForm {
   @Output() submitCode = new EventEmitter<string>();
 
   code = new FormControl('', {

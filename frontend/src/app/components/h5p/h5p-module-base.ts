@@ -35,14 +35,6 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
   private observer?: MutationObserver;
   protected module!: string;
 
-  /**
-   * Returns the save frequency in seconds (default is 10)
-   */
-  protected getSaveFrequency(): number {
-    return 10;
-  }
-
-
   onBack(): void {
     this.router.navigate(['/CLP']);
   }
@@ -77,7 +69,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
       h5pJsonPath: modulePath,
       frameJs: 'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js',
       frameCss: 'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css',
-      saveFreq: this.getSaveFrequency(),
+      saveFreq: 10, // seconds
       contentUserData: this.moduleProgress ? [
         {
           dataType: 'state',

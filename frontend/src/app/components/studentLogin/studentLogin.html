@@ -4,7 +4,6 @@
   <section class="card">
     <app-student-login-pingu class="penguin"></app-student-login-pingu>
 
-    <!-- Event aus dem Formular abfangen -->
-    <app-student-login (submitCode)="onSubmit($event)"></app-student-login>
+    <app-student-login-form (submitCode)="onSubmit($event)"></app-student-login-form>
   </section>
 </div>
