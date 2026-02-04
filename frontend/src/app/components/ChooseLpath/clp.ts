@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { CLPHeader } from './clp-header/clp-header';
 import { ClpDisplayPaths, PathItem } from './clp-display-paths/clp-display-paths';
 import {StudentAuthService} from '../../services/auth/student/studentAuth.service';
-
+//testcommit
 @Component({
   selector: 'app-clphome',
   standalone: true,
