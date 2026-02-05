@@ -33,6 +33,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
 
   private moduleProgress: string = '';
   private observer?: MutationObserver;
+  private resizeObserver?: ResizeObserver;
   protected module!: string;
 
   onBack(): void {
@@ -81,6 +82,12 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
 
     await new H5P(this.h5pContainer.nativeElement, options);
     await this.waitForH5PIframeReady(this.h5pContainer.nativeElement);
+
+    const iframe = this.h5pContainer.nativeElement.querySelector('iframe') as HTMLIFrameElement | null;
+    if (iframe) {
+      this.attachIframeAutoHeight(iframe);
+    }
+
     this.isLoading = false;
 
     this.startAutoSave(options.id, options.saveFreq);
@@ -88,6 +95,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.observer?.disconnect();
+    this.resizeObserver?.disconnect();
     this.autoSave.stop();
   }
 
@@ -155,5 +163,35 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
       iframe.addEventListener('load', done, {once: true});
       setTimeout(done, 8000);
     });
+  }
+
+  private attachIframeAutoHeight(iframe: HTMLIFrameElement): void {
+    if (typeof ResizeObserver === 'undefined') return;
+
+    this.resizeObserver?.disconnect();
+
+    const doc = iframe.contentDocument;
+    if (!doc) return;
+
+    const target = doc.documentElement || doc.body;
+    if (!target) return;
+
+    const updateHeight = () => {
+      const bodyHeight = doc.body?.scrollHeight ?? 0;
+      const docHeight = doc.documentElement?.scrollHeight ?? 0;
+      const nextHeight = Math.max(bodyHeight, docHeight);
+
+      if (nextHeight > 0) {
+        iframe.style.height = `${nextHeight}px`;
+      }
+    };
+
+    updateHeight();
+
+    this.resizeObserver = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    this.resizeObserver.observe(target);
   }
 }

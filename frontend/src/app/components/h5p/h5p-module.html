@@ -31,16 +31,16 @@
 
       <div #h5pContainer class="h5p-host"></div>
     </div>
-  </div>
 
-  @if (showNavigationButtons) {
-    <div class="navigation-buttons">
-      <button class="btn btn-ghost" type="button" (click)="onBackToPrevious()" [style.visibility]="showBackButton ? 'visible' : 'hidden'">
-        ← Zurück
-      </button>
-      <button class="btn btn-primary" type="button" (click)="onNext()">
-        Weiter →
-      </button>
-    </div>
-  }
+    @if (showNavigationButtons) {
+      <div class="navigation-buttons">
+        <button class="btn btn-ghost" type="button" (click)="onBackToPrevious()" [style.visibility]="showBackButton ? 'visible' : 'hidden'">
+          ← Zurück
+        </button>
+        <button class="btn btn-primary" type="button" (click)="onNext()">
+          Weiter →
+        </button>
+      </div>
+    }
+  </div>
 </div>
