@@ -432,6 +432,8 @@ $brand-blue-dark: #1b3969;
   width: 100% !important;
   max-width: none !important;
   display: block;
+  transform: scale(0.85);
+  transform-origin: top center;
 }
 
 @media (max-width: 1024px) {
@@ -442,6 +444,12 @@ $brand-blue-dark: #1b3969;
   :host ::ng-deep iframe.h5p-iframe {
     max-width: none !important;
   }
+
+  :host ::ng-deep .h5p-content,
+  :host ::ng-deep iframe.h5p-iframe {
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
 }
 
 @media (max-width: 768px) {
@@ -451,5 +459,11 @@ $brand-blue-dark: #1b3969;
   :host ::ng-deep .h5p-content,
   :host ::ng-deep iframe.h5p-iframe {
     max-width: none !important;
+  }
+
+  :host ::ng-deep .h5p-content,
+  :host ::ng-deep iframe.h5p-iframe {
+    transform: scale(0.85);
+    transform-origin: top center;
   }
 }
