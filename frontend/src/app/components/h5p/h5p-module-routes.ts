@@ -12,34 +12,25 @@ import { E } from './freizeit/e';
   standalone: true,
   imports: [B1, B2, C1, C2, C3, E],
   template: `
-    @switch (module) {
-      @case ('B1') {
-        <app-binaerer-bob-code-b1 />
-      }
-      @case ('B2') {
-        <app-binaerer-bob-code-b2 />
-      }
-      @case ('C1') {
-        <app-digitale-zeitreisen-c1 />
-      }
-      @case ('C2') {
-        <app-digitale-zeitreisen-c2 />
-      }
-      @case ('C3') {
-        <app-digitale-zeitreisen-c3 />
-      }
-      @default {
-        @if (module.includes('E')) {
-          <app-freizeit-e />
-        } @else {
-        <p style="color: red;">NO MATCH for: {{ module }}</p>
-      }
+    @if (module === 'B1') {
+      <app-binaerer-bob-code-b1 />
+    } @else if (module === 'B2') {
+      <app-binaerer-bob-code-b2 />
+    } @else if (module === 'C1') {
+      <app-digitale-zeitreisen-c1 />
+    } @else if (module === 'C2') {
+      <app-digitale-zeitreisen-c2 />
+    } @else if (module === 'C3') {
+      <app-digitale-zeitreisen-c3 />
+    } @else if (module.includes('E')) {
+      <app-freizeit-e />
+    } @else {
+      <p style="color: red;">NO MATCH for: {{ module }}</p>
     }
-  }
   `
 })
 
-export class H5pModulesRoute implements OnInit {
+export class H5pModuleRoutes implements OnInit {
   private route = inject(ActivatedRoute);
   module: string = '';
   protected moduleChain: {[key: string]: any} = {
