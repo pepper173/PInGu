@@ -112,9 +112,9 @@ $brand-blue-dark: #1b3969;
   display: grid !important;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 0.75rem;
   background-color: rgba(79, 134, 198, 0.18);
   border-bottom: 1px solid rgba(79, 134, 198, 0.35);
   flex-shrink: 0;
@@ -122,15 +122,15 @@ $brand-blue-dark: #1b3969;
 
 @media (max-width: 768px) {
   .card-header {
-    padding: 0.5rem 0.75rem;
-    gap: 8px;
+    padding: 0.4rem 0.5rem;
+    gap: 6px;
   }
 }
 
 @media (max-width: 480px) {
   .card-header {
-    padding: 0.4rem 0.5rem;
-    gap: 6px;
+    padding: 0.3rem 0.375rem;
+    gap: 4px;
   }
 }
 
@@ -150,17 +150,18 @@ $brand-blue-dark: #1b3969;
   font-weight: 700;
   color: $brand-blue-dark;
   letter-spacing: 0.3px;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
   .header-title {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 480px) {
   .header-title {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     letter-spacing: 0.2px;
   }
 }
@@ -177,9 +178,9 @@ $brand-blue-dark: #1b3969;
   background: none;
   cursor: pointer;
 
-  padding: 0.6rem 1.125rem;
-  border-radius: 15px;
-  font-size: 1.125rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
 
   font-weight: 600;
   color: $brand-blue-dark;
@@ -189,42 +190,42 @@ $brand-blue-dark: #1b3969;
     transform 80ms ease;
 
   // Ensure minimum touch target size
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 36px;
+  min-width: 36px;
 }
 
 @media (max-width: 1024px) {
   .btn {
-    padding: 0.55rem 1rem;
-    font-size: 1.0625rem;
-    border-radius: 13px;
-    min-height: 42px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8125rem;
+    border-radius: 11px;
+    min-height: 34px;
   }
 }
 
 @media (max-width: 768px) {
   .btn {
-    padding: 0.5rem 0.875rem;
-    font-size: 1rem;
-    border-radius: 12px;
-    min-height: 40px;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    min-height: 32px;
   }
 }
 
 @media (max-width: 480px) {
   .btn {
-    padding: 0.45rem 0.75rem;
-    font-size: 0.9375rem;
-    border-radius: 10px;
-    min-height: 38px;
+    padding: 0.25rem 0.45rem;
+    font-size: 0.6875rem;
+    border-radius: 8px;
+    min-height: 30px;
   }
 }
 
 @media (max-height: 600px) {
   .btn {
-    padding: 0.4rem 0.75rem;
-    font-size: 0.9rem;
-    min-height: 36px;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.75rem;
+    min-height: 32px;
   }
 }
 
