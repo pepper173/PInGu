@@ -9,7 +9,7 @@ import {H5pModuleBase} from '../h5p-module-base';
 })
 
 export class A3 extends H5pModuleBase {
-  override moduleTitle = 'Einführung in Computer - Teil 3';
+  override moduleTitle = 'Einführung in Computer - Kapitel 3';
   override showNavigationButtons = true;
   override showBackButton = true;
 

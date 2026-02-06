@@ -8,7 +8,7 @@ import {H5pModuleBase} from '../h5p-module-base';
   styleUrls: ['../h5p-module.scss'],
 })
 export class A1 extends H5pModuleBase {
-  override moduleTitle = 'Einführung in Computer - Teil 1';
+  override moduleTitle = 'Einführung in Computer - Kapitel 1';
   override showNavigationButtons = true;
   override showBackButton = false;
 
