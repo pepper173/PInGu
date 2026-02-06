@@ -18,7 +18,8 @@
 
   display: flex;
   align-items: center;
-  justify-content: center; /* Titel zentriert */
+  justify-content: space-between;
+  padding-right: 6rem;
 }
 
 /* Titel */
@@ -29,13 +30,11 @@ h1 {
   line-height: 1.1;
   font-size: clamp(1.8rem, 4vw, 3.4rem);
   text-align: center;
+  flex-grow: 1;
 }
 
 /* Logout oben rechts – heller Ton & etwas kleiner */
 .logout {
-  position: absolute;
-  right: 0;                 /* sauber am Rand des Containers */
-  top: 0;
   padding: .4rem .75rem;
   font-weight: 700;
   font-size: .9rem;
@@ -45,4 +44,6 @@ h1 {
   color: var(--pingu-navy);
   box-shadow: 0 1px 0 rgba(0,0,0,.04);
   cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
 }

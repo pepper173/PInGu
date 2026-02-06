@@ -11,9 +11,6 @@ export type PathItem = { id: string; label: string; url: string };
 export class ClpDisplayPaths {
   @Input() items: PathItem[] = [
     { id: 'p1', label: 'Text', url: '' },
-    { id: 'p2', label: 'Text', url: '' },
-    { id: 'p3', label: 'Text', url: '' },
-    { id: 'p4', label: 'Text', url: '' },
   ];
 
   @Output() select = new EventEmitter<PathItem>();
