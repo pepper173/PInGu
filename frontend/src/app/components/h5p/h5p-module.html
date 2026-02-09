@@ -20,10 +20,10 @@
     </div>
 
     <div class="card-body">
-      @if (isLoading) {
+      @if (showIntroOverlay && isLoading) {
         <div class="loading-overlay" aria-live="polite" aria-busy="true">
           <div class="loading-card">
-            <div class="spinner" aria-hidden="true"></div>
+            <div class="loading-title">{{ moduleTitle || 'Lernmodul' }}</div>
             <div class="text">{{ loadingText }}</div>
           </div>
         </div>

@@ -14,7 +14,7 @@ export class A3 extends H5pModuleBase {
   override showBackButton = true;
 
   override onNext(): void {
-    this.router.navigate(['/CLP']);
+    this.router.navigate(['/end-screen']);
   }
 
   override onBackToPrevious(): void {

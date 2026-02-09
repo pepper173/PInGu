@@ -22,9 +22,11 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
   protected readonly ngZone = inject(NgZone);
 
   protected readonly baseUrl = '/modules';
+  protected readonly introDurationMs = 3000;
 
   isLoading = true;
   loadingText = 'Lade Modul…';
+  showIntroOverlay = false;
 
   moduleTitle = 'Lernmodul';
   backButtonLabel = 'Home';
@@ -54,6 +56,8 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
   }
 
   async ngAfterViewInit() {
+    this.showIntroOverlay = this.didNavigateFromClp();
+    const introDelay = this.showIntroOverlay ? this.waitForIntroDelay() : Promise.resolve();
     const moduleParam = this.route.snapshot.paramMap.get('module');
     if (!moduleParam) throw new Error('Kein H5P Modul angegeben');
 
@@ -82,6 +86,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
 
     await new H5P(this.h5pContainer.nativeElement, options);
     await this.waitForH5PIframeReady(this.h5pContainer.nativeElement);
+    await introDelay;
 
     this.isLoading = false;
 
@@ -156,6 +161,18 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
       const done = () => resolve();
       iframe.addEventListener('load', done, {once: true});
       setTimeout(done, 8000);
+    });
+  }
+
+  private didNavigateFromClp(): boolean {
+    const navigationState = this.router.getCurrentNavigation()?.extras.state;
+    const state = navigationState ?? history.state;
+    return state?.fromClp === true;
+  }
+
+  private waitForIntroDelay(): Promise<void> {
+    return new Promise((resolve) => {
+      setTimeout(resolve, this.introDurationMs);
     });
   }
 }

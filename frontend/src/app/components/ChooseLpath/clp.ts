@@ -1,8 +1,8 @@
-import {Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { StudentAuthService } from '../../services/auth/student/studentAuth.service';
 import { CLPHeader } from './clp-header/clp-header';
 import { ClpDisplayPaths, PathItem } from './clp-display-paths/clp-display-paths';
-import {StudentAuthService} from '../../services/auth/student/studentAuth.service';
 
 @Component({
   selector: 'app-clphome',
@@ -26,10 +26,11 @@ export class Clp {
   onPick(item: PathItem) {
     console.log('Lernpfad gewählt:', item);
     if (item.url) {
+      const navigationExtras = { state: { fromClp: true } };
       if (item.url.includes('digitale-zeitreisen')) {
-        this.router.navigate(['/modules', encodeURIComponent(item.url)]);
+        this.router.navigate(['/modules', encodeURIComponent(item.url)], navigationExtras);
       } else {
-        this.router.navigate(['/modules', encodeURIComponent(item.url),]);
+        this.router.navigate(['/modules', encodeURIComponent(item.url)], navigationExtras);
       }
     }
   }
