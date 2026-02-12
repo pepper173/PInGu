@@ -43,14 +43,14 @@ router.post('/module', async (req, res) => {
 // POST /api/h5p/module/result
 router.post('/module/result', async (req, res) => {
     const pb = res.locals.pb;
-    const { contentId, resultData } = req.body;
+    const { contentId, subContentId, resultData } = req.body;
     const completion = resultData.completion || false;
     const success = resultData.success || false;
     const duration = resultData.duration || 0;
     const score = resultData.score || {};
 
     try {
-        const moduleResult = await pb.collection('module_result').create({ contentId, completion, success, duration, score });
+        const moduleResult = await pb.collection('module_result').create({ contentId, subContentId, completion, success, duration, score });
         return res.status(201).json(moduleResult);
     } catch (error) {
         console.error('Insert student_module result failed:', error);

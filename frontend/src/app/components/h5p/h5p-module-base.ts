@@ -163,7 +163,9 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
 
     this.externalDispatcherHandler = (event: unknown) => {
       if ((event as any)?.data?.statement?.result) {
-        this.h5pResultService.saveH5PResult(content_id, (event as any).data.statement.result).subscribe({
+        const eventData = (event as any).data;
+        const subContentId = new URL(eventData.statement.object.id).searchParams.get('subContentId');
+        this.h5pResultService.saveH5PResult(content_id, subContentId, eventData.statement.result).subscribe({
           next: () => console.log('xAPI result saved'),
           error: (err) => console.error('Failed to save xAPI result:', err),
         });
