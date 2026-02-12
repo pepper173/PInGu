@@ -13,5 +13,11 @@ declare global {
         }
       >;
     };
+    H5P?: {
+      externalDispatcher?: {
+        on: (eventName: string, handler: (event: unknown) => void) => void;
+        off?: (eventName: string, handler: (event: unknown) => void) => void;
+      };
+    };
   }
 }

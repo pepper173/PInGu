@@ -2,7 +2,7 @@ import {AfterViewInit, Directive, ElementRef, inject, NgZone, OnDestroy, ViewChi
 import {ActivatedRoute, Router} from '@angular/router';
 import {H5P} from 'h5p-standalone';
 import {StudentAuthService} from '../../services/auth/student/studentAuth.service';
-import {H5pAutoSaveService, H5pStorageService} from '../../services/data/h5p/h5p.service';
+import {H5pAutoSaveService, H5pResultService, H5pStorageService} from '../../services/data/h5p/h5p.service';
 import {firstValueFrom} from 'rxjs';
 
 /**
@@ -20,6 +20,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
   protected readonly autoSave = inject(H5pAutoSaveService);
   protected readonly h5pStorageService = inject(H5pStorageService);
   protected readonly ngZone = inject(NgZone);
+  protected readonly h5pResultService = inject(H5pResultService);
 
   protected readonly baseUrl = '/modules';
   protected readonly introDurationMs = 3000;
@@ -36,6 +37,8 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
 
   private moduleProgress: string = '';
   private observer?: MutationObserver;
+  private externalDispatcherBound = false;
+  private externalDispatcherHandler?: (event: unknown) => void;
   protected module!: string;
 
   onBack(): void {
@@ -87,13 +90,15 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     await new H5P(this.h5pContainer.nativeElement, options);
     await this.waitForH5PIframeReady(this.h5pContainer.nativeElement);
     await introDelay;
-
+    
     this.isLoading = false;
-
-    this.startAutoSave(options.id, options.saveFreq);
+    
+    this.attachExternalDispatcher(content_id);
+    // this.startAutoSave(options.id, options.saveFreq);
   }
 
   ngOnDestroy() {
+    this.detachExternalDispatcher();
     this.observer?.disconnect();
     this.autoSave.stop();
   }
@@ -149,6 +154,33 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
 
       this.observer.observe(container, {childList: true, subtree: true});
     });
+  }
+
+  private attachExternalDispatcher(content_id: string): void {
+    if (this.externalDispatcherBound) return;
+    const dispatcher = window.H5P?.externalDispatcher;
+    if (!dispatcher) return;
+
+    this.externalDispatcherHandler = (event: unknown) => {
+      if ((event as any)?.data?.statement?.result) {
+        this.h5pResultService.saveH5PResult(content_id, (event as any).data.statement.result).subscribe({
+          next: () => console.log('xAPI result saved'),
+          error: (err) => console.error('Failed to save xAPI result:', err),
+        });
+      }
+    };
+
+    dispatcher.on('xAPI', this.externalDispatcherHandler);
+    this.externalDispatcherBound = true;
+  }
+
+  private detachExternalDispatcher(): void {
+    const dispatcher = window.H5P?.externalDispatcher;
+    if (!dispatcher?.off || !this.externalDispatcherHandler) return;
+
+    dispatcher.off('xAPI', this.externalDispatcherHandler);
+    this.externalDispatcherHandler = undefined;
+    this.externalDispatcherBound = false;
   }
 
   private waitForIframeLoad(iframe: HTMLIFrameElement): Promise<void> {

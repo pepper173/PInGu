@@ -42,3 +42,13 @@ export class H5pStorageService {
     return this.http.post(`${this.baseUrl}h5p/module`, {contentId, state});
   }
 }
+
+@Injectable({ providedIn: 'root' })
+export class H5pResultService {
+  private readonly baseUrl: string = environment.apiUrl;
+  private http: HttpClient = inject(HttpClient);
+
+  saveH5PResult(contentId: string, resultData: JSON) {
+    return this.http.post(`${this.baseUrl}h5p/module/result`, {contentId, resultData});
+  }
+}
