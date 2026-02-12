@@ -94,7 +94,7 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     this.isLoading = false;
     
     this.attachExternalDispatcher(content_id);
-    // this.startAutoSave(options.id, options.saveFreq);
+    this.startAutoSave(options.id, options.saveFreq);
   }
 
   ngOnDestroy() {
