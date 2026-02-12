@@ -3,12 +3,10 @@ import { interval, Subscription } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 
-
 export interface H5PModuleState {
   contentId: string;
   moduleState: JSON;
 }
-
 
 @Injectable({ providedIn: 'root' })
 export class H5pAutoSaveService implements OnDestroy {
@@ -31,7 +29,7 @@ export class H5pAutoSaveService implements OnDestroy {
 
 @Injectable({ providedIn: 'root' })
 export class H5pStorageService {
-  private readonly baseUrl: string = environment.apiUrl;
+  private readonly baseUrl: string = environment.apiUrl+"h5p";
   private http: HttpClient = inject(HttpClient);
 
   getLastH5PModuleState(contentId: string) {
@@ -39,7 +37,7 @@ export class H5pStorageService {
   }
 
   saveLastH5PModuleState(contentId: string, state: JSON) {
-    return this.http.post(`${this.baseUrl}h5p/module`, {contentId, state});
+    return this.http.post(`${this.baseUrl}/module`, {contentId, state});
   }
 }
 
@@ -49,6 +47,6 @@ export class H5pResultService {
   private http: HttpClient = inject(HttpClient);
 
   saveH5PResult(contentId: string, subContentId: string, resultData: JSON) {
-    return this.http.post(`${this.baseUrl}h5p/module/result`, {contentId, subContentId, resultData});
+    return this.http.post(`${this.baseUrl}/module/result`, {contentId, subContentId, resultData});
   }
 }
