@@ -24,7 +24,6 @@ export class Clp {
   }
 
   onPick(item: PathItem) {
-    console.log('Lernpfad gewählt:', item);
     if (item.url) {
       const navigationExtras = { state: { fromClp: true } };
       this.router.navigate(['/modules', encodeURIComponent(item.url)], navigationExtras);
