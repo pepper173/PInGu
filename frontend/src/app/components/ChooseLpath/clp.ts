@@ -24,7 +24,6 @@ export class Clp {
   }
 
   onPick(item: PathItem) {
-    console.log('Lernpfad gewählt:', item);
     if (item.url) {
       const navigationExtras = { state: { fromClp: true } };
       if (item.url.includes('digitale-zeitreisen')) {
