@@ -16,7 +16,7 @@ export class Clp {
   private router = inject(Router);
 
   paths: PathItem[] = [
-    { id: 'p1', label: 'Beginne deine Reise!', url: '/assets/h5p/einfuehrung/A1' },
+    { id: 'p1', label: 'Beginne deine Reise!', url: '/assets/h5p/freizeit/E1' },
   ];
 
   onLogout() {
@@ -27,11 +27,7 @@ export class Clp {
     console.log('Lernpfad gewählt:', item);
     if (item.url) {
       const navigationExtras = { state: { fromClp: true } };
-      if (item.url.includes('digitale-zeitreisen')) {
-        this.router.navigate(['/modules', encodeURIComponent(item.url)], navigationExtras);
-      } else {
-        this.router.navigate(['/modules', encodeURIComponent(item.url)], navigationExtras);
-      }
+      this.router.navigate(['/modules', encodeURIComponent(item.url)], navigationExtras);
     }
   }
 }

@@ -8,7 +8,7 @@ import {H5pModuleBase} from '../h5p-module-base';
   styleUrl: '../h5p-module.scss',
 })
 export class F1 extends H5pModuleBase {
-  override moduleTitle = 'Gold – Ein interaktives Lernmodul';
+  override moduleTitle = 'Gold - Ein interaktives Lernmodul';
   override showNavigationButtons = true;
   override showBackButton = true;
 
