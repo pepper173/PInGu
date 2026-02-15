@@ -43,7 +43,7 @@ export class H5pStorageService {
 
 @Injectable({ providedIn: 'root' })
 export class H5pResultService {
-  private readonly baseUrl: string = environment.apiUrl;
+  private readonly baseUrl: string = environment.apiUrl+"h5p";
   private http: HttpClient = inject(HttpClient);
 
   saveH5PResult(contentId: string, subContentId: string, resultData: JSON) {
