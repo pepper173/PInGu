@@ -16,7 +16,7 @@ export class Clp {
   private router = inject(Router);
 
   paths: PathItem[] = [
-    { id: 'p1', label: 'Beginne deine Reise!', url: '/assets/h5p/freizeit/E1' },
+    { id: 'p1', label: 'Beginne deine Reise!', url: '/assets/h5p/gold/F1' },
   ];
 
   onLogout() {

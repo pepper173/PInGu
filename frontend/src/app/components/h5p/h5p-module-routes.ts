@@ -19,10 +19,14 @@ import { E6 } from './freizeit/e6';
 import { E7 } from './freizeit/e7';
 import { E8 } from './freizeit/e8';
 import { E9 } from './freizeit/e9';
+import { F1 } from './gold/f1';
+import { F2 } from './gold/f2';
+import { F3 } from './gold/f3';
+import { F4 } from './gold/f4';
 @Component({
   selector: 'app-digitale-zeitreisen-module',
   standalone: true,
-  imports: [A1, A2, A3, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16],
+  imports: [A1, A2, A3, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, F1, F2, F3, F4],
   template: `
     @switch (module) {
       @case ('A1') { <app-einfuehrung-a1 /> }
@@ -44,6 +48,10 @@ import { E9 } from './freizeit/e9';
       @case ('E14') { <app-freizeit-e14 /> }
       @case ('E15') { <app-freizeit-e15 /> }
       @case ('E16') { <app-freizeit-e16 /> }
+      @case ('F1') { <app-gold-f1 /> }
+      @case ('F2') { <app-gold-f2 /> }
+      @case ('F3') { <app-gold-f3 /> }
+      @case ('F4') { <app-gold-f4 /> }
       @default { <p style="color: red;">NO MATCH for: {{ module }}</p> }
     }
   `
