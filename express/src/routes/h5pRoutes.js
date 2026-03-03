@@ -17,7 +17,17 @@ router.get('/module/:moduleId', async (req, res) => {
 // POST /api/h5p/module
 router.post('/module', async (req, res) => {
     const pb = res.locals.pb;
-    const { contentId, state } = req.body;
+    let { contentId, state } = req.body;
+
+    if (Array.isArray(state) && state.length === 1 && typeof state[0] === 'string') {
+        const answerText = state[0];
+        
+        state = {
+            answered: [true],
+            answers: [[{ answer: answerText }]],
+            progress: 1
+        };
+    }
 
     try {
         let existing;
