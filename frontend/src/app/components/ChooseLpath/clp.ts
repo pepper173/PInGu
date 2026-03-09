@@ -17,8 +17,8 @@ export class Clp {
 
   paths: PathItem[] = [
     { id: 'p1', label: 'Beginne deine Reise!', url: '/assets/h5p/sensoren/D1' },
-    { id: 'p2', label: 'Freizeitbeschäftigung', url: '/assets/h5p/freizeit/E1' },
-    { id: 'p3', label: 'Gold-Level', url: '/assets/h5p/gold/F1' },
+    // { id: 'p2', label: 'Freizeitbeschäftigung', url: '/assets/h5p/freizeit/E1' },
+    // { id: 'p3', label: 'Gold-Level', url: '/assets/h5p/gold/F1' },
   ];
 
   onLogout() {
