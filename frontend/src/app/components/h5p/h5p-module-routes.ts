@@ -1,57 +1,47 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { D1 } from './sensoren-kennenlernen/d1';
+import { D10 } from './sensoren-kennenlernen/d10';
+import { D11 } from './sensoren-kennenlernen/d11';
+import { D12 } from './sensoren-kennenlernen/d12';
+import { D13 } from './sensoren-kennenlernen/d13';
+import { D14 } from './sensoren-kennenlernen/d14';
+import { D2 } from './sensoren-kennenlernen/d2';
+import { D3 } from './sensoren-kennenlernen/d3';
+import { D4 } from './sensoren-kennenlernen/d4';
+import { D5 } from './sensoren-kennenlernen/d5';
+import { D6 } from './sensoren-kennenlernen/d6';
+import { D7 } from './sensoren-kennenlernen/d7';
+import { D8 } from './sensoren-kennenlernen/d8';
+import { D9 } from './sensoren-kennenlernen/d9';
 import { A1 } from './einfuehrung/a1';
 import { A2 } from './einfuehrung/a2';
 import { A3 } from './einfuehrung/a3';
-import { E1 } from './freizeit/e1';
-import { E10 } from './freizeit/e10';
-import { E11 } from './freizeit/e11';
-import { E12 } from './freizeit/e12';
-import { E13 } from './freizeit/e13';
-import { E14 } from './freizeit/e14';
-import { E15 } from './freizeit/e15';
-import { E16 } from './freizeit/e16';
-import { E2 } from './freizeit/e2';
-import { E3 } from './freizeit/e3';
-import { E4 } from './freizeit/e4';
-import { E5 } from './freizeit/e5';
-import { E6 } from './freizeit/e6';
-import { E7 } from './freizeit/e7';
-import { E8 } from './freizeit/e8';
-import { E9 } from './freizeit/e9';
-import { F1 } from './gold/f1';
-import { F2 } from './gold/f2';
-import { F3 } from './gold/f3';
-import { F4 } from './gold/f4';
+
+
 @Component({
   selector: 'app-digitale-zeitreisen-module',
   standalone: true,
-  imports: [A1, A2, A3, E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16, F1, F2, F3, F4],
+  imports: [A1, A2, A3, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14],
   template: `
     @switch (module) {
-      @case ('A1') { <app-einfuehrung-a1 /> }
-      @case ('A2') { <app-einfuehrung-a2 /> }
-      @case ('A3') { <app-einfuehrung-a3 /> }
-      @case ('E1') { <app-freizeit-e1 /> }
-      @case ('E2') { <app-freizeit-e2 /> }
-      @case ('E3') { <app-freizeit-e3 /> }
-      @case ('E4') { <app-freizeit-e4 /> }
-      @case ('E5') { <app-freizeit-e5 /> }
-      @case ('E6') { <app-freizeit-e6 /> }
-      @case ('E7') { <app-freizeit-e7 /> }
-      @case ('E8') { <app-freizeit-e8 /> }
-      @case ('E9') { <app-freizeit-e9 /> }
-      @case ('E10') { <app-freizeit-e10 /> }
-      @case ('E11') { <app-freizeit-e11 /> }
-      @case ('E12') { <app-freizeit-e12 /> }
-      @case ('E13') { <app-freizeit-e13 /> }
-      @case ('E14') { <app-freizeit-e14 /> }
-      @case ('E15') { <app-freizeit-e15 /> }
-      @case ('E16') { <app-freizeit-e16 /> }
-      @case ('F1') { <app-gold-f1 /> }
-      @case ('F2') { <app-gold-f2 /> }
-      @case ('F3') { <app-gold-f3 /> }
-      @case ('F4') { <app-gold-f4 /> }
+      @case ('A1') {<app-einfuehrung-a1></app-einfuehrung-a1> }
+      @case ('A2') {<app-einfuehrung-a2></app-einfuehrung-a2> }
+      @case ('A3') {<app-einfuehrung-a3></app-einfuehrung-a3> }
+      @case ('D1') { <app-h5p-sensoren-d1></app-h5p-sensoren-d1> }
+      @case ('D2') { <app-h5p-sensoren-d2></app-h5p-sensoren-d2> }
+      @case ('D3') { <app-h5p-sensoren-d3></app-h5p-sensoren-d3> }
+      @case ('D4') { <app-h5p-sensoren-d4></app-h5p-sensoren-d4> }
+      @case ('D5') { <app-h5p-sensoren-d5></app-h5p-sensoren-d5> }
+      @case ('D6') { <app-h5p-sensoren-d6></app-h5p-sensoren-d6> }
+      @case ('D7') { <app-h5p-sensoren-d7></app-h5p-sensoren-d7> }
+      @case ('D8') { <app-h5p-sensoren-d8></app-h5p-sensoren-d8> }
+      @case ('D9') { <app-h5p-sensoren-d9></app-h5p-sensoren-d9> }
+      @case ('D10') { <app-h5p-sensoren-d10></app-h5p-sensoren-d10> }
+      @case ('D11') { <app-h5p-sensoren-d11></app-h5p-sensoren-d11> }
+      @case ('D12') { <app-h5p-sensoren-d12></app-h5p-sensoren-d12> }
+      @case ('D13') { <app-h5p-sensoren-d13></app-h5p-sensoren-d13> }
+      @case ('D14') { <app-h5p-sensoren-d14></app-h5p-sensoren-d14> }
       @default { <p style="color: red;">NO MATCH for: {{ module }}</p> }
     }
   `
@@ -60,7 +50,7 @@ export class H5pModuleRoutes implements OnInit {
   private route = inject(ActivatedRoute);
   module: string = '';
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.module = decodeURIComponent(params['module']).split('/').pop();
     });
