@@ -5,7 +5,7 @@ import { StudentLogin } from './components/studentLogin/studentLogin';
 import { teacherLogin } from './components/teacherLogin/teacherLogin';
 import { TeacherOverviewComponent } from './components/teacherView/teacherOverview';
 import { TeacherSignupComponent } from './components/teacherSignup/signup';
-import { H5pModuleRoutes } from './components/h5p/h5p-module-routes';
+import { H5pModuleRoutes } from './components/h5p/h5p-module';
 import { Clp } from './components/ChooseLpath/clp';
 import {EndScreen} from './components/endScreen/endScreen';
 

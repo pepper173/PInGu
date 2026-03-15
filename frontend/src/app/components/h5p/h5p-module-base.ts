@@ -10,7 +10,7 @@ import {firstValueFrom} from 'rxjs';
  * Provides common functionality for loading, saving, and managing H5P content.
  */
 @Directive()
-export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
+export abstract class H5pModuleBase {
   @ViewChild('h5pContainer', {static: true})
   protected h5pContainer!: ElementRef<HTMLDivElement>;
 
@@ -58,145 +58,147 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     // Can be overridden by child components
   }
 
-  async ngAfterViewInit() {
-    this.showIntroOverlay = this.didNavigateFromClp();
-    const introDelay = this.showIntroOverlay ? this.waitForIntroDelay() : Promise.resolve();
-    const moduleParam = this.route.snapshot.paramMap.get('module');
-    if (!moduleParam) throw new Error('Kein H5P Modul angegeben');
+  // async ngAfterViewInit() {
+  //   this.showIntroOverlay = this.didNavigateFromClp();
+  //   const introDelay = this.showIntroOverlay ? this.waitForIntroDelay() : Promise.resolve();
+  //   const moduleParam = this.route.snapshot.paramMap.get('module');
+  //   if (!moduleParam) throw new Error('Kein H5P Modul angegeben');
 
-    this.module = decodeURIComponent(moduleParam);
-    const modulePath = this.module;
-    const contentIdSuffix = this.module.split('/').pop()!;
+  //   this.module = decodeURIComponent(moduleParam);
+  //   const modulePath = this.module;
+  //   const contentIdSuffix = this.module.split('/').pop()!;
 
-    const content_id = `${this.studentAuthService.user().id}-${contentIdSuffix}`;
+  //   const content_id = `${this.studentAuthService.user().id}-${contentIdSuffix}`;
 
-    await this.retrieveSavedState(content_id);
+  //   await this.retrieveSavedState(content_id);
 
-    const options = {
-      id: content_id,
-      h5pJsonPath: modulePath,
-      frameJs: 'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js',
-      frameCss: 'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css',
-      saveFreq: 10, // seconds
-      contentUserData: this.moduleProgress ? [
-        {
-          dataType: 'state',
-          state: this.moduleProgress,
-          previousState: this.moduleProgress,
-        }
-      ] : [],
-    };
+  //   const options = {
+  //     id: content_id,
+  //     h5pJsonPath: modulePath,
+  //     frameJs:'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js',
+  //     frameCss:'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css',
+  //     // frameJs: '/frame.bundle.js',
+  //     // frameCss: '/styles/h5p.css',
+  //     saveFreq: 10, // seconds
+  //     contentUserData: this.moduleProgress ? [
+  //       {
+  //         dataType: 'state',
+  //         state: this.moduleProgress,
+  //         previousState: this.moduleProgress,
+  //       }
+  //     ] : [],
+  //   };
 
-    await new H5P(this.h5pContainer.nativeElement, options);
-    await this.waitForH5PIframeReady(this.h5pContainer.nativeElement);
-    await introDelay;
+  //   await new H5P(this.h5pContainer.nativeElement, options);
+  //   await this.waitForH5PIframeReady(this.h5pContainer.nativeElement);
+  //   await introDelay;
     
-    this.isLoading = false;
+  //   this.isLoading = false;
     
-    this.attachExternalDispatcher(content_id);
-    this.startAutoSave(options.id, options.saveFreq);
-  }
+  //   this.attachExternalDispatcher(content_id);
+  //   this.startAutoSave(options.id, options.saveFreq);
+  // }
 
-  ngOnDestroy() {
-    this.detachExternalDispatcher();
-    this.observer?.disconnect();
-    this.autoSave.stop();
-  }
+  // ngOnDestroy() {
+  //   this.detachExternalDispatcher();
+  //   this.observer?.disconnect();
+  //   this.autoSave.stop();
+  // }
 
-  private async retrieveSavedState(contentId: string) {
-    try {
-      const res = await firstValueFrom(
-        this.h5pStorageService.getLastH5PModuleState(contentId)
-      );
-      const stateJson = JSON.stringify(res.moduleState);
-      if (stateJson && stateJson !== '{}') {
-        this.moduleProgress = stateJson;
-      }
-    } catch {
-      this.moduleProgress = '';
-    }
-  }
+  // private async retrieveSavedState(contentId: string) {
+  //   try {
+  //     const res = await firstValueFrom(
+  //       this.h5pStorageService.getLastH5PModuleState(contentId)
+  //     );
+  //     const stateJson = JSON.stringify(res.moduleState);
+  //     if (stateJson && stateJson !== '{}') {
+  //       this.moduleProgress = stateJson;
+  //     }
+  //   } catch {
+  //     this.moduleProgress = '';
+  //   }
+  // }
 
-  private startAutoSave(contentId: string, saveFreqSeconds: number) {
-    this.autoSave.stop();
-    this.ngZone.runOutsideAngular(() => {
-      this.autoSave.start(contentId, saveFreqSeconds, () => this.saveContentState(contentId));
-    });
-  }
+  // private startAutoSave(contentId: string, saveFreqSeconds: number) {
+  //   this.autoSave.stop();
+  //   this.ngZone.runOutsideAngular(() => {
+  //     this.autoSave.start(contentId, saveFreqSeconds, () => this.saveContentState(contentId));
+  //   });
+  // }
 
-  private saveContentState(contentId: string) {
-    if (!window.H5PIntegration?.contents) return;
-    const contentUserData = window.H5PIntegration?.contents[`cid-${contentId}`]?.contentUserData;
-    console.log(contentUserData)
-    if (!contentUserData || !contentUserData[0]) return;
+  // private saveContentState(contentId: string) {
+  //   if (!window.H5PIntegration?.contents) return;
+  //   const contentUserData = window.H5PIntegration?.contents[`cid-${contentId}`]?.contentUserData;
+  //   console.log(contentUserData)
+  //   if (!contentUserData || !contentUserData[0]) return;
 
-    const stateData = contentUserData[0].state;
+  //   const stateData = contentUserData[0].state;
 
-    if (!stateData) return;
+  //   if (!stateData) return;
 
-    this.h5pStorageService.saveLastH5PModuleState(contentId, JSON.parse(stateData)).subscribe({
-      next: () => console.log('State saved successfully.'),
-    });
-  }
+  //   this.h5pStorageService.saveLastH5PModuleState(contentId, JSON.parse(stateData)).subscribe({
+  //     next: () => console.log('State saved successfully.'),
+  //   });
+  // }
 
-  private waitForH5PIframeReady(container: HTMLElement): Promise<void> {
-    const already = container.querySelector('iframe');
-    if (already) return this.waitForIframeLoad(already as HTMLIFrameElement);
+  // private waitForH5PIframeReady(container: HTMLElement): Promise<void> {
+  //   const already = container.querySelector('iframe');
+  //   if (already) return this.waitForIframeLoad(already as HTMLIFrameElement);
 
-    return new Promise<void>((resolve) => {
-      this.observer = new MutationObserver(() => {
-        const iframe = container.querySelector('iframe') as HTMLIFrameElement | null;
-        if (iframe) {
-          this.observer?.disconnect();
-          this.waitForIframeLoad(iframe).then(resolve);
-        }
-      });
+  //   return new Promise<void>((resolve) => {
+  //     this.observer = new MutationObserver(() => {
+  //       const iframe = container.querySelector('iframe') as HTMLIFrameElement | null;
+  //       if (iframe) {
+  //         this.observer?.disconnect();
+  //         this.waitForIframeLoad(iframe).then(resolve);
+  //       }
+  //     });
 
-      this.observer.observe(container, {childList: true, subtree: true});
-    });
-  }
+  //     this.observer.observe(container, {childList: true, subtree: true});
+  //   });
+  // }
 
-  private attachExternalDispatcher(content_id: string): void {
-    if (this.externalDispatcherBound) return;
-    const dispatcher = window.H5P?.externalDispatcher;
-    if (!dispatcher) return;
+  // private attachExternalDispatcher(content_id: string): void {
+  //   if (this.externalDispatcherBound) return;
+  //   const dispatcher = window.H5P?.externalDispatcher;
+  //   if (!dispatcher) return;
 
-    this.externalDispatcherHandler = (event: unknown) => {
-      if ((event as any)?.data?.statement?.result) {
-        const eventData = (event as any).data;
-        const subContentId = new URL(eventData.statement.object.id).searchParams.get('subContentId');
-        this.h5pResultService.saveH5PResult(content_id, subContentId, eventData.statement.result).subscribe({
-          next: () => console.log('xAPI result saved'),
-          error: (err) => console.error('Failed to save xAPI result:', err),
-        });
-      }
-    };
+  //   this.externalDispatcherHandler = (event: unknown) => {
+  //     if ((event as any)?.data?.statement?.result) {
+  //       const eventData = (event as any).data;
+  //       const subContentId = new URL(eventData.statement.object.id).searchParams.get('subContentId');
+  //       this.h5pResultService.saveH5PResult(content_id, subContentId, eventData.statement.result).subscribe({
+  //         next: () => console.log('xAPI result saved'),
+  //         error: (err) => console.error('Failed to save xAPI result:', err),
+  //       });
+  //     }
+  //   };
 
-    dispatcher.on('xAPI', this.externalDispatcherHandler);
-    this.externalDispatcherBound = true;
-  }
+  //   dispatcher.on('xAPI', this.externalDispatcherHandler);
+  //   this.externalDispatcherBound = true;
+  // }
 
-  private detachExternalDispatcher(): void {
-    const dispatcher = window.H5P?.externalDispatcher;
-    if (!dispatcher?.off || !this.externalDispatcherHandler) return;
+  // private detachExternalDispatcher(): void {
+  //   const dispatcher = window.H5P?.externalDispatcher;
+  //   if (!dispatcher?.off || !this.externalDispatcherHandler) return;
 
-    dispatcher.off('xAPI', this.externalDispatcherHandler);
-    this.externalDispatcherHandler = undefined;
-    this.externalDispatcherBound = false;
-  }
+  //   dispatcher.off('xAPI', this.externalDispatcherHandler);
+  //   this.externalDispatcherHandler = undefined;
+  //   this.externalDispatcherBound = false;
+  // }
 
-  private waitForIframeLoad(iframe: HTMLIFrameElement): Promise<void> {
-    try {
-      if (iframe.contentDocument?.readyState === 'complete') return Promise.resolve();
-    } catch {
-      // cross-origin edge cases?
-    }
-    return new Promise<void>((resolve) => {
-      const done = () => resolve();
-      iframe.addEventListener('load', done, {once: true});
-      setTimeout(done, 8000);
-    });
-  }
+  // private waitForIframeLoad(iframe: HTMLIFrameElement): Promise<void> {
+  //   try {
+  //     if (iframe.contentDocument?.readyState === 'complete') return Promise.resolve();
+  //   } catch {
+  //     // cross-origin edge cases?
+  //   }
+  //   return new Promise<void>((resolve) => {
+  //     const done = () => resolve();
+  //     iframe.addEventListener('load', done, {once: true});
+  //     setTimeout(done, 8000);
+  //   });
+  // }
 
   private didNavigateFromClp(): boolean {
     const navigationState = this.router.getCurrentNavigation()?.extras.state;
