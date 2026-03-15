@@ -35,7 +35,7 @@ export class H5pModuleBase implements OnInit {
 
   protected _currentModuleIndex = 0;
 
-  moduleTitle = 'Lernmodul';
+  moduleTitle = 'Sensoren und Daten';
   backButtonLabel = 'Home';
   showNavigationButtons = true;
   showBackButton = false;
