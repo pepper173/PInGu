@@ -29,7 +29,8 @@
         </div>
       }
 
-    <iframe src="https://computingeducation.h5p.com/content/1292816403029458707/embed" aria-label="A1-1.1_Hardware_Software" width="1088" height="637" frameborder="0" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe><script src="https://computingeducation.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
+    <iframe [src]= "currentModuleUrl" aria-label="A1-1.1_Hardware_Software" style="width: 100%; height:100%; border:none" allowfullscreen="allowfullscreen" allow="autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *"></iframe>
+    <script src="https://computingeducation.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
     </div>
 
     @if (showNavigationButtons) {
@@ -37,9 +38,15 @@
         <button class="btn btn-ghost" type="button" (click)="onBackToPrevious()" [style.visibility]="showBackButton ? 'visible' : 'hidden'">
           ← Zum vorherigen Kapitel
         </button>
-        <button class="btn btn-primary" type="button" (click)="onNext()" [style.visibility]="showNextButton ? 'visible' : 'hidden'">
-          Zum nächsten Kapitel →
-        </button>
+        @if (isLastModule) {
+          <button class="btn btn-primary" type="button" (click)="onFinish()">
+            Fertig ✓
+          </button>
+        } @else {
+          <button class="btn btn-primary" type="button" (click)="onNext()" [style.visibility]="showNextButton ? 'visible' : 'hidden'">
+            Zum nächsten Kapitel →
+          </button>
+        }
       </div>
     }
   </div>

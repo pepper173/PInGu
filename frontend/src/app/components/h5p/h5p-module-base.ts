@@ -1,16 +1,20 @@
-import {AfterViewInit, Directive, ElementRef, inject, NgZone, OnDestroy, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {H5P} from 'h5p-standalone';
-import {StudentAuthService} from '../../services/auth/student/studentAuth.service';
-import {H5pAutoSaveService, H5pResultService, H5pStorageService} from '../../services/data/h5p/h5p.service';
-import {firstValueFrom} from 'rxjs';
+import { Component, Directive, ElementRef, inject, NgZone, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StudentAuthService } from '../../services/auth/student/studentAuth.service';
+import { H5pAutoSaveService, H5pResultService, H5pStorageService } from '../../services/data/h5p/h5p.service';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 /**
  * Base class for H5P module components.
  * Provides common functionality for loading, saving, and managing H5P content.
  */
-@Directive()
-export abstract class H5pModuleBase {
+@Component({
+  selector: 'app-h5p-module-base',
+  standalone: true,
+  templateUrl: './h5p-module.html',
+  styleUrls: ['./h5p-module.scss'],
+})
+export class H5pModuleBase implements OnInit {
   @ViewChild('h5pContainer', {static: true})
   protected h5pContainer!: ElementRef<HTMLDivElement>;
 
@@ -29,17 +33,74 @@ export abstract class H5pModuleBase {
   loadingText = 'Lade Modul…';
   showIntroOverlay = false;
 
+  protected _currentModuleIndex = 0;
+
   moduleTitle = 'Lernmodul';
   backButtonLabel = 'Home';
-  showNavigationButtons = false;
+  showNavigationButtons = true;
   showBackButton = false;
   showNextButton = true;
 
-  private moduleProgress: string = '';
-  private observer?: MutationObserver;
-  private externalDispatcherBound = false;
-  private externalDispatcherHandler?: (event: unknown) => void;
-  protected module!: string;
+  // private moduleProgress: string = '';
+  // private observer?: MutationObserver;
+  // private externalDispatcherBound = false;
+  // private externalDispatcherHandler?: (event: unknown) => void;
+  protected modules: string[] = [
+    'https://computingeducation.h5p.com/content/1292812298466296207/embed',
+    'https://computingeducation.h5p.com/content/1292791609048591217/embed',
+    'https://computingeducation.h5p.com/content/1292804687966417977/embed',
+    'https://computingeducation.h5p.com/content/1292792369197497817/embed',
+    'https://computingeducation.h5p.com/content/1292792373519449637/embed',
+    'https://computingeducation.h5p.com/content/1292792394234074637/embed',
+    'https://computingeducation.h5p.com/content/1292792397406411557/embed',
+    'https://computingeducation.h5p.com/content/1292792434486399437/embed',
+    'https://computingeducation.h5p.com/content/1292803583672337467/embed',
+    'https://computingeducation.h5p.com/content/1292792484949441287/embed',
+    'https://computingeducation.h5p.com/content/1292792501858026927/embed',
+    'https://computingeducation.h5p.com/content/1292803660721049997/embed',
+    'https://computingeducation.h5p.com/content/1292803626244426117/embed',
+    'https://computingeducation.h5p.com/content/1292792505056044477/embed',
+  ];
+
+  private sanitizer = inject(DomSanitizer);
+
+  protected get currentModuleIndex(): number {
+    return this._currentModuleIndex;
+  }
+
+  protected set currentModuleIndex(value: number) {
+    const maxIndex = Math.max(this.modules.length - 1, 0);
+    this._currentModuleIndex = Math.min(Math.max(value, 0), maxIndex);
+    this.updateNavigationButtons();
+  }
+
+  constructor() {
+    this.updateNavigationButtons();
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.showIntroOverlay = this.didNavigateFromClp();
+    if (this.showIntroOverlay) {
+      await this.waitForIntroDelay();
+    }
+    this.isLoading = false;
+    this.showIntroOverlay = false;
+  }
+
+  get currentModuleUrl(): SafeResourceUrl {
+    const url = this.modules[this.currentModuleIndex] ?? this.modules[0];
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  get isLastModule(): boolean {
+    return this.currentModuleIndex === this.modules.length - 1;
+  }
+
+  private updateNavigationButtons(): void {
+    this.showBackButton = this.currentModuleIndex > 0;
+    this.showNextButton = this.currentModuleIndex < this.modules.length - 1;
+  }
+
 
   onBack(): void {
     this.router.navigate(['/CLP']);
@@ -51,11 +112,19 @@ export abstract class H5pModuleBase {
   }
 
   onBackToPrevious(): void {
-    // Can be overridden by child components
+    if (this.currentModuleIndex > 0) {
+      this.currentModuleIndex--;
+    }
   }
 
   onNext(): void {
-    // Can be overridden by child components
+    if (this.currentModuleIndex < this.modules.length - 1) {
+      this.currentModuleIndex++;
+    }
+  }
+
+  onFinish(): void {
+    this.router.navigate(['/end-screen']);
   }
 
   // async ngAfterViewInit() {
