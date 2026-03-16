@@ -262,19 +262,43 @@ $brand-blue-dark: #1b3969;
   flex: 1 1 auto;
   overflow: auto;
   position: relative;
+  display: flex;
+  justify-content: center;
   padding: 0.25rem 1rem 0.25rem 1rem;
   min-height: 0;
+}
+
+.module-iframe {
+  width: 100%;
+  max-width: 100%;
+  min-height: 70svh;
+  border: none;
+  display: block;
 }
 
 @media (max-width: 768px) {
   .card-body {
     padding: 0.2rem 0.75rem 0.2rem 0.75rem;
   }
+
+  .module-iframe {
+    min-height: 72svh;
+  }
 }
 
 @media (max-width: 480px) {
   .card-body {
     padding: 0.15rem 0.5rem 0.15rem 0.5rem;
+  }
+
+  .module-iframe {
+    min-height: 68svh;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  .module-iframe {
+    min-height: 74svh;
   }
 }
 
@@ -444,6 +468,11 @@ $brand-blue-dark: #1b3969;
   :host ::ng-deep iframe.h5p-iframe {
     max-width: none !important;
   }
+  :host ::ng-deep .h5p-content,
+  :host ::ng-deep iframe.h5p-iframe {
+    transform: scale(1);
+    transform-origin: top center;
+  }
 }
 
 @media (max-width: 768px) {
@@ -457,7 +486,7 @@ $brand-blue-dark: #1b3969;
 
   :host ::ng-deep .h5p-content,
   :host ::ng-deep iframe.h5p-iframe {
-    transform: scale(0.85);
+    transform: scale(1);
     transform-origin: top center;
   }
 }
