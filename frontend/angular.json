@@ -29,7 +29,8 @@
             "assets": [
       "src/favicon.ico",
       "src/assets",
-      { "glob": "**/*", "input": "public", "output": "/" }
+      { "glob": "**/*", "input": "public", "output": "/" },
+      { "glob": "**/*", "input": "../h5p-standalone/dist", "output": "/h5p-standalone" }
     ],
 
             "styles": [
@@ -94,6 +95,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "../h5p-standalone/dist",
+                "output": "/h5p-standalone"
               }
             ],
             "styles": [

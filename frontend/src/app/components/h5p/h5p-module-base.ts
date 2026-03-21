@@ -75,8 +75,8 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     const options = {
       id: content_id,
       h5pJsonPath: modulePath,
-      frameJs: 'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/frame.bundle.js',
-      frameCss: 'https://cdn.jsdelivr.net/npm/h5p-standalone@latest/dist/styles/h5p.css',
+      frameJs: '/h5p-standalone/frame.bundle.js',
+      frameCss: '/h5p-standalone/styles/h5p.css',
       saveFreq: 10, // seconds
       contentUserData: this.moduleProgress ? [
         {

@@ -2,15 +2,17 @@
 FROM node:22-alpine
 
 # Setzen Sie das Arbeitsverzeichnis
-WORKDIR /app
+WORKDIR /app/frontend
 
+# Kopieren Sie die package.json und die lokale h5p-standalone-Variante
+COPY frontend/package*.json ./
+COPY h5p-standalone /app/h5p-standalone
 
-# Kopieren Sie die package.json und installieren Sie die Abhängigkeiten
-COPY package*.json ./
-RUN npm install
+# Installieren Sie die Abhängigkeiten ohne Package-Skripte des lokalen file:-Pakets
+RUN npm install --ignore-scripts
 
-# Kopieren Sie den Rest des Codes
-COPY . .
+# Kopieren Sie den Rest des Frontend-Codes
+COPY frontend/ ./
 
 # Öffnen Sie den Port, den ng serve verwendet
 EXPOSE 4200
