@@ -17,7 +17,7 @@ export class B2 extends H5pModuleBase {
   }
 
   override onNext(): void {
-    this.router.navigate(['/CLP']);
+    this.router.navigate([this.baseUrl, encodeURIComponent('/assets/h5p/binaerer-bob-code/B3')]);
   }
 }
 
