@@ -16,7 +16,7 @@ export class Clp {
   private router = inject(Router);
 
   paths: PathItem[] = [
-    { id: 'p1', label: 'Beginne deine Reise!', url: '/assets/h5p/binaerer-bob-code/B1' },
+    { id: 'p1', label: 'Beginne deine Reise!', url: '/assets/h5p/digitale-zeitreisen/C1' },
     // { id: 'p2', label: 'Freizeitbeschäftigung', url: '/assets/h5p/freizeit/E1' },
     // { id: 'p3', label: 'Gold-Level', url: '/assets/h5p/gold/F1' },
   ];
