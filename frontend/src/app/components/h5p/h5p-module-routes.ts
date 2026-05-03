@@ -1,19 +1,105 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { C1 } from './digitale-zeitreisen/c1';
-import { C2 } from './digitale-zeitreisen/c2';
-import { C3 } from './digitale-zeitreisen/c3';
+import { A1 } from './modul-a/a1';
+import { A2 } from './modul-a/a2';
+import { A3 } from './modul-a/a3';
+import { B1 } from './modul-b/b1';
+import { B2 } from './modul-b/b2';
+import { B3 } from './modul-b/b3';
+import { B4 } from './modul-b/b4';
+import { B5 } from './modul-b/b5';
+import { B6 } from './modul-b/b6';
+import { B7 } from './modul-b/b7';
+import { C1 } from './modul-c/c1';
+import { C2 } from './modul-c/c2';
+import { C3 } from './modul-c/c3';
+import { D1 } from './modul-d/d1';
+import { D2 } from './modul-d/d2';
+import { D3 } from './modul-d/d3';
+import { D4 } from './modul-d/d4';
+import { D5 } from './modul-d/d5';
+import { D6 } from './modul-d/d6';
+import { D7 } from './modul-d/d7';
+import { D8 } from './modul-d/d8';
+import { D9 } from './modul-d/d9';
+import { D10 } from './modul-d/d10';
+import { D11 } from './modul-d/d11';
+import { D12 } from './modul-d/d12';
+import { D13 } from './modul-d/d13';
+import { D14 } from './modul-d/d14';
+import { E1 } from './modul-e/e1';
+import { E2 } from './modul-e/e2';
+import { E3 } from './modul-e/e3';
+import { E4 } from './modul-e/e4';
+import { E5 } from './modul-e/e5';
+import { E6 } from './modul-e/e6';
+import { E7 } from './modul-e/e7';
+import { E8 } from './modul-e/e8';
+import { E9 } from './modul-e/e9';
+import { E10 } from './modul-e/e10';
+import { E11 } from './modul-e/e11';
+import { E12 } from './modul-e/e12';
+import { E13 } from './modul-e/e13';
+import { E14 } from './modul-e/e14';
+import { E15 } from './modul-e/e15';
+import { E16 } from './modul-e/e16';
 
 @Component({
-  selector: 'app-digitale-zeitreisen-module',
+  selector: 'app-h5p-module-routes',
   standalone: true,
-  imports: [C1, C2, C3],
+  imports: [
+    A1, A2, A3,
+    B1, B2, B3, B4, B5, B6, B7,
+    C1, C2, C3,
+    D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14,
+    E1, E2, E3, E4, E5, E6, E7, E8, E9, E10, E11, E12, E13, E14, E15, E16,
+  ],
   template: `
     @switch (module) {
-      @case ('C1') {<app-digitale-zeitreisen-c1></app-digitale-zeitreisen-c1>}
-      @case ('C2') {<app-digitale-zeitreisen-c2></app-digitale-zeitreisen-c2>}
-      @case ('C3') {<app-digitale-zeitreisen-c3></app-digitale-zeitreisen-c3>}
-     @default { <p style="color: red;">NO MATCH for: {{ module }}</p> }
+      @case ('A1') { <app-modul-a-a1></app-modul-a-a1> }
+      @case ('A2') { <app-modul-a-a2></app-modul-a-a2> }
+      @case ('A3') { <app-modul-a-a3></app-modul-a-a3> }
+      @case ('B1') { <app-modul-b-b1></app-modul-b-b1> }
+      @case ('B2') { <app-modul-b-b2></app-modul-b-b2> }
+      @case ('B3') { <app-modul-b-b3></app-modul-b-b3> }
+      @case ('B4') { <app-modul-b-b4></app-modul-b-b4> }
+      @case ('B5') { <app-modul-b-b5></app-modul-b-b5> }
+      @case ('B6') { <app-modul-b-b6></app-modul-b-b6> }
+      @case ('B7') { <app-modul-b-b7></app-modul-b-b7> }
+      @case ('C1') { <app-modul-c-c1></app-modul-c-c1> }
+      @case ('C2') { <app-modul-c-c2></app-modul-c-c2> }
+      @case ('C3') { <app-modul-c-c3></app-modul-c-c3> }
+      @case ('D1') { <app-modul-d-d1></app-modul-d-d1> }
+      @case ('D2') { <app-modul-d-d2></app-modul-d-d2> }
+      @case ('D3') { <app-modul-d-d3></app-modul-d-d3> }
+      @case ('D4') { <app-modul-d-d4></app-modul-d-d4> }
+      @case ('D5') { <app-modul-d-d5></app-modul-d-d5> }
+      @case ('D6') { <app-modul-d-d6></app-modul-d-d6> }
+      @case ('D7') { <app-modul-d-d7></app-modul-d-d7> }
+      @case ('D8') { <app-modul-d-d8></app-modul-d-d8> }
+      @case ('D9') { <app-modul-d-d9></app-modul-d-d9> }
+      @case ('D10') { <app-modul-d-d10></app-modul-d-d10> }
+      @case ('D11') { <app-modul-d-d11></app-modul-d-d11> }
+      @case ('D12') { <app-modul-d-d12></app-modul-d-d12> }
+      @case ('D13') { <app-modul-d-d13></app-modul-d-d13> }
+      @case ('D14') { <app-modul-d-d14></app-modul-d-d14> }
+      @case ('E1') { <app-modul-e-e1></app-modul-e-e1> }
+      @case ('E2') { <app-modul-e-e2></app-modul-e-e2> }
+      @case ('E3') { <app-modul-e-e3></app-modul-e-e3> }
+      @case ('E4') { <app-modul-e-e4></app-modul-e-e4> }
+      @case ('E5') { <app-modul-e-e5></app-modul-e-e5> }
+      @case ('E6') { <app-modul-e-e6></app-modul-e-e6> }
+      @case ('E7') { <app-modul-e-e7></app-modul-e-e7> }
+      @case ('E8') { <app-modul-e-e8></app-modul-e-e8> }
+      @case ('E9') { <app-modul-e-e9></app-modul-e-e9> }
+      @case ('E10') { <app-modul-e-e10></app-modul-e-e10> }
+      @case ('E11') { <app-modul-e-e11></app-modul-e-e11> }
+      @case ('E12') { <app-modul-e-e12></app-modul-e-e12> }
+      @case ('E13') { <app-modul-e-e13></app-modul-e-e13> }
+      @case ('E14') { <app-modul-e-e14></app-modul-e-e14> }
+      @case ('E15') { <app-modul-e-e15></app-modul-e-e15> }
+      @case ('E16') { <app-modul-e-e16></app-modul-e-e16> }
+      @default { <p style="color: red;">NO MATCH for: {{ module }}</p> }
     }
   `
 })
