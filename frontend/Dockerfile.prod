@@ -5,7 +5,7 @@ WORKDIR /app/frontend
 # Dependencies installieren
 COPY frontend/package*.json ./
 COPY h5p-standalone /app/h5p-standalone
-RUN npm ci --ignore-scripts
+RUN npm install --ignore-scripts
 
 # Restlichen Code kopieren
 COPY frontend/ ./
