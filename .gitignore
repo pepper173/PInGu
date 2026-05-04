@@ -45,3 +45,9 @@ testem.log
 Thumbs.db
 
 pb_data/
+pocketbase/pb_data/
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
