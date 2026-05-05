@@ -24,7 +24,7 @@ export class Clp {
     { id: "p3", label: "Modul C", url: "/assets/h5p/C/C1" },
     { id: "p4", label: "Modul D", url: "/assets/h5p/D/D1" },
     { id: "p4", label: "Modul E", url: "/assets/h5p/E/E1" },
-    { id: "p5", label: "Modul F-coming soon", url: "" },
+    { id: "p5", label: "Modul F", url: "/assets/h5p/F/F1" },
   ];
 
   onLogout() {

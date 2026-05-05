@@ -43,6 +43,10 @@ import { E13 } from "./modul-e/e13";
 import { E14 } from "./modul-e/e14";
 import { E15 } from "./modul-e/e15";
 import { E16 } from "./modul-e/e16";
+import { F1 } from "./modul-f/f1";
+import { F2 } from "./modul-f/f2";
+import { F3 } from "./modul-f/f3";
+import { F4 } from "./modul-f/f4";
 
 @Component({
   selector: "app-h5p-module-routes",
@@ -91,6 +95,10 @@ import { E16 } from "./modul-e/e16";
     E14,
     E15,
     E16,
+    F1,
+    F2,
+    F3,
+    F4,
   ],
   template: `
     @switch (module) {
@@ -222,6 +230,18 @@ import { E16 } from "./modul-e/e16";
       }
       @case ("E16") {
         <app-modul-e-e16></app-modul-e-e16>
+      }
+      @case ("F1") {
+        <app-modul-f-f1></app-modul-f-f1>
+      }
+      @case ("F2") {
+        <app-modul-f-f2></app-modul-f-f2>
+      }
+      @case ("F3") {
+        <app-modul-f-f3></app-modul-f-f3>
+      }
+      @case ("F4") {
+        <app-modul-f-f4></app-modul-f-f4>
       }
       @default {
         <p style="color: red;">NO MATCH for: {{ module }}</p>
