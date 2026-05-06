@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { StudentAuthService } from "../../services/auth/student/studentAuth.service";
 import { CLPHeader } from "./clp-header/clp-header";
@@ -6,17 +6,22 @@ import {
   ClpDisplayPaths,
   PathItem,
 } from "./clp-display-paths/clp-display-paths";
+import { ClpLayerSelection } from "./clp-layer-selection/clp-layer-selection";
+
+type Layer = "selection" | "lp1" | "lp2";
 
 @Component({
   selector: "app-clphome",
   standalone: true,
-  imports: [CLPHeader, ClpDisplayPaths],
+  imports: [CLPHeader, ClpDisplayPaths, ClpLayerSelection],
   templateUrl: "./clp.html",
   styleUrls: ["./clp.scss"],
 })
 export class Clp {
   private auth = inject(StudentAuthService);
   private router = inject(Router);
+
+  currentLayer = signal<Layer>("selection");
 
   paths: PathItem[] = [
     { id: "p1", label: "Modul A", url: "/assets/h5p/A/A1" },
@@ -27,8 +32,24 @@ export class Clp {
     { id: "p5", label: "Modul F", url: "/assets/h5p/F/F1" },
   ];
 
+  paths2: PathItem[] = [
+    { id: "p6", label: "Modul A", url: "/assets/h5p/G/G1" },
+  ];
+
   onLogout() {
     this.auth.logout();
+  }
+
+  onSelectLP1() {
+    this.currentLayer.set("lp1");
+  }
+
+  onSelectLP2() {
+    this.currentLayer.set("lp2");
+  }
+
+  onBackToSelection() {
+    this.currentLayer.set("selection");
   }
 
   onPick(item: PathItem) {

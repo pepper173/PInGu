@@ -47,6 +47,7 @@ import { F1 } from "./modul-f/f1";
 import { F2 } from "./modul-f/f2";
 import { F3 } from "./modul-f/f3";
 import { F4 } from "./modul-f/f4";
+import { G1 } from "./modul-g/g1";
 
 @Component({
   selector: "app-h5p-module-routes",
@@ -99,6 +100,7 @@ import { F4 } from "./modul-f/f4";
     F2,
     F3,
     F4,
+    G1,
   ],
   template: `
     @switch (module) {
@@ -242,6 +244,9 @@ import { F4 } from "./modul-f/f4";
       }
       @case ("F4") {
         <app-modul-f-f4></app-modul-f-f4>
+      }
+      @case ("G1") {
+        <app-modul-g-g1></app-modul-g-g1>
       }
       @default {
         <p style="color: red;">NO MATCH for: {{ module }}</p>

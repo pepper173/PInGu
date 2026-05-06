@@ -12,8 +12,12 @@ export class ClpDisplayPaths {
   @Input() items: PathItem[] = [
     { id: 'p1', label: 'Text', url: '' },
   ];
+  @Input() showBackButton = false;
 
   @Output() select = new EventEmitter<PathItem>();
+  @Output() back = new EventEmitter<void>();
 
   pick(item: PathItem) { this.select.emit(item); }
+  
+  onBack() { this.back.emit(); }
 }

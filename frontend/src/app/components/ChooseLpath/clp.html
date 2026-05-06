@@ -1,4 +1,11 @@
 <div class="page">
   <app-clp-header (logout)="onLogout()"></app-clp-header>
-  <app-clp-display-paths [items]="paths" (select)="onPick($event)"></app-clp-display-paths>
+
+  @if (currentLayer() === 'selection') {
+    <app-clp-layer-selection (selectLP1)="onSelectLP1()" (selectLP2)="onSelectLP2()"></app-clp-layer-selection>
+  } @else if (currentLayer() === 'lp1') {
+    <app-clp-display-paths [items]="paths" [showBackButton]="true" (select)="onPick($event)" (back)="onBackToSelection()"></app-clp-display-paths>
+  } @else if (currentLayer() === 'lp2') {
+    <app-clp-display-paths [items]="paths2" [showBackButton]="true" (select)="onPick($event)" (back)="onBackToSelection()"></app-clp-display-paths>
+  }
 </div>

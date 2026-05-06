@@ -1,7 +1,14 @@
-<section class="grid">
-  @for (item of items; track item.id) {
-    <button class="path" type="button" (click)="pick(item)">
-      <span class="label">{{ item.label }}</span>
+<div class="container">
+  @if (showBackButton) {
+    <button class="back-button" type="button" (click)="onBack()">
+      <span class="label">← Zurück zu Auswahl</span>
     </button>
   }
-</section>
+  <section class="grid">
+    @for (item of items; track item.id) {
+      <button class="path" type="button" (click)="pick(item)">
+        <span class="label">{{ item.label }}</span>
+      </button>
+    }
+  </section>
+</div>
