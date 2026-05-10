@@ -48,6 +48,26 @@ import { F2 } from "./modul-f/f2";
 import { F3 } from "./modul-f/f3";
 import { F4 } from "./modul-f/f4";
 import { G1 } from "./modul-g/g1";
+import { H1 } from "./modul-h/h1";
+import { H2 } from "./modul-h/h2";
+import { H3 } from "./modul-h/h3";
+import { H4 } from "./modul-h/h4";
+import { H5 } from "./modul-h/h5";
+import { H6 } from "./modul-h/h6";
+import { H7 } from "./modul-h/h7";
+import { H8 } from "./modul-h/h8";
+import { H9 } from "./modul-h/h9";
+import { H10 } from "./modul-h/h10";
+import { H11 } from "./modul-h/h11";
+import { H12 } from "./modul-h/h12";
+import { H13 } from "./modul-h/h13";
+import { H14 } from "./modul-h/h14";
+import { H15 } from "./modul-h/h15";
+import { H16 } from "./modul-h/h16";
+import { H17 } from "./modul-h/h17";
+import { H18 } from "./modul-h/h18";
+import { H19 } from "./modul-h/h19";
+import { H20 } from "./modul-h/h20";
 
 @Component({
   selector: "app-h5p-module-routes",
@@ -101,6 +121,26 @@ import { G1 } from "./modul-g/g1";
     F3,
     F4,
     G1,
+    H1,
+    H2,
+    H3,
+    H4,
+    H5,
+    H6,
+    H7,
+    H8,
+    H9,
+    H10,
+    H11,
+    H12,
+    H13,
+    H14,
+    H15,
+    H16,
+    H17,
+    H18,
+    H19,
+    H20,
   ],
   template: `
     @switch (module) {
@@ -247,6 +287,66 @@ import { G1 } from "./modul-g/g1";
       }
       @case ("G1") {
         <app-modul-g-g1></app-modul-g-g1>
+      }
+      @case ("H1") {
+        <app-modul-h-h1></app-modul-h-h1>
+      }
+      @case ("H2") {
+        <app-modul-h-h2></app-modul-h-h2>
+      }
+      @case ("H3") {
+        <app-modul-h-h3></app-modul-h-h3>
+      }
+      @case ("H4") {
+        <app-modul-h-h4></app-modul-h-h4>
+      }
+      @case ("H5") {
+        <app-modul-h-h5></app-modul-h-h5>
+      }
+      @case ("H6") {
+        <app-modul-h-h6></app-modul-h-h6>
+      }
+      @case ("H7") {
+        <app-modul-h-h7></app-modul-h-h7>
+      }
+      @case ("H8") {
+        <app-modul-h-h8></app-modul-h-h8>
+      }
+      @case ("H9") {
+        <app-modul-h-h9></app-modul-h-h9>
+      }
+      @case ("H10") {
+        <app-modul-h-h10></app-modul-h-h10>
+      }
+      @case ("H11") {
+        <app-modul-h-h11></app-modul-h-h11>
+      }
+      @case ("H12") {
+        <app-modul-h-h12></app-modul-h-h12>
+      }
+      @case ("H13") {
+        <app-modul-h-h13></app-modul-h-h13>
+      }
+      @case ("H14") {
+        <app-modul-h-h14></app-modul-h-h14>
+      }
+      @case ("H15") {
+        <app-modul-h-h15></app-modul-h-h15>
+      }
+      @case ("H16") {
+        <app-modul-h-h16></app-modul-h-h16>
+      }
+      @case ("H17") {
+        <app-modul-h-h17></app-modul-h-h17>
+      }
+      @case ("H18") {
+        <app-modul-h-h18></app-modul-h-h18>
+      }
+      @case ("H19") {
+        <app-modul-h-h19></app-modul-h-h19>
+      }
+      @case ("H20") {
+        <app-modul-h-h20></app-modul-h-h20>
       }
       @default {
         <p style="color: red;">NO MATCH for: {{ module }}</p>

@@ -34,6 +34,7 @@ export class Clp {
 
   paths2: PathItem[] = [
     { id: "p6", label: "Modul A", url: "/assets/h5p/G/G1" },
+    { id: "p7", label: "Modul B", url: "/assets/h5p/H/H1" },
   ];
 
   onLogout() {
