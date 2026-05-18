@@ -68,6 +68,9 @@ import { H17 } from "./modul-h/h17";
 import { H18 } from "./modul-h/h18";
 import { H19 } from "./modul-h/h19";
 import { H20 } from "./modul-h/h20";
+import { I1 } from "./modul-i/i1";
+import { I2 } from "./modul-i/i2";
+import { I3 } from "./modul-i/i3";
 
 @Component({
   selector: "app-h5p-module-routes",
@@ -141,6 +144,9 @@ import { H20 } from "./modul-h/h20";
     H18,
     H19,
     H20,
+    I1,
+    I2,
+    I3,
   ],
   template: `
     @switch (module) {
@@ -347,6 +353,15 @@ import { H20 } from "./modul-h/h20";
       }
       @case ("H20") {
         <app-modul-h-h20></app-modul-h-h20>
+      }
+      @case ("I1") {
+        <app-modul-i-i1></app-modul-i-i1>
+      }
+      @case ("I2") {
+        <app-modul-i-i2></app-modul-i-i2>
+      }
+      @case ("I3") {
+        <app-modul-i-i3></app-modul-i-i3>
       }
       @default {
         <p style="color: red;">NO MATCH for: {{ module }}</p>
