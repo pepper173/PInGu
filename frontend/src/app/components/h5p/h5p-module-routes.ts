@@ -364,7 +364,7 @@ import { I3 } from "./modul-i/i3";
         <app-modul-i-i3></app-modul-i-i3>
       }
       @default {
-        <p style="color: red;">NO MATCH for: {{ module }}</p>
+        <p style="color: red;">No Match for: {{ module }}</p>
       }
     }
   `,
