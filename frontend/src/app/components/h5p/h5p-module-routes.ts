@@ -410,7 +410,15 @@ export class H5pModuleRoutes implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.module = decodeURIComponent(params["module"]).split("/").pop();
+      const raw = decodeURIComponent(params["module"]);
+      const lastSegment = raw.split("/").pop()!;
+      // LP3 paths like "/assets/h5p/LP3/B1" should map to "LP3_B1" to distinguish
+      // from regular module "B1"
+      if (raw.includes("/LP3/")) {
+        this.module = "LP3_" + lastSegment;
+      } else {
+        this.module = lastSegment;
+      }
     });
   }
 }

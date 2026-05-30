@@ -8,6 +8,7 @@ import { H5pModuleBase } from '../h5p-module-base';
   styleUrls: ['../h5p-module.scss'],
 })
 export class LP3_B6 extends H5pModuleBase {
+  override h5pPathOverride = '/assets/h5p/LP3/B6';
   override moduleTitle = 'Pingu-Roboter — Die Sortierstation';
   override showNavigationButtons = true;
   override showBackButton = true;

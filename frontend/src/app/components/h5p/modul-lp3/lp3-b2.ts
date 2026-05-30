@@ -8,6 +8,7 @@ import { H5pModuleBase } from '../h5p-module-base';
   styleUrls: ['../h5p-module.scss'],
 })
 export class LP3_B2 extends H5pModuleBase {
+  override h5pPathOverride = '/assets/h5p/LP3/B2';
   override moduleTitle = 'Pingu-Roboter — Neue Richtung';
   override showNavigationButtons = true;
   override showBackButton = true;

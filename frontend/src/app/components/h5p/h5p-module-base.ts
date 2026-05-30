@@ -35,6 +35,9 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
   showBackButton = false;
   showNextButton = true;
 
+  /** Override this in subclasses that need a different H5P path than the route param. */
+  protected h5pPathOverride?: string;
+
   private moduleProgress: string = '';
   private observer?: MutationObserver;
   private externalDispatcherBound = false;
@@ -65,8 +68,8 @@ export abstract class H5pModuleBase implements AfterViewInit, OnDestroy {
     if (!moduleParam) throw new Error('Kein H5P Modul angegeben');
 
     this.module = decodeURIComponent(moduleParam);
-    const modulePath = this.module;
-    const contentIdSuffix = this.module.split('/').pop()!;
+    const modulePath = this.h5pPathOverride ?? this.module;
+    const contentIdSuffix = this.module;
 
     const content_id = `${this.studentAuthService.user().id}-${contentIdSuffix}`;
 
