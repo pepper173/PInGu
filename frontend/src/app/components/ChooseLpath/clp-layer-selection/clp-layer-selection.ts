@@ -11,6 +11,7 @@ export type LayerItem = { id: string; label: string };
 export class ClpLayerSelection {
   @Output() selectLP1 = new EventEmitter<void>();
   @Output() selectLP2 = new EventEmitter<void>();
+  @Output() selectLP3 = new EventEmitter<void>();
 
   onSelectLP1() {
     this.selectLP1.emit();
@@ -18,5 +19,9 @@ export class ClpLayerSelection {
 
   onSelectLP2() {
     this.selectLP2.emit();
+  }
+
+  onSelectLP3() {
+    this.selectLP3.emit();
   }
 }

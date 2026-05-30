@@ -1,0 +1,39 @@
+<div class="cubi-level-wrapper">
+  <div class="cubi-level-card">
+    <div class="card-header">
+      <div class="header-left">
+        <button class="btn btn-ghost" type="button" (click)="onBack()">
+          Home
+        </button>
+      </div>
+      <div class="header-center">
+        <div class="header-title">{{ levelTitle }}</div>
+      </div>
+      <div class="header-right">
+        <button class="btn btn-ghost danger" type="button" (click)="onLogout()">
+          Ausloggen
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      @if (isLoading) {
+        <div class="loading-overlay" aria-live="polite" aria-busy="true">
+          <div class="loading-card">
+            <div class="loading-title">{{ levelTitle }}</div>
+            <div class="text">Lade CUBI-Level…</div>
+          </div>
+        </div>
+      }
+
+      <iframe
+        [src]="safeUrl"
+        class="cubi-iframe"
+        sandbox="allow-scripts allow-popups allow-same-origin allow-popups-to-escape-sandbox"
+        allow="popup-window"
+        (load)="onIframeLoad()"
+        title="CUBI Level"
+      ></iframe>
+    </div>
+  </div>
+</div>

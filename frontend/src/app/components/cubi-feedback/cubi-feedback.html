@@ -1,0 +1,27 @@
+<div class="feedback-wrapper">
+  <div class="feedback-card">
+    <div class="feedback-header">
+      <div class="feedback-title">Wie hat dir dieses Level gefallen?</div>
+      <div class="feedback-subtitle">Level {{ levelId }}</div>
+    </div>
+
+    <div class="feedback-body">
+      <div class="smiley-row">
+        <button class="smiley-btn happy" (click)="onRating('happy')">
+          <span class="smiley">😊</span>
+          <span class="label">Hat mir gefallen!</span>
+        </button>
+
+        <button class="smiley-btn neutral" (click)="onRating('neutral')">
+          <span class="smiley">😐</span>
+          <span class="label">Ganz okay</span>
+        </button>
+
+        <button class="smiley-btn sad" (click)="onRating('sad')">
+          <span class="smiley">😞</span>
+          <span class="label">Nicht so toll</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

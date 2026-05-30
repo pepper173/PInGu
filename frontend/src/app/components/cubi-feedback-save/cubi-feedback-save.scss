@@ -1,0 +1,25 @@
+.save-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f0f4f8;
+}
+
+.save-card {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.save-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.save-text {
+  font-size: 1.2rem;
+  color: #555;
+}

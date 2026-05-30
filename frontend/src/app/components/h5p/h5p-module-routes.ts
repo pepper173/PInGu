@@ -71,6 +71,13 @@ import { H20 } from "./modul-h/h20";
 import { I1 } from "./modul-i/i1";
 import { I2 } from "./modul-i/i2";
 import { I3 } from "./modul-i/i3";
+import { LP3_B1 } from "./modul-lp3/lp3-b1";
+import { LP3_B2 } from "./modul-lp3/lp3-b2";
+import { LP3_B3 } from "./modul-lp3/lp3-b3";
+import { LP3_B4 } from "./modul-lp3/lp3-b4";
+import { LP3_B5 } from "./modul-lp3/lp3-b5";
+import { LP3_B6 } from "./modul-lp3/lp3-b6";
+import { LP3_B7 } from "./modul-lp3/lp3-b7";
 
 @Component({
   selector: "app-h5p-module-routes",
@@ -147,6 +154,13 @@ import { I3 } from "./modul-i/i3";
     I1,
     I2,
     I3,
+    LP3_B1,
+    LP3_B2,
+    LP3_B3,
+    LP3_B4,
+    LP3_B5,
+    LP3_B6,
+    LP3_B7,
   ],
   template: `
     @switch (module) {
@@ -362,6 +376,27 @@ import { I3 } from "./modul-i/i3";
       }
       @case ("I3") {
         <app-modul-i-i3></app-modul-i-i3>
+      }
+      @case ("LP3_B1") {
+        <app-modul-lp3-b1></app-modul-lp3-b1>
+      }
+      @case ("LP3_B2") {
+        <app-modul-lp3-b2></app-modul-lp3-b2>
+      }
+      @case ("LP3_B3") {
+        <app-modul-lp3-b3></app-modul-lp3-b3>
+      }
+      @case ("LP3_B4") {
+        <app-modul-lp3-b4></app-modul-lp3-b4>
+      }
+      @case ("LP3_B5") {
+        <app-modul-lp3-b5></app-modul-lp3-b5>
+      }
+      @case ("LP3_B6") {
+        <app-modul-lp3-b6></app-modul-lp3-b6>
+      }
+      @case ("LP3_B7") {
+        <app-modul-lp3-b7></app-modul-lp3-b7>
       }
       @default {
         <p style="color: red;">No Match for: {{ module }}</p>

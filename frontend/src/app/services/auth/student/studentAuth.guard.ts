@@ -1,12 +1,15 @@
-﻿import { inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { StudentAuthService } from './studentAuth.service';
 
-export const studentAuthGuard: CanActivateFn = () => {
+export const studentAuthGuard: CanActivateFn = async () => {
   const auth = inject(StudentAuthService);
   const router = inject(Router);
 
-  if (auth.isLoggedIn()) {
+  // Always check with the server first (cookie persists across tabs)
+  const result = await auth.checkAuth().toPromise();
+
+  if (result && auth.isLoggedIn()) {
     return true;
   }
 

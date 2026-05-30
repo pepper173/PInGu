@@ -8,7 +8,7 @@ import {
 } from "./clp-display-paths/clp-display-paths";
 import { ClpLayerSelection } from "./clp-layer-selection/clp-layer-selection";
 
-type Layer = "selection" | "lp1" | "lp2";
+type Layer = "selection" | "lp1" | "lp2" | "lp3";
 
 @Component({
   selector: "app-clphome",
@@ -38,6 +38,10 @@ export class Clp {
     { id: "p8", label: "Modul D", url: "/assets/h5p/I/I1" },
   ];
 
+  paths3: PathItem[] = [
+    { id: "p9", label: "CUBI Lernpfad", url: "/assets/h5p/LP3/B1" },
+  ];
+
   onLogout() {
     this.auth.logout();
   }
@@ -48,6 +52,10 @@ export class Clp {
 
   onSelectLP2() {
     this.currentLayer.set("lp2");
+  }
+
+  onSelectLP3() {
+    this.currentLayer.set("lp3");
   }
 
   onBackToSelection() {
