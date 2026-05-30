@@ -47,14 +47,24 @@ export class CubiLevel implements OnInit {
     this.router.navigate(['/student-login']);
   }
 
+  // Map levelId (1-7) to actual CUBI level codes
+  private static readonly LEVEL_CODES: Record<string, string> = {
+    '1': '207287',
+    '2': '749174',
+    '3': '939221',
+    '4': '617857',
+    '5': '473938',
+    '6': '069050',
+    '7': '498674',
+  };
+
   private buildCubiUrl(levelId: string): string {
-    // TODO: Replace with actual CUBI deployment URL once configured
-    // The CUBI editor needs to be configured to open a popup to our feedback page
-    // on level completion
-    const baseUrl = 'https://cubi.it4kids.org'; // placeholder
+    // CUBI editor hosted on pingu.schule — production build with advanced mode OFF
+    const baseUrl = 'https://pingu.schule/cubi';
+    const levelCode = CubiLevel.LEVEL_CODES[levelId] || levelId;
     const feedbackUrl = encodeURIComponent(
       `${window.location.origin}/cubi-feedback/${levelId}`
     );
-    return `${baseUrl}?whiteLabel=pingu&level=${levelId}&onComplete=${feedbackUrl}`;
+    return `${baseUrl}?whiteLabel=pingu&levelCode=${levelCode}&onComplete=${feedbackUrl}`;
   }
 }
