@@ -57,12 +57,12 @@ export class CubiLevel implements OnInit, OnDestroy {
   // Map levelId (1-7) to actual CUBI level codes
   private static readonly LEVEL_CODES: Record<string, string> = {
     '1': '207287',
-    '2': '749174',
+    '2': '432019',
     '3': '939221',
     '4': '617857',
     '5': '473938',
-    '6': '069050',
-    '7': '498674',
+    '6': '652116',
+    '7': '502945',
   };
 
   private buildCubiUrl(levelId: string): string {
