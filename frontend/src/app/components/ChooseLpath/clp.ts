@@ -83,8 +83,8 @@ export class Clp {
             navigationExtras,
           );
         } else {
-          // All 7 levels completed
-          this.router.navigate(['/end-screen']);
+          // Should not happen — all levels have an h5pUrl now
+          this.router.navigate(['/CLP']);
         }
       },
       error: () => {
@@ -94,7 +94,7 @@ export class Clp {
   }
 
   // Map of level progression: each CUBI level completion unlocks the next H5P module
-  // Flow: B1 → CUBI 1 → B2 → CUBI 2 → ... → B7 → CUBI 7 → End
+  // Flow: B1 → CUBI 1 → B2 → CUBI 2 → ... → B7 → CUBI 7 → B8 (Endscreen)
   // The key insight: completedLevels contains CUBI levels that are DONE.
   // The student should resume at the H5P module BEFORE the first uncompleted CUBI level.
   // If CUBI 1 is done → resume at B2 (before CUBI 2)
@@ -106,7 +106,7 @@ export class Clp {
     { level: '4', h5pUrl: '/assets/h5p/LP3/B5' },   // CUBI 4 done → start at B5
     { level: '5', h5pUrl: '/assets/h5p/LP3/B6' },   // CUBI 5 done → start at B6
     { level: '6', h5pUrl: '/assets/h5p/LP3/B7' },   // CUBI 6 done → start at B7
-    { level: '7', h5pUrl: '' },                      // All done
+    { level: '7', h5pUrl: '/assets/h5p/LP3/B8' },   // CUBI 7 done → Endscreen B8
   ];
 
   private getNextLevel(completedLevels: string[]): { level: string; h5pUrl: string } | null {

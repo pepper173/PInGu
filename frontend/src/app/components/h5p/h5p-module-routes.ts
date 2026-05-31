@@ -78,6 +78,7 @@ import { LP3_B4 } from "./modul-lp3/lp3-b4";
 import { LP3_B5 } from "./modul-lp3/lp3-b5";
 import { LP3_B6 } from "./modul-lp3/lp3-b6";
 import { LP3_B7 } from "./modul-lp3/lp3-b7";
+import { LP3_B8 } from "./modul-lp3/lp3-b8";
 
 @Component({
   selector: "app-h5p-module-routes",
@@ -161,6 +162,7 @@ import { LP3_B7 } from "./modul-lp3/lp3-b7";
     LP3_B5,
     LP3_B6,
     LP3_B7,
+    LP3_B8,
   ],
   template: `
     @switch (module) {
@@ -397,6 +399,9 @@ import { LP3_B7 } from "./modul-lp3/lp3-b7";
       }
       @case ("LP3_B7") {
         <app-modul-lp3-b7></app-modul-lp3-b7>
+      }
+      @case ("LP3_B8") {
+        <app-modul-lp3-b8></app-modul-lp3-b8>
       }
       @default {
         <p style="color: red;">No Match for: {{ module }}</p>

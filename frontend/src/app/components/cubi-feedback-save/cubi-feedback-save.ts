@@ -12,7 +12,7 @@ const LEVEL_NEXT_MAP: Record<string, string> = {
   '4': '/assets/h5p/LP3/B5',
   '5': '/assets/h5p/LP3/B6',
   '6': '/assets/h5p/LP3/B7',
-  '7': '',
+  '7': '/assets/h5p/LP3/B8',
 };
 
 /**
