@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CubiLevelContext } from '../../services/data/cubi/cubi-level-context.service';
 
 /**
  * Displayed inside the CUBI IFrame — shows only the 3 smileys.
@@ -14,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CubiFeedback implements OnInit {
   private route = inject(ActivatedRoute);
+  private levelContext = inject(CubiLevelContext);
 
   levelId = '';
 
@@ -22,9 +24,10 @@ export class CubiFeedback implements OnInit {
   }
 
   onRating(rating: 'happy' | 'neutral' | 'sad'): void {
-    // Navigate the real browser (not the iframe) to the save page
+    // Use the correct levelId from context, not from the (potentially wrong) URL
+    const levelId = this.levelContext.currentLevelId || this.levelId;
     const baseUrl = window.top?.location.origin || window.location.origin;
-    const url = `${baseUrl}/cubi-feedback-save/${this.levelId}?rating=${rating}`;
+    const url = `${baseUrl}/cubi-feedback-save/${levelId}?rating=${rating}`;
     if (window.top) {
       window.top.location.href = url;
     } else {

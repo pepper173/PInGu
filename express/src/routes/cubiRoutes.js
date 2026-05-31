@@ -64,4 +64,20 @@ router.get('/feedback/:studentId/:levelId', async (req, res) => {
     }
 });
 
+// GET /api/cubi/feedback/:studentId — Get all completed levels for a student
+router.get('/feedback/:studentId', async (req, res) => {
+    const pb = res.locals.pb;
+    const { studentId } = req.params;
+
+    try {
+        const records = await pb.collection('cubi_feedback').getFullList({
+            filter: `studentId = "${studentId}" && completed = true`,
+        });
+        const completedLevels = records.map(r => r.levelId);
+        return res.status(200).json({ studentId, completedLevels });
+    } catch (err) {
+        return res.status(200).json({ studentId, completedLevels: [] });
+    }
+});
+
 export default router;

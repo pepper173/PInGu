@@ -26,4 +26,8 @@ export class CubiFeedbackService {
   getFeedback(studentId: string, levelId: string) {
     return this.http.get<CubiFeedback>(`${this.baseUrl}/feedback/${studentId}/${levelId}`);
   }
+
+  getCompletedLevels(studentId: string) {
+    return this.http.get<{ studentId: string; completedLevels: string[] }>(`${this.baseUrl}/feedback/${studentId}`);
+  }
 }

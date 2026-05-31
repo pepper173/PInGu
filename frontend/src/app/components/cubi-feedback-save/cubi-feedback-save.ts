@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentAuthService } from '../../services/auth/student/studentAuth.service';
 import { CubiFeedbackService } from '../../services/data/cubi/cubi-feedback.service';
+import { CubiLevelContext } from '../../services/data/cubi/cubi-level-context.service';
 
 // Map of levelId → next H5P module URL
 const LEVEL_NEXT_MAP: Record<string, string> = {
@@ -29,9 +30,13 @@ export class CubiFeedbackSave implements OnInit {
   private router = inject(Router);
   private authService = inject(StudentAuthService);
   private feedbackService = inject(CubiFeedbackService);
+  private levelContext = inject(CubiLevelContext);
 
   ngOnInit(): void {
-    const levelId = this.route.snapshot.paramMap.get('levelId') || '';
+    // Use the levelId from the context service (set by cubi-level component) 
+    // instead of the URL parameter, because the CUBI editor's navigate_away
+    // block may send a hardcoded/wrong levelId in the URL.
+    const levelId = this.levelContext.currentLevelId || this.route.snapshot.paramMap.get('levelId') || '';
     const rating = this.route.snapshot.queryParamMap.get('rating') as 'happy' | 'neutral' | 'sad' | null;
 
     if (!rating || !['happy', 'neutral', 'sad'].includes(rating)) {

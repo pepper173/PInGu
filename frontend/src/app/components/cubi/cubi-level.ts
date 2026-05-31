@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { StudentAuthService } from '../../services/auth/student/studentAuth.service';
+import { CubiLevelContext } from '../../services/data/cubi/cubi-level-context.service';
 
 @Component({
   selector: 'app-cubi-level',
@@ -9,11 +10,12 @@ import { StudentAuthService } from '../../services/auth/student/studentAuth.serv
   templateUrl: './cubi-level.html',
   styleUrls: ['./cubi-level.scss'],
 })
-export class CubiLevel implements OnInit {
+export class CubiLevel implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private sanitizer = inject(DomSanitizer);
   private authService = inject(StudentAuthService);
+  private levelContext = inject(CubiLevelContext);
 
   levelTitle = 'CUBI Level';
   cubiUrl = '';
@@ -22,16 +24,21 @@ export class CubiLevel implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
-    const module = this.route.snapshot.paramMap.get('module');
-    if (!module) return;
+    const levelIdParam = this.route.snapshot.paramMap.get('levelId');
+    if (!levelIdParam) return;
 
-    // Decode and extract level info from route
-    // Route format: /cubi-level/:levelId
-    this.levelId = decodeURIComponent(module).split('/').pop()!;
-
+    this.levelId = levelIdParam;
     this.levelTitle = `CUBI Level ${this.levelId}`;
     this.cubiUrl = this.buildCubiUrl(this.levelId);
     this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.cubiUrl);
+
+    // Store the correct levelId in context — the CUBI editor's navigate_away
+    // block may send a wrong levelId, so feedback-save uses this instead
+    this.levelContext.currentLevelId = this.levelId;
+  }
+
+  ngOnDestroy(): void {
+    this.levelContext.currentLevelId = null;
   }
 
   onIframeLoad(): void {
@@ -59,12 +66,8 @@ export class CubiLevel implements OnInit {
   };
 
   private buildCubiUrl(levelId: string): string {
-    // CUBI editor hosted on pingu.schule — production build with advanced mode OFF
-    const baseUrl = 'https://pingu.schule/cubi';
+    const baseUrl = 'https://pingu.schule/cubi/';
     const levelCode = CubiLevel.LEVEL_CODES[levelId] || levelId;
-    const feedbackUrl = encodeURIComponent(
-      `${window.location.origin}/cubi-feedback/${levelId}`
-    );
-    return `${baseUrl}?whiteLabel=pingu&levelCode=${levelCode}&onComplete=${feedbackUrl}`;
+    return `${baseUrl}?whiteLabel=pingu&levelCode=${levelCode}`;
   }
 }

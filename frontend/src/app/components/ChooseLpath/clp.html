@@ -8,6 +8,6 @@
   } @else if (currentLayer() === 'lp2') {
     <app-clp-display-paths [items]="paths2" [showBackButton]="true" (select)="onPick($event)" (back)="onBackToSelection()"></app-clp-display-paths>
   } @else if (currentLayer() === 'lp3') {
-    <app-clp-display-paths [items]="paths3" [showBackButton]="true" (select)="onPick($event)" (back)="onBackToSelection()"></app-clp-display-paths>
+    <app-clp-display-paths [items]="paths3" [showBackButton]="true" (select)="onPickLP3($event)" (back)="onBackToSelection()"></app-clp-display-paths>
   }
 </div>

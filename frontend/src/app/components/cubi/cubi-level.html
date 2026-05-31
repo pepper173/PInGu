@@ -26,14 +26,15 @@
         </div>
       }
 
-      <iframe
-        [src]="safeUrl"
-        class="cubi-iframe"
-        sandbox="allow-scripts allow-popups allow-same-origin allow-popups-to-escape-sandbox"
-        allow="popup-window"
-        (load)="onIframeLoad()"
-        title="CUBI Level"
-      ></iframe>
+      <div class="cubi-iframe-container">
+        <iframe
+          [src]="safeUrl"
+          class="cubi-iframe"
+          allow="popup-window"
+          (load)="onIframeLoad()"
+          title="CUBI Level"
+        ></iframe>
+      </div>
     </div>
   </div>
 </div>

@@ -11,6 +11,7 @@ import {EndScreen} from './components/endScreen/endScreen';
 import { CubiLevel } from './components/cubi/cubi-level';
 import { CubiFeedback } from './components/cubi-feedback/cubi-feedback';
 import { CubiFeedbackSave } from './components/cubi-feedback-save/cubi-feedback-save';
+import { NotFound } from './components/not-found/not-found';
 
 export const routes: Routes = [
   { path: 'student-login', component: StudentLogin },
@@ -24,4 +25,5 @@ export const routes: Routes = [
   { path: 'cubi-level/:levelId', component: CubiLevel, canActivate: [studentAuthGuard] },
   { path: 'cubi-feedback/:levelId', component: CubiFeedback },
   { path: 'cubi-feedback-save/:levelId', component: CubiFeedbackSave, canActivate: [studentAuthGuard] },
+  { path: '**', component: NotFound },
 ];

@@ -1,6 +1,7 @@
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { StudentAuthService } from "../../services/auth/student/studentAuth.service";
+import { CubiFeedbackService } from "../../services/data/cubi/cubi-feedback.service";
 import { CLPHeader } from "./clp-header/clp-header";
 import {
   ClpDisplayPaths,
@@ -20,6 +21,7 @@ type Layer = "selection" | "lp1" | "lp2" | "lp3";
 export class Clp {
   private auth = inject(StudentAuthService);
   private router = inject(Router);
+  private cubiFeedbackService = inject(CubiFeedbackService);
 
   currentLayer = signal<Layer>("selection");
 
@@ -56,6 +58,72 @@ export class Clp {
 
   onSelectLP3() {
     this.currentLayer.set("lp3");
+  }
+
+  onPickLP3(item: PathItem) {
+    const studentId = this.auth.user()?.id;
+    if (!studentId) {
+      this.onPick(item);
+      return;
+    }
+
+    this.cubiFeedbackService.getCompletedLevels(studentId).subscribe({
+      next: (result) => {
+        const completed = result.completedLevels;
+        const nextLevel = this.getNextLevel(completed);
+        if (!nextLevel) {
+          // No levels completed yet — start from B1
+          this.onPick(item);
+          return;
+        }
+        if (nextLevel.h5pUrl) {
+          const navigationExtras = { state: { fromClp: true } };
+          this.router.navigate(
+            ["/modules", encodeURIComponent(nextLevel.h5pUrl)],
+            navigationExtras,
+          );
+        } else {
+          // All 7 levels completed
+          this.router.navigate(['/end-screen']);
+        }
+      },
+      error: () => {
+        this.onPick(item);
+      },
+    });
+  }
+
+  // Map of level progression: each CUBI level completion unlocks the next H5P module
+  // Flow: B1 → CUBI 1 → B2 → CUBI 2 → ... → B7 → CUBI 7 → End
+  // The key insight: completedLevels contains CUBI levels that are DONE.
+  // The student should resume at the H5P module BEFORE the first uncompleted CUBI level.
+  // If CUBI 1 is done → resume at B2 (before CUBI 2)
+  // If CUBI 1+2 are done → resume at B3 (before CUBI 3)
+  private static readonly LEVEL_PROGRESS: { level: string; h5pUrl: string }[] = [
+    { level: '1', h5pUrl: '/assets/h5p/LP3/B2' },   // CUBI 1 done → start at B2
+    { level: '2', h5pUrl: '/assets/h5p/LP3/B3' },   // CUBI 2 done → start at B3
+    { level: '3', h5pUrl: '/assets/h5p/LP3/B4' },   // CUBI 3 done → start at B4
+    { level: '4', h5pUrl: '/assets/h5p/LP3/B5' },   // CUBI 4 done → start at B5
+    { level: '5', h5pUrl: '/assets/h5p/LP3/B6' },   // CUBI 5 done → start at B6
+    { level: '6', h5pUrl: '/assets/h5p/LP3/B7' },   // CUBI 6 done → start at B7
+    { level: '7', h5pUrl: '' },                      // All done
+  ];
+
+  private getNextLevel(completedLevels: string[]): { level: string; h5pUrl: string } | null {
+    // Find the highest completed level, then return the H5P module AFTER it
+    // completed = ['1'] → highest is 1 → h5pUrl for level 1 = B2 ✅
+    // completed = ['1','2'] → highest is 2 → h5pUrl for level 2 = B3 ✅
+    // completed = [] → no levels done → go to B1 (default)
+    if (completedLevels.length === 0) {
+      return null; // No levels completed, start from B1
+    }
+    
+    // Find the highest completed level
+    const maxCompleted = Math.max(...completedLevels.map(Number));
+    
+    // Look up the corresponding entry
+    const entry = Clp.LEVEL_PROGRESS.find(e => e.level === String(maxCompleted));
+    return entry || null;
   }
 
   onBackToSelection() {

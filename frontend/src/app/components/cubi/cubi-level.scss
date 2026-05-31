@@ -1,27 +1,38 @@
 .cubi-level-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .cubi-level-card {
-  width: 100%;
-  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   background: #f8f9fa;
   border-bottom: 1px solid #e9ecef;
+  flex-shrink: 0;
 }
 
 .header-left,
@@ -35,16 +46,21 @@
 }
 
 .header-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #333;
 }
 
 .card-body {
+  flex: 1;
+  min-height: 0;
   position: relative;
+  overflow: hidden;
+}
+
+.cubi-iframe-container {
   width: 100%;
-  height: 75vh;
-  min-height: 500px;
+  height: 100%;
 }
 
 .cubi-iframe {
@@ -52,6 +68,22 @@
   height: 100%;
   border: none;
   display: block;
+}
+
+/* On narrow screens (portrait), rotate iframe to force landscape */
+@media (max-width: 768px) {
+  .cubi-iframe-container {
+    position: relative;
+  }
+  .cubi-iframe {
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .loading-overlay {
@@ -76,12 +108,11 @@
 }
 
 .btn {
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.2s;
+  font-size: 0.85rem;
 }
 
 .btn-ghost {
