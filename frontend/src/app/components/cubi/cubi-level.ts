@@ -61,8 +61,8 @@ export class CubiLevel implements OnInit, OnDestroy {
     '3': '939221',
     '4': '617857',
     '5': '473938',
-    '6': '652116',
-    '7': '502945',
+    '6': '956067',
+    '7': '883104',
   };
 
   private buildCubiUrl(levelId: string): string {
