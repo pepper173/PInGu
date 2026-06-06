@@ -66,8 +66,7 @@ export class CubiLevel implements OnInit, OnDestroy {
   };
 
   private buildCubiUrl(levelId: string): string {
-    const baseUrl = 'https://pingu.schule/cubi/';
     const levelCode = CubiLevel.LEVEL_CODES[levelId] || levelId;
-    return `${baseUrl}?whiteLabel=pingu&levelCode=${levelCode}`;
+    return `https://cubi.it-for-kids.org/?whiteLabel=pingu&levelCode=${levelCode}`;
   }
 }

@@ -33,7 +33,7 @@ export class H5pStorageService {
   private http: HttpClient = inject(HttpClient);
 
   getLastH5PModuleState(contentId: string) {
-    return this.http.get<H5PModuleState>(`${this.baseUrl}h5p/module/${contentId}`);
+    return this.http.get<H5PModuleState>(`${this.baseUrl}/module/${contentId}`);
   }
 
   saveLastH5PModuleState(contentId: string, state: JSON) {
