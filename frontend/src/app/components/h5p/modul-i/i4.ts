@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { H5pModuleBase } from "../h5p-module-base";
 
 @Component({
-  selector: "app-modul-i-i3",
+  selector: "app-modul-i-i4",
   standalone: true,
   templateUrl: "../h5p-module.html",
   styleUrls: ["../h5p-module.scss"],
