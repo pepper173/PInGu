@@ -24,18 +24,19 @@ export class Clp {
   currentLayer = signal<Layer>("selection");
 
   paths: PathItem[] = [
-    { id: "p1", label: "Modul A", url: "/assets/h5p/A/A1" },
-    { id: "p2", label: "Modul B", url: "/assets/h5p/B/B1" },
-    { id: "p3", label: "Modul C", url: "/assets/h5p/C/C1" },
-    { id: "p4", label: "Modul D", url: "/assets/h5p/D/D1" },
-    { id: "p4", label: "Modul E", url: "/assets/h5p/E/E1" },
-    { id: "p5", label: "Modul F", url: "/assets/h5p/F/F1" },
+    // { id: "p1", label: "Modul A", url: "/assets/h5p/A/A1" },
+    // { id: "p2", label: "Modul B", url: "/assets/h5p/B/B1" },
+    // { id: "p3", label: "Modul C", url: "/assets/h5p/C/C1" },
+    // { id: "p4", label: "Modul D", url: "/assets/h5p/D/D1" },
+    // { id: "p4", label: "Modul E", url: "/assets/h5p/E/E1" },
+    // { id: "p5", label: "Modul F", url: "/assets/h5p/F/F1" },
   ];
 
   paths2: PathItem[] = [
     { id: "p6", label: "Modul A", url: "/assets/h5p/G/G1" },
     { id: "p7", label: "Modul B", url: "/assets/h5p/H/H1" },
-    { id: "p8", label: "Modul D", url: "/assets/h5p/I/I1" },
+    { id: "p8", label: "Modul C", url: "/assets/h5p/I/I1" },
+    { id: "p9", label: "Modul D", url: "/assets/h5p/J/J1" },
   ];
 
   onLogout() {

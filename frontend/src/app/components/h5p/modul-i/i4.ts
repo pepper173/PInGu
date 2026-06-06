@@ -7,22 +7,19 @@ import { H5pModuleBase } from "../h5p-module-base";
   templateUrl: "../h5p-module.html",
   styleUrls: ["../h5p-module.scss"],
 })
-export class I3 extends H5pModuleBase {
-  override moduleTitle = "Modul I - Kapitel 3";
+export class I4 extends H5pModuleBase {
+  override moduleTitle = "Modul I - Kapitel 4";
   override showNavigationButtons = true;
   override showBackButton = true;
 
   override onBackToPrevious(): void {
     this.router.navigate([
       this.baseUrl,
-      encodeURIComponent("/assets/h5p/I/I2"),
+      encodeURIComponent("/assets/h5p/I/I3"),
     ]);
   }
 
   override onNext(): void {
-    this.router.navigate([
-      this.baseUrl,
-      encodeURIComponent("/assets/h5p/I/I4"),
-    ]);
+    this.router.navigate(["/CLP"]);
   }
 }

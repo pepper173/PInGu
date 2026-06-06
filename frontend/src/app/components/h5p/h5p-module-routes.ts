@@ -1,52 +1,52 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { A1 } from "./modul-a/a1";
-import { A2 } from "./modul-a/a2";
-import { A3 } from "./modul-a/a3";
-import { B1 } from "./modul-b/b1";
-import { B2 } from "./modul-b/b2";
-import { B3 } from "./modul-b/b3";
-import { B4 } from "./modul-b/b4";
-import { B5 } from "./modul-b/b5";
-import { B6 } from "./modul-b/b6";
-import { B7 } from "./modul-b/b7";
-import { C1 } from "./modul-c/c1";
-import { C2 } from "./modul-c/c2";
-import { C3 } from "./modul-c/c3";
-import { D1 } from "./modul-d/d1";
-import { D2 } from "./modul-d/d2";
-import { D3 } from "./modul-d/d3";
-import { D4 } from "./modul-d/d4";
-import { D5 } from "./modul-d/d5";
-import { D6 } from "./modul-d/d6";
-import { D7 } from "./modul-d/d7";
-import { D8 } from "./modul-d/d8";
-import { D9 } from "./modul-d/d9";
-import { D10 } from "./modul-d/d10";
-import { D11 } from "./modul-d/d11";
-import { D12 } from "./modul-d/d12";
-import { D13 } from "./modul-d/d13";
-import { D14 } from "./modul-d/d14";
-import { E1 } from "./modul-e/e1";
-import { E2 } from "./modul-e/e2";
-import { E3 } from "./modul-e/e3";
-import { E4 } from "./modul-e/e4";
-import { E5 } from "./modul-e/e5";
-import { E6 } from "./modul-e/e6";
-import { E7 } from "./modul-e/e7";
-import { E8 } from "./modul-e/e8";
-import { E9 } from "./modul-e/e9";
-import { E10 } from "./modul-e/e10";
-import { E11 } from "./modul-e/e11";
-import { E12 } from "./modul-e/e12";
-import { E13 } from "./modul-e/e13";
-import { E14 } from "./modul-e/e14";
-import { E15 } from "./modul-e/e15";
-import { E16 } from "./modul-e/e16";
-import { F1 } from "./modul-f/f1";
-import { F2 } from "./modul-f/f2";
-import { F3 } from "./modul-f/f3";
-import { F4 } from "./modul-f/f4";
+// import { A1 } from "./modul-a/a1";
+// import { A2 } from "./modul-a/a2";
+// import { A3 } from "./modul-a/a3";
+// import { B1 } from "./modul-b/b1";
+// import { B2 } from "./modul-b/b2";
+// import { B3 } from "./modul-b/b3";
+// import { B4 } from "./modul-b/b4";
+// import { B5 } from "./modul-b/b5";
+// import { B6 } from "./modul-b/b6";
+// import { B7 } from "./modul-b/b7";
+// import { C1 } from "./modul-c/c1";
+// import { C2 } from "./modul-c/c2";
+// import { C3 } from "./modul-c/c3";
+// import { D1 } from "./modul-d/d1";
+// import { D2 } from "./modul-d/d2";
+// import { D3 } from "./modul-d/d3";
+// import { D4 } from "./modul-d/d4";
+// import { D5 } from "./modul-d/d5";
+// import { D6 } from "./modul-d/d6";
+// import { D7 } from "./modul-d/d7";
+// import { D8 } from "./modul-d/d8";
+// import { D9 } from "./modul-d/d9";
+// import { D10 } from "./modul-d/d10";
+// import { D11 } from "./modul-d/d11";
+// import { D12 } from "./modul-d/d12";
+// import { D13 } from "./modul-d/d13";
+// import { D14 } from "./modul-d/d14";
+// import { E1 } from "./modul-e/e1";
+// import { E2 } from "./modul-e/e2";
+// import { E3 } from "./modul-e/e3";
+// import { E4 } from "./modul-e/e4";
+// import { E5 } from "./modul-e/e5";
+// import { E6 } from "./modul-e/e6";
+// import { E7 } from "./modul-e/e7";
+// import { E8 } from "./modul-e/e8";
+// import { E9 } from "./modul-e/e9";
+// import { E10 } from "./modul-e/e10";
+// import { E11 } from "./modul-e/e11";
+// import { E12 } from "./modul-e/e12";
+// import { E13 } from "./modul-e/e13";
+// import { E14 } from "./modul-e/e14";
+// import { E15 } from "./modul-e/e15";
+// import { E16 } from "./modul-e/e16";
+// import { F1 } from "./modul-f/f1";
+// import { F2 } from "./modul-f/f2";
+// import { F3 } from "./modul-f/f3";
+// import { F4 } from "./modul-f/f4";
 import { G1 } from "./modul-g/g1";
 import { H1 } from "./modul-h/h1";
 import { H2 } from "./modul-h/h2";
@@ -71,58 +71,15 @@ import { H20 } from "./modul-h/h20";
 import { I1 } from "./modul-i/i1";
 import { I2 } from "./modul-i/i2";
 import { I3 } from "./modul-i/i3";
+import { I4 } from "./modul-i/i4";
+import { J1 } from "./modul-j/j1";
+import { J2 } from "./modul-j/j2";
+import { J3 } from "./modul-j/j3";
 
 @Component({
   selector: "app-h5p-module-routes",
   standalone: true,
   imports: [
-    A1,
-    A2,
-    A3,
-    B1,
-    B2,
-    B3,
-    B4,
-    B5,
-    B6,
-    B7,
-    C1,
-    C2,
-    C3,
-    D1,
-    D2,
-    D3,
-    D4,
-    D5,
-    D6,
-    D7,
-    D8,
-    D9,
-    D10,
-    D11,
-    D12,
-    D13,
-    D14,
-    E1,
-    E2,
-    E3,
-    E4,
-    E5,
-    E6,
-    E7,
-    E8,
-    E9,
-    E10,
-    E11,
-    E12,
-    E13,
-    E14,
-    E15,
-    E16,
-    F1,
-    F2,
-    F3,
-    F4,
     G1,
     H1,
     H2,
@@ -147,10 +104,14 @@ import { I3 } from "./modul-i/i3";
     I1,
     I2,
     I3,
+    I4,
+    J1,
+    J2,
+    J3,
   ],
   template: `
     @switch (module) {
-      @case ("A1") {
+      <!-- @case ("A1") {
         <app-modul-a-a1></app-modul-a-a1>
       }
       @case ("A2") {
@@ -290,7 +251,7 @@ import { I3 } from "./modul-i/i3";
       }
       @case ("F4") {
         <app-modul-f-f4></app-modul-f-f4>
-      }
+      } -->
       @case ("G1") {
         <app-modul-g-g1></app-modul-g-g1>
       }
@@ -362,6 +323,18 @@ import { I3 } from "./modul-i/i3";
       }
       @case ("I3") {
         <app-modul-i-i3></app-modul-i-i3>
+      }
+      @case ("I4") {
+        <app-modul-i-i4></app-modul-i-i4>
+      }
+      @case ("J1") {
+        <app-modul-j-j1></app-modul-j-j1>
+      }
+      @case ("J2") {
+        <app-modul-j-j2></app-modul-j-j2>
+      }
+      @case ("J3") {
+        <app-modul-j-j3></app-modul-j-j3>
       }
       @default {
         <p style="color: red;">No Match for: {{ module }}</p>
